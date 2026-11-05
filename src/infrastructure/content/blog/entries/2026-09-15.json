@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-15",
+  "tags": [
+    "grapht",
+    "backend",
+    "neo4j",
+    "adhd"
+  ],
+  "es": {
+    "title": "Mi Día sin llamadas ni datos de más",
+    "topic": "Cargar y mantener los planes de Mi Día sin llamadas repetidas, sin consultas duplicadas y sin acumular datos viejos.",
+    "body": [
+      "En pleno sprint de backend de septiembre quería mostrar varios días de Mi Día en GraphT y me encontré con que el backend solo sabía cargar uno a la vez. ¿Ver una semana? Siete llamadas. Uff.",
+      "Mi Día es el plan diario de GraphT: las tareas que eliges trabajar hoy, para no tener que decidir todo desde cero cada mañana. Y aparte del problema de las llamadas, el backend guardaba todos los planes para siempre, aunque fueran de hace meses, todo en mi servidor self-hosted.",
+      "Así que pedí un caso de uso que trajera un rango de fechas con una sola consulta. La primera versión repetía la consulta del endpoint de un día. Pedí no duplicarla, y ahora el caso de un día reutiliza el de rango. De paso dejé clara una regla de arquitectura: los endpoints nunca se llaman entre sí, la reutilización solo pasa entre casos de uso.",
+      "Luego la IA señaló otras consultas como \"duplicadas\". Las revisé y no eran idénticas. Se parecían, pero cambiaban qué datos traían según quién consultaba, y unificarlas habría cambiado el comportamiento. La verdad es que ahí me quedó claro que un \"esto está duplicado\" hay que verlo con mis propios ojos antes de aceptarlo.",
+      "Para los datos viejos, un proceso en segundo plano borra cada 24 horas los planes con más de 7 días, sin tocar las tareas.",
+      "También hice que Mi Día muestre lo que vence hoy, lo atrasado y la tarea que estás trabajando en ese momento, sin repetir ninguna y sin escribir en tu plan algo que no agregaste tú. Eso llegó después, ya en octubre, como hotfix de la beta, con las pruebas de casos de uso pasando.",
+      "Al final, Mi Día carga lo que necesita en una llamada y la base ya no acumula planes que nadie va a volver a abrir. ¿Se puede optimizar más? Seguro. Por ahora me quedo con no pedir ni guardar lo que no hace falta."
+    ]
+  },
+  "en": {
+    "title": "My Day without extra calls or extra data",
+    "topic": "Loading and keeping My Day plans without repeated calls, without duplicated queries and without piling up old data.",
+    "body": [
+      "In the middle of the September backend sprint, I wanted to show several days of My Day in GraphT and found out the backend could only load one at a time. Want a week? Seven calls. Ugh.",
+      "My Day is GraphT's daily plan: the tasks you pick to work on today, so you don't have to figure everything out from scratch every morning. On top of the calls thing, the backend kept every plan forever, even months-old ones, all on my self-hosted server.",
+      "So I asked for a use case that loads a date range with a single query. The first version repeated the single-day query. I asked for no duplication, and now the single-day use case reuses the range one. I also made an architecture rule explicit: endpoints never call each other, reuse only happens between use cases.",
+      "Then the AI flagged some other queries as \"duplicated.\" I checked, and they weren't identical. They looked alike, but each returned different data depending on who was asking, and merging them would have changed behavior. Honestly, that's when it clicked that \"this is duplicated\" is something I have to see for myself before I buy it.",
+      "For the old data, a background worker deletes plans older than 7 days every 24 hours, leaving tasks untouched.",
+      "I also made My Day show what's due today, what's overdue and the task you're working on right now, with no repeats and without writing anything into your plan that you didn't add. That part came later, in October, as a beta hotfix, with use-case tests passing.",
+      "In the end, My Day loads what it needs in one call, and the database stopped hoarding plans nobody will open again. Could it be leaner? Sure. For now I'm happy just not fetching or storing stuff I don't need."
+    ]
+  }
+}

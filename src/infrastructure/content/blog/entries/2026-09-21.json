@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-21",
+  "tags": [
+    "grapht",
+    "neo4j",
+    "performance",
+    "react"
+  ],
+  "es": {
+    "title": "Mis Tareas: de una eternidad a milisegundos",
+    "topic": "La pantalla Mis Tareas tardaba muchísimo y no daba señal de carga; primero feedback inmediato con streaming, luego diagnóstico con una copia de producción y una consulta de Neo4j que armaba 328 tareas para tirar 303.",
+    "body": [
+      "Ya con la UI nueva desplegada en mi servidor, a poco más de una semana de la beta, abrí Mis Tareas y me quedé viendo la pantalla sin saber si estaba cargando o se había congelado.",
+      "Eran dos problemas. Tardaba una eternidad y, la primera vez que abrías cualquier pantalla, no aparecía nada. Ni spinner ni esqueleto.",
+      "Así que decidí el orden: primero que se viera que algo estaba pasando, después hacerlo rápido. Y nada de optimizar a ciegas.",
+      "Con Claude Code encontramos por qué ni siquiera había dónde poner un spinner. Con SSR bloqueante el servidor no mandaba un solo byte hasta tener todos los datos. Pasé todas las pantallas a datos diferidos con streaming, justo para que esto no volviera a pasar en ninguna, y ahora el HTML sale de inmediato con el esqueleto (primer byte en 27 ms en una prueba con build de producción).",
+      "Para lo lento copié la base de producción a local, porque con datos de juguete las consultas malas se ven rápidas. 328 tareas, 6,068 registros de historial de estados y una sola tarea con 1,002. Sí, una sola.",
+      "El punto es que la consulta en Neo4j encadenaba once expansiones de relaciones y cada una multiplicaba las filas intermedias, para las 328 tareas. Hasta el final ordenaba y tomaba las 25 de la página. Quiero decir, armaba 328 tareas completas para tirar 303.",
+      "Un índice no lo iba a arreglar, el problema no era encontrar las tareas sino lo que se construía después. Así que moví el orden y la paginación antes de expandir y comprobé que las páginas 1 y 2 devolvieran los mismos ids en el mismo orden. Luego acoté el historial a lo más reciente en las consultas de lectura, menos en la que reconstruye el dominio. De paso apareció un orden implícito que nadie había escrito, así que lo dejé explícito.",
+      "Medido en la base, Mis Tareas pasó de 29,297 ms a 16 ms, y a 14 ms con el historial acotado. La Bandeja, de 651 a 46 ms, y el detalle de la tarea con más historial, de 2,171 a 18 ms.",
+      "La verdad es que lo que más me sorprendió no fue la cifra. Fue darme cuenta de cuánto trabajo inútil puede esconder una consulta que se ve inocente."
+    ]
+  },
+  "en": {
+    "title": "My Tasks: from forever to milliseconds",
+    "topic": "The My Tasks screen took forever and gave no loading signal; first instant feedback with streaming, then a diagnosis with a copy of production and a Neo4j query that built 328 tasks to throw away 303.",
+    "body": [
+      "With the new UI deployed to my server, a little over a week before the beta, I opened My Tasks and just sat there staring at the screen, not knowing if it was loading or frozen.",
+      "There were two problems. It took forever, and the first time you opened any screen, nothing showed up. No spinner, no skeleton.",
+      "So I picked an order: first make it obvious something is happening, then make it fast. And no optimizing blind.",
+      "Working with Claude Code, we found out why there wasn't even a place to put a spinner. With blocking SSR, the server didn't send a single byte until it had all the data. I moved every screen to deferred data with streaming, precisely so this wouldn't happen anywhere else, and now the HTML ships right away with the skeleton (27 ms to first byte in a test on a production build).",
+      "For the slow part, I copied the production database to my machine, because with toy data bad queries look fast. 328 tasks, 6,068 status-history records, and one single task with 1,002 of them. Yes, one task.",
+      "Turns out the Neo4j query chained eleven relationship expansions, and each one multiplied the intermediate rows, for all 328 tasks. Only at the very end did it sort and keep the 25 on the page. It was building 328 full tasks to throw away 303.",
+      "An index wasn't going to fix that. The problem wasn't finding the tasks, it was everything built after. So I moved sorting and pagination ahead of the expansion and checked that pages 1 and 2 returned the same ids in the same order. Then I capped the history to the latest changes in the read queries, except the one that rebuilds the domain model. Along the way an implicit sort order showed up that nobody had ever written down, so I made it explicit.",
+      "Measured on the database server, My Tasks went from 29,297 ms to 16 ms, and to 14 ms with the capped history. The Inbox went from 651 to 46 ms, and the detail view of the task with the most history from 2,171 to 18 ms.",
+      "Honestly, the number wasn't what surprised me. It was how much wasted work an innocent-looking query can hide."
+    ]
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-26",
+  "tags": [
+    "grapht",
+    "ux",
+    "adhd"
+  ],
+  "es": {
+    "title": "Onboarding: el tutorial es una tarea más",
+    "topic": "Onboarding de GraphT donde las tareas de bienvenida son los casos de uso reales y se cierran solas al hacer la acción.",
+    "body": [
+      "La última feature que metí antes de la beta pública de GraphT, a dos días de abrirla, fue el onboarding. Y decidí que el tutorial iba a ser una tarea más.",
+      "El sistema de diseño proponía dos capas: pistas breves en pantalla y un árbol de tareas de primeros pasos. Al revisar el contrato vi que daba por hecho que el backend ya creaba esas tareas. No las creaba.",
+      "Yo quería que la app enseñara usándose de verdad, sin un tour que la gente cierra sin leer y sin poder hacer trampa marcando pasos a mano.",
+      "Así que al primer inicio de sesión validado, el backend crea un área \"Empezar\" y una tarea \"Conoce GraphT\" con 14 hijas. La verificación del correo, que antes andaba suelta, pasó a ser una hija más. Cada hija es algo que el usuario hace en la app, como crear tareas, mandarlas a Mi Día o invitar a alguien al Círculo, y se cierra sola cuando lo hace, sumando puntos como cualquier tarea.",
+      "Las pistas son una por concepto, se guardan por usuario y se pueden volver a ver desde Ajustes. También revisé los textos contra el flujo real. La de pomodoros decía que se eligen al arrancar una tarea, cuando en realidad se asignan al crearla o editarla.",
+      "Llegó a la beta, aunque con sus tropiezos. Al enganchar los pasos apareció una dependencia circular que no dejaba arrancar el backend, y las pruebas unitarias ni la vieron porque usan dobles. Se resolvió bajando un nivel en los casos de uso. El mismo día del lanzamiento, las pistas no salían en monitores de 1536 px o más, porque al botón de esa barra le faltaba la pista que desbloquea a las demás. Hotfix y listo.",
+      "Quiero decir, las pruebas con dobles me salvan seguido, pero esta vez nada reemplazó arrancar el sistema completo. Ahora toca ver qué tal les cae a los primeros usuarios."
+    ]
+  },
+  "en": {
+    "title": "Onboarding: the tutorial is just another task",
+    "topic": "The GraphT onboarding, where the welcome tasks are the real use cases and close on their own when you do the action.",
+    "body": [
+      "The last feature I squeezed in before GraphT's public beta, just two days out, was onboarding. And I decided the tutorial would just be another task.",
+      "The design system proposed two layers: short on-screen hints and a tree of \"first steps\" tasks. When I reviewed the contract, I noticed it assumed the backend already created those tasks. It didn't.",
+      "I wanted the app to teach by actually being used. No tour people close without reading, and no way to cheat by checking steps off by hand.",
+      "So on the first verified sign-in, the backend creates a \"Getting started\" life area and a \"Meet GraphT\" task with 14 subtasks. Email verification, which used to float around on its own, became one more subtask. Each subtask is something the user really does in the app, like creating tasks, sending them to My Day or inviting someone to their Circle, and it closes itself when they do it, earning points like any other task.",
+      "Hints are one per concept, saved per user, and you can bring them back from Settings. I also checked the copy against the real flows. The pomodoro hint said you pick one when starting a task, when it's actually set when you create or edit it.",
+      "It made it into the beta, with a couple of stumbles. Wiring up the steps created a circular dependency that kept the backend from even starting, and unit tests never noticed because they use doubles. Moving one call down a level fixed it. On launch day, hints didn't show on monitors 1536 px or wider, because that toolbar's button was missing the hint that unlocks all the others. One hotfix later, done.",
+      "I mean, test doubles save me all the time, but this time nothing beat booting the whole thing. Now I get to see how the first users take it."
+    ]
+  }
+}

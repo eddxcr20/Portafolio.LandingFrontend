@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-18",
+  "tags": [
+    "grapht",
+    "apis",
+    "dotnet",
+    "buildinpublic"
+  ],
+  "es": {
+    "title": "Portal de desarrolladores y PATs",
+    "topic": "Portal de desarrolladores con Personal Access Tokens y documentación basada en la API real",
+    "body": [
+      "Unas tres semanas después de abrir la beta, mi socio quería conectar su propio sistema de IA a GraphT, y yo quería conectar el mío para que me ayudara con mis tareas. El detalle es que la única forma de entrar era con usuario y contraseña. Nada de llaves para máquinas, nada de documentación pública.",
+      "Así que tocó construir un portal para desarrolladores. Con una condición que no estaba a discusión: la documentación solo podía mostrar lo que un desarrollador de afuera de verdad puede usar, y nada más.",
+      "Lo armé con Claude Code. Yo definí qué tenía que existir, la IA lo fue implementando y yo revisaba. Lo principal:",
+      [
+        "Tokens personales que se muestran una sola vez. En la base solo se guarda su hash SHA-256.",
+        "Se pueden crear, renombrar, regenerar y revocar, y llega un correo una semana antes de que venzan.",
+        "Permisos por recurso y nivel (lectura o escritura), con un límite de 60 peticiones por minuto por token.",
+        "Un token no sirve para gestionar otros tokens ni para tocar la cuenta."
+      ],
+      "La referencia no la escribí a mano. Se genera desde el Swagger del backend, 118 endpoints y 37 enumeraciones, con un filtro que deja fuera todo lo que es de uso interno.",
+      "Lo curioso es que al documentar con honestidad aparecieron huecos de permisos que con una API pública ya importaban bastante. Los corregí en los casos de uso y no en el controlador.",
+      "Las pruebas automatizadas no cubrían la parte HTTP de los tokens, así que los probé en vivo. 33 de 33 casos salieron como esperaba. Todo salió en la v0.4.0-beta.1.",
+      "Hoy mi propio asistente de IA consulta GraphT leyendo esa documentación, no el código. Quiero decir, si la doc está mal, él también se equivoca... supongo que ya no tengo excusa para dejarla atrasada."
+    ]
+  },
+  "en": {
+    "title": "Developer portal and PATs",
+    "topic": "A developer portal with Personal Access Tokens and documentation built from the real API.",
+    "body": [
+      "About three weeks into the beta, my business partner wanted to hook his own AI system up to GraphT. I wanted the same for mine, mostly so it could help me keep up with my own tasks. Small problem: the only way in was a username and password. No machine credentials, no public docs.",
+      "So I ended up building a developer portal. One rule wasn't up for debate: the docs could only show what an outside developer can actually use, nothing more.",
+      "I built it with Claude Code. I decided what had to exist, the AI wrote it, and I reviewed. The main pieces:",
+      [
+        "Personal access tokens shown exactly once and stored only as a SHA-256 hash.",
+        "You can create, rename, regenerate and revoke them, and you get an email a week before one expires.",
+        "Scopes per resource and level (read or write), capped at 60 requests per minute per token.",
+        "A token can't be used to manage other tokens or touch the account itself."
+      ],
+      "I didn't write the reference by hand. It's generated from the backend's Swagger (118 endpoints, 37 enums), with a filter that leaves out anything meant for internal use.",
+      "Funny thing is, writing honest docs turned up permission gaps that suddenly mattered a lot more once the API was public. I fixed them in the use cases, not the controllers.",
+      "The automated tests didn't cover the HTTP side of the tokens, so I tested them live. 33 out of 33 cases behaved. It all shipped in v0.4.0-beta.1.",
+      "These days my own AI assistant talks to GraphT by reading those docs, not the code. Which means if the docs are wrong, so is it... so I guess I've lost my excuse for letting them go stale."
+    ]
+  }
+}

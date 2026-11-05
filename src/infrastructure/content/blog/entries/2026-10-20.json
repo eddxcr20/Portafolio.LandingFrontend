@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-20",
+  "tags": [
+    "grapht",
+    "backend",
+    "productdesign",
+    "adhd"
+  ],
+  "es": {
+    "title": "Recordatorios como ventana de tiempo, con reglas por plan",
+    "topic": "Rediseñar los recordatorios de GraphT, de un aviso único a una ventana con intervalo, con límites por plan (Free/pago) y casos borde de tareas recurrentes y vencidas.",
+    "body": [
+      "Ya con unas semanas de beta, uno de los usuarios me pidió que los recordatorios de GraphT dejaran de ser de un solo disparo. Un solo aviso antes de la fecha y ya no le servía. Quería que la app empezara a avisarle desde cierto momento y le siguiera insistiendo cada tanto hasta la fecha límite.",
+      "Para una app pensada para personas con TDAH, la verdad es que la petición tenía todo el sentido.",
+      "Así que pensé el recordatorio como una ventana: un inicio, un fin y un intervalo, contados hacia atrás desde la fecha límite. Si la fecha se mueve o la tarea se repite, la ventana se mueve con ella. Y un recordatorio sin intervalo es exactamente el de antes, por eso los que ya existían migraron sin cambiar su comportamiento.",
+      "En la UI hay dos modos. Simple, tipo \"1 hora antes, cada 10 minutos\", y Avanzado, donde el usuario elige desde y hasta, por ejemplo para no recibir avisos mientras duerme. El backend no sabe nada de modos. Claude Code lo implementó sobre ese diseño y yo fui decidiendo lo que iba saliendo.",
+      "Y salieron cosas. Con avisos repetidos, cada correo cuesta y podía acabarse la cuota de la que dependen los correos de verificación, así que quité el correo. Las push del sistema se quedaron apiladas, porque reemplazarlas puede no volver a sonar en iOS. Dentro de la app, cada aviso sí reemplaza al anterior de la misma tarea. Y por plan, minutos y horas solo en pago, con 1 recordatorio por tarea en el gratuito y 3 en el de pago.",
+      "Lo probé en desarrollo con una ventana de 13:34 a 13:39, cada minuto. Llegaron los 6 avisos y luego el recordatorio se borró solo. Después apareció un bug, las tareas vencidas no aceptaban recordatorios, y lo corregí en un hotfix para que los acepten en modo Avanzado. Todo ya está en producción.",
+      "Es lo más reciente que salió, entre la v0.6 y la v0.8. GraphT empezó como algo que hice para mí, y esta vez lo que construí vino de alguien más usándola.",
+      "Era una función \"pequeña\", según yo. Ya veremos si le insiste lo suficiente a quien la pidió."
+    ]
+  },
+  "en": {
+    "title": "Reminders as a time window, with rules per plan",
+    "topic": "Redesigning GraphT reminders, from a single alert to a window with an interval, with limits per plan (Free/paid) and edge cases for recurring and overdue tasks.",
+    "body": [
+      "A few weeks into the beta, one of the users asked me to make GraphT's reminders stop being one-shot. A single heads-up before the deadline and that's it wasn't cutting it. They wanted the app to start nudging them at a certain point and keep at it every so often until the deadline.",
+      "For an app built for people with ADHD, honestly, fair enough.",
+      "So I modeled a reminder as a window: a start, an end and an interval, all counted back from the deadline. If the deadline moves or the task repeats, the window moves with it. A reminder with no interval is exactly the old one, which is why the existing ones migrated without behaving any differently.",
+      "The UI has two modes. Simple, like \"1 hour before, every 10 minutes\", and Advanced, where the user picks from and to, say, to avoid getting pinged while asleep. The backend has no idea modes exist. Claude Code implemented it on top of that design, and I made the calls as things came up.",
+      "And things came up. With repeated nudges every email costs money and could eat the quota that verification emails depend on, so email went away. System push notifications stay stacked, because replacing them might not make a sound again on iOS. Inside the app, though, each nudge replaces the previous one for the same task. Plans got rules too: minutes and hours are paid only, with 1 reminder per task on free and 3 on paid.",
+      "I tested it in dev with a window from 13:34 to 13:39, every minute. All 6 nudges arrived and then the reminder deleted itself. Later a bug showed up where overdue tasks couldn't get reminders, and I fixed it in a hotfix so they can, in Advanced mode. It's all in production now.",
+      "It's the latest thing to ship, between v0.6 and v0.8. GraphT started as something I built for myself, and this time what I built came from someone else using it.",
+      "It was a \"small\" feature, or so I thought. We'll see if it nags the person who asked for it enough."
+    ]
+  }
+}

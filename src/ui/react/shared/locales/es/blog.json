@@ -1,0 +1,23 @@
+{
+  "seo": {
+    "title": "Diario de decisiones · Blog de José Eduardo Cruz Rosano",
+    "description": "Lo que decidí y por qué mientras construyo GraphT: arquitectura, producto e infraestructura.",
+    "tagTitle": "#{{tag}} · Blog de José Eduardo Cruz Rosano",
+    "tagDescription": "Entradas con la etiqueta #{{tag}} en el diario de decisiones.",
+    "entryTitle": "{{title}} · Blog de José Eduardo Cruz Rosano"
+  },
+  "subtitle": "Blog",
+  "title": "Diario de decisiones",
+  "taggedCount_one": "1 entrada con esta etiqueta.",
+  "taggedCount_other": "{{count}} entradas con esta etiqueta.",
+  "read": "Leer",
+  "tags": "Etiquetas",
+  "clearFilter": "Quitar filtro",
+  "previous": "Anterior",
+  "next": "Siguiente",
+  "errors": {
+    "entryNotFound": "No hay ninguna entrada del {{value}}.",
+    "tagNotFound": "No hay entradas con la etiqueta #{{value}}.",
+    "pageNotFound": "No existe la página {{value}} de este listado."
+  }
+}

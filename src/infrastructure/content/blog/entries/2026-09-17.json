@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-17",
+  "tags": [
+    "grapht",
+    "productdesign",
+    "backend",
+    "adhd"
+  ],
+  "es": {
+    "title": "Votación para cerrar tareas compartidas",
+    "topic": "Colaboración en tiempo real: reglas por plan, sesión activa y rol para decidir quién cierra una tarea compartida, con confirmación o votación cuando hay conflicto.",
+    "body": [
+      "Con los flujos de estado recién unificados, a dos semanas de la beta, estaba diseñando el modo colaborativo de GraphT y me topé con una pregunta que parecía sencilla: si tres personas trabajan en la misma tarea y una la quiere dar por terminada, ¿qué pasa con las otras dos?",
+      "Cada persona lleva su propia sesión de pomodoro dentro de la tarea compartida. Yo me imaginaba a alguien con TDAH que por fin logró enfocarse y de repente otro le apaga la sesión. No, gracias.",
+      "Así que antes de picar código me senté a definir reglas sin huecos. Empecé con una matriz de 12 casos según el rol de cada quien, su plan (gratuito o de pago) y si tenía una sesión activa. Con la IA la fui reduciendo a reglas equivalentes, y cada revisión destapaba un hueco nuevo. Fueron 9 prompts míos, unas 3,500 palabras, sin que la IA tocara una sola línea de código. Todo terminó en un documento de especificación, y justo ahí la conversación se quedó sin contexto. Tuve que compactarla antes de poder implementar.",
+      "Quedó así. Si otros están trabajando la tarea, para cerrarla hay que tener sesión propia en ella. Si nadie más la trabaja, o nadie tiene plan de pago, se cierra de inmediato. Si exactamente uno tiene plan de pago, a él le llega una confirmación. Y si son varios, se vota.",
+      "La votación dura 5 minutos, la lista de votantes se congela al abrirla y quien la pide vota \"sí\" de entrada. Quien está en pausa o en descanso también vota. Dejarlo fuera por tomarse un respiro se me hacía agresivo. Gana la mayoría de votos emitidos, y si gana el \"no\" solo se cierran las sesiones de quienes votaron que sí, los demás siguen trabajando. Si hay empate decide el creador, aunque tenga plan gratuito. Después de torturar tanto al plan Free, me pareció justo darle algo de autoridad jajaja.",
+      "En el camino la IA mezclaba esto con el cierre automático cuando terminan las subtareas. Lo separé en otro algoritmo, porque ahí no vota nadie, solo se pide permiso para continuar.",
+      "Días después, ya con la UI nueva, vino el frontend, y la notificación de votación me costó varias vueltas. Primero los botones tapaban el nombre del usuario, luego se salían de la tarjeta, y luego la IA le puso una elevación que las tarjetas de notificación no llevan. Probé los flujos básicos y la cerré, porque probar cada rama del algoritmo ya era otro proyecto.",
+      "¿Cubrí todos los casos? La verdad es que no sé, seguro alguien encontrará uno que no vi. Pero al menos ya sé quién tiene la última palabra."
+    ]
+  },
+  "en": {
+    "title": "Voting to close shared tasks",
+    "topic": "Real-time collaboration: rules by plan, active session and role to decide who closes a shared task, with a confirmation or a vote when there's a conflict.",
+    "body": [
+      "With task status flows freshly unified, two weeks before the beta, I was designing GraphT's collaboration mode when I ran into a question that sounded simple: if three people are working on the same task and one of them wants to call it done, what happens to the other two?",
+      "Each person runs their own pomodoro session inside a shared task. I kept picturing someone with ADHD who finally got into focus, and then somebody else just switches it off. Nope.",
+      "So before writing any code, I sat down to define rules with no gaps. I started with a 12-case matrix based on each person's role, their plan (free or paid), and whether they had an active session. With the AI I boiled it down to equivalent rules, and every review uncovered a new gap. That took 9 prompts from me, around 3,500 words, without the AI touching a single line of code. It all ended up in a spec document, and right then the conversation ran out of context. I had to compact it before I could even start implementing.",
+      "Where it landed. If other people are working on the task, you need your own session on it to close it. If nobody else is on it, or nobody is on the paid plan, it closes right away. If exactly one person is on the paid plan, they get a confirmation. If there are several, it goes to a vote.",
+      "The vote lasts 5 minutes, the voter list is frozen when it opens, and whoever asks for it votes yes automatically. People who are paused or on a break still vote. Leaving someone out because they took a breather felt rude. The majority of cast votes wins, and if \"no\" wins, only the sessions of the people who voted yes get closed, everyone else keeps working. Ties go to the creator, even on the free plan. After torturing free users so much, it felt fair to give them a bit of authority, haha.",
+      "Along the way the AI kept mixing this up with the automatic close when all subtasks are done. I split that into its own algorithm, because there nobody votes, the system just asks permission to continue.",
+      "A few days later, on the new UI, came the frontend, and the voting notification took a few rounds. First the buttons covered the user's name, then they spilled out of the card, then the AI gave it an elevation notification cards don't have. I tested the basic flows and shipped it, because testing every branch of the algorithm was a project of its own.",
+      "Did I cover every case? Honestly, no idea. Someone will probably find one I missed. But at least now I know who gets the last word."
+    ]
+  }
+}

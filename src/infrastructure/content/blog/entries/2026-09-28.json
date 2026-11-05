@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-28",
+  "tags": [
+    "grapht",
+    "cybersecurity",
+    "dotnet",
+    "react"
+  ],
+  "es": {
+    "title": "Cerrar sesión de verdad",
+    "topic": "Sesión y seguridad en GraphT: cortar conexiones en tiempo real al cerrar sesión, sacar al usuario cuando su sesión muere y no exponer datos de otros participantes.",
+    "body": [
+      "Un día cerré sesión en GraphT y las notificaciones me siguieron llegando. Ahí entendí que cerrar sesión era bastante más que borrar unas cookies.",
+      "Uso SignalR para las notificaciones en tiempo real. Y cuando empecé a jalar el hilo, a días de abrir la beta, salieron más cosas. Si alguien cerraba sesión en otra pestaña o le borraban la cuenta, la app no lo sacaba, solo mostraba \"No pudimos cargar…\" en cada pantalla. Y con la sesión abierta se podía volver al acceso y entrar con otra cuenta como si nada.",
+      "Lo que quería era que una sesión terminada lo estuviera en todos lados, sin tumbar de paso las que siguen vivas en otros dispositivos.",
+      "Cerrar sesión pasó a ser un caso de uso que invalida la sesión y corta todas las conexiones en tiempo real de ese usuario. El servidor también cierra la conexión cuando vence su token. Y borrar una cuenta corta sus conexiones, la borre quien la borre.",
+      "En el front, si la conexión se cae, la pantalla vuelve a pedir sus datos. Si el backend dice que el usuario no existe o que el token ya no sirve, se borran las cookies y lo manda al acceso. Si es otro error, como un 500, nadie sale. Quiero decir, sacar a alguien por un error del servidor sería castigarlo por mis bugs.",
+      "Si ya hay sesión, la pantalla de acceso manda directo a Mi Día.",
+      "Faltaba un hueco, menos visible. Para las invitaciones por enlace había que saber si el visitante ya tenía una invitación pendiente. Resolverlo con los datos de la tarea abría una fuga de información, así que pedí un endpoint que solo responde por quien pregunta. Toma al usuario del token y nunca lo acepta como parámetro.",
+      "Lo último salió como hotfix (v0.1.0-beta.4) el mismo día que abrí la beta, el 28 de septiembre, con 343 tests del backend y 822 del front en verde. Las sesiones vivas en otros dispositivos se reconectan solas.",
+      "¿Quedó a prueba de todo? Lo dudo. Pero ahora, cada vez que toco algo de sesión, me pregunto quién más puede ver ese dato."
+    ]
+  },
+  "en": {
+    "title": "Logging out for real",
+    "topic": "Session and security in GraphT: cutting real-time connections on logout, kicking users out when their session dies and not exposing other participants' data.",
+    "body": [
+      "One day I logged out of GraphT and the notifications kept coming. That's when I figured out logging out was a lot more than clearing a few cookies.",
+      "I use SignalR for real-time notifications. And once I pulled that thread, days before the beta opened, more came out. If someone logged out in another tab or their account got deleted, the app didn't kick them out, every screen just said \"We couldn't load…\". And with a session already open, you could go back to sign-in and log in as someone else like nothing happened.",
+      "What I wanted was this: a session that's over should be over everywhere, without killing the ones still alive on other devices.",
+      "Logging out became a use case that invalidates the session and drops every real-time connection that user has. The server also closes a connection once its token expires. And deleting an account drops its connections, no matter who deletes it.",
+      "On the frontend, if the connection drops, the screen asks for its data again. If the backend says the user doesn't exist or the token is no good, the cookies get cleared and it's back to sign-in. Any other error, like a 500, logs nobody out. I mean, kicking people out because my server broke would be punishing them for my bugs.",
+      "If there's already a session, the sign-in page goes straight to My Day.",
+      "There was one more gap, a quieter one. Invite links needed to know whether the visitor already had a pending invitation. Answering that from the task's data would have leaked information, so I asked for an endpoint that only answers for whoever's asking. It reads the user from the token and never takes it as a parameter.",
+      "The last of it shipped as a hotfix (v0.1.0-beta.4) the same day I opened the beta, September 28, with 343 backend and 822 frontend tests passing. Sessions still alive on other devices reconnect on their own.",
+      "Is it bulletproof now? I doubt it. But now, whenever I touch session stuff, I ask myself who else can see that data."
+    ]
+  }
+}

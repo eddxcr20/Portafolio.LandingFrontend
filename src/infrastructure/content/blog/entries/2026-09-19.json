@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-19",
+  "tags": [
+    "grapht",
+    "frontend",
+    "designsystems",
+    "react"
+  ],
+  "es": {
+    "title": "Tirar la UI y reconstruirla sobre un sistema de diseño propio",
+    "topic": "Borré el frontend completo de GraphT y lo reconstruí por partes sobre la identidad que diseñé en Claude Design, con auditorías contra el diseño.",
+    "body": [
+      "En febrero de 2026 por fin tenía una versión de GraphT que se podía usar, y se la pasé a un par de amigos. La app funcionaba. La interfaz, en cambio, era tan mala que decidí tirarla completa.",
+      "Entre mayo y junio diseñé en Claude Design un sistema de diseño propio para GraphT: colores, tipografía, elevación, animación, estados de interacción y las pantallas. Lo difícil venía después, que la app se viera así de verdad y no \"más o menos\". Así que a mediados de septiembre, con el backend listo y a dos semanas de la beta, no parcheé la UI vieja, la borré.",
+      "La reconstrucción la hice con Claude Code, yo marcando el orden y la IA implementando. Primero quité shadcn, los estilos y dos páginas que ya no existían en el diseño. Regeneré los contratos HTTP, que se habían quedado atrás, y solo conservé los loaders de datos que servían.",
+      "Después fui por capas. Identidad, acceso y navegación en 320, 768 y 1280 px, con botones que todavía no hacían nada. Las páginas llegaron después, una por una.",
+      "Luego le pedí a la IA una auditoría contra el paquete de diseño. La primera entrega era una lista donde no se distinguía qué pedía el diseño y qué hacía la app, así que la pedí en tablas, con una columna para cada cosa. Con eso decidí punto por punto qué corregir, y cuando el propio paquete se contradecía, usé las reglas de prioridad del sistema.",
+      "Y luego el clásico. En el navegador, el color de los estados de interacción no aparecía en los nodos del grafo. En el código todo se veía bien... el selector CSS simplemente nunca coincidía con nada.",
+      "Al final quité la paleta por defecto de Tailwind para que no se colara ningún color fuera de la marca, y dejé documentado en la guía del frontend cómo se cambian los colores.",
+      "¿Quedó perfecta? Probablemente no. Pero por fin se parece a lo que diseñé, y eso ya es bastante."
+    ]
+  },
+  "en": {
+    "title": "Throwing out the UI and rebuilding it on my own design system",
+    "topic": "I deleted the whole GraphT frontend and rebuilt it piece by piece on the identity I designed in Claude Design, auditing it against the design.",
+    "body": [
+      "Back in February 2026 I finally had a version of GraphT you could actually use, and I passed it to a couple of friends. The app worked. The interface was bad enough that I decided to throw the whole thing out.",
+      "Between May and June I designed GraphT's own design system in Claude Design: colors, type, elevation, motion, interaction states and the screens themselves. The hard part came next, getting the app to really look like that and not \"close enough.\" So in mid-September, with the backend done and two weeks to go before the beta, I didn't patch the old UI. I deleted it.",
+      "I rebuilt it with Claude Code, with me setting the order and the AI writing the code. First I ripped out shadcn, the old styles and two pages the new design didn't have anymore. I regenerated the HTTP contracts, which had fallen behind, and kept only the data loaders that still made sense.",
+      "Then I went layer by layer. Identity, sign-in and navigation at 320, 768 and 1280 px, with buttons that didn't do anything yet. The pages came later, one at a time.",
+      "Once there was enough to look at, I asked the AI to audit the app against the design package. Its first pass was a list that didn't separate what the design asked for from what the app did, so I asked for tables with a column for each. That let me decide case by case what to fix, and when the package contradicted itself I went with the system's own priority rules.",
+      "And then the classic. In the browser, interaction-state colors weren't showing on the graph nodes. The code looked fine... the CSS selector just never matched anything.",
+      "I also removed Tailwind's default palette so no off-brand color could sneak in, and wrote down in the frontend guide how colors get changed.",
+      "Is it perfect? Probably not. But it finally looks like what I designed, and honestly that's a lot."
+    ]
+  }
+}

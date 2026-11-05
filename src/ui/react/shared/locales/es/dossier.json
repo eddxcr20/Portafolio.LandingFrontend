@@ -1,0 +1,29 @@
+{
+  "seo": {
+    "title": "{{name}} · Expediente de José Eduardo Cruz Rosano"
+  },
+  "caseFile": "Expediente {{number}} · {{name}}",
+  "nav": {
+    "sheet": "Ficha",
+    "stories": "Historias",
+    "state": "Estado"
+  },
+  "sheet": {
+    "problem": "Problema",
+    "understanding": "Qué entendí",
+    "decisions": "Qué decidí",
+    "state": "Estado"
+  },
+  "pieces": "Piezas principales",
+  "featured": {
+    "label": "Historias destacadas",
+    "title": "Lo que decidí y por qué, contado en el blog.",
+    "all": "Todas las historias de {{name}}",
+    "read": "Leer en el blog"
+  },
+  "state": "Estado",
+  "back": "← Volver a la portada",
+  "errors": {
+    "projectNotFound": "No encontré el expediente «{{value}}»."
+  }
+}

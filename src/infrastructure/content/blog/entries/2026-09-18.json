@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-18",
+  "tags": [
+    "grapht",
+    "dotnet",
+    "systemdesign",
+    "adhd"
+  ],
+  "es": {
+    "title": "Finalización en cascada con cola global",
+    "topic": "Rediseño de la finalización en cascada de tareas padre: en vez de recalcular el árbol dos veces, una sola cola global que el sistema resuelve de las hijas hacia arriba.",
+    "body": [
+      "La última pieza del sprint de backend de septiembre, montada sobre los flujos de estado, fue cerrar tareas en cascada. La primera propuesta de la IA recalculaba el mismo árbol de tareas dos veces.",
+      "Un poco de contexto. En GraphT, cuando terminas una subtarea, puede que las tareas de arriba, las \"padre\", también ya se puedan cerrar. Antes eso era todo o nada, y yo quería que cada quien eligiera cuáles cerrar. Con TDAH, cerrar cosas a mano una por una es justo la fricción que termina en pendientes eternos.",
+      "El detalle era hacerlo sin castigar a mi servidor self-hosted y sin pisar a nadie, porque en tareas compartidas otra persona puede seguir trabajando en el padre.",
+      "Así que el sistema calcula una sola vez qué ancestros quedarían con todas sus hijas cerradas, contando las candidatas de más abajo, y los muestra como árbol. El usuario marca los que quiere y se olvida.",
+      "Luego vino mi propio tropiezo. Mi primer diseño tenía listas por usuario y cada respuesta abría un caso nuevo. La verdad es que lo estaba complicando de más. Lo tiré y lo dejé en una sola cola global que un proceso en segundo plano resuelve de las hijas hacia arriba, casi como un sistema de mensajería. Un padre solo se procesa cuando sus hijas en la cola ya pasaron. Dejar una tarea sin marcar cuenta como rechazo y la saca de la cola junto con sus ancestros, aunque la haya pedido otro. Si dos o más personas tienen sesión activa en el padre, la rama se detiene sin preguntar. Y si alguien con plan de pago tiene que dar permiso, le llega una solicitud que vence a los 2 minutos.",
+      "Entre una cosa y otra fueron 7 prompts de pura definición, unas 2,450 palabras mías, antes de que la IA escribiera la primera línea. En el octavo di luz verde.",
+      "Ya está funcionando. Del lado del usuario lo único que se ve es el árbol de tareas que ya se pueden finalizar. Todo lo demás vive en el backend, con las pruebas del modelo y de los casos de uso pasando.",
+      "¿Habrá un modelo todavía más simple escondido ahí? Quizá. Por ahora la cola funciona, y yo aprendí a sospechar de mis diseños cuando empiezan a pedir demasiadas excepciones."
+    ]
+  },
+  "en": {
+    "title": "Cascading completion with a global queue",
+    "topic": "Redesigning how parent tasks complete in cascade: instead of recalculating the tree twice, a single global queue the system resolves from the children up.",
+    "body": [
+      "The last piece of my September backend sprint, built on top of the task status flows, was closing tasks in cascade. The AI's first proposal recalculated the same task tree twice.",
+      "Some context. In GraphT, finishing a subtask can mean the parent tasks above it are done too. It used to be all or nothing, and I wanted people to pick which ones to close. With ADHD, closing things one by one by hand is exactly the kind of friction that turns into tasks that never die.",
+      "The catch was doing it without punishing my self-hosted server and without stepping on anyone, because in shared tasks someone else might still be working on the parent.",
+      "So the system works out once which ancestors would end up with all their children closed, counting the candidates further down, and shows them as a tree. The user ticks the ones they want and forgets about it.",
+      "Then I tripped over my own design. I had per-user lists, and every answer opened a new edge case. Honestly, I was overcomplicating it. I scrapped it for a single global queue that a background worker processes bottom-up, kind of like a messaging system. A parent only gets processed once its children in the queue are through. Leaving a task unticked counts as a rejection and pulls it out of the queue along with its ancestors, even if someone else asked for it. If two or more people have an active session on the parent, that branch stops without asking. And if someone on the paid plan has to give permission, they get a request that expires after 2 minutes.",
+      "All in all it took 7 prompts of pure definition, around 2,450 words from me, before the AI wrote its first line. On the eighth one I gave the green light.",
+      "It's live. All the user ever sees is the tree of tasks that can be closed. Everything else lives in the backend, with the model and use-case tests passing.",
+      "Is there an even simpler model hiding in there? Maybe. For now the queue works, and I've learned to get suspicious of my own designs once they start needing too many exceptions."
+    ]
+  }
+}
