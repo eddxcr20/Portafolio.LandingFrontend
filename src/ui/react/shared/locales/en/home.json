@@ -9,7 +9,8 @@
     "lineOne": "Take it apart",
     "lineTwo": "to understand it.",
     "subtitle": "Build it to be useful.",
-    "lead": "Software analyst and engineer. .NET backend, Clean Architecture and Domain-Driven Design. I understand the domain before I write code."
+    "lead": "Software analyst and engineer. .NET backend, Clean Architecture and Domain-Driven Design. I understand the domain before I write code.",
+    "availability": "Available for remote .NET backend work — full-time or project-based."
   },
   "notebook": {
     "caption": "Fig. 1 · The notebook. Flows, models and ideas, before writing code.",
@@ -32,6 +33,30 @@
     "readDossier": "Read the case file",
     "imageAlt": "GraphT Workbench: a graph of connected tasks next to the inspector of the selected task."
   },
+  "experience": {
+    "label": "Experience",
+    "order": "Most recent first",
+    "jobs": {
+      "industrialComplements": {
+        "company": "Industrial Complements",
+        "period": "2021 – present",
+        "role": "Backend · full-stack",
+        "text": "I maintain and extend the company's internal system. Modeled the billing and tax rules (with the owner) that are still in use today, migrated their flat data into SQL Server, and built the price/inventory sync API with Tiendanube. Mentored interns."
+      },
+      "dalton": {
+        "company": "Dalton",
+        "period": "2022 – 2023",
+        "role": "QA",
+        "text": "Manual QA on web apps: functional and UI test cases, bug reporting in Azure DevOps."
+      },
+      "algoritmosInteligentes": {
+        "company": "Algoritmos Inteligentes",
+        "period": "2020 – 2021",
+        "role": "Development",
+        "text": "My first job, at a four-person startup. Built the desktop and Android apps of an industrial IoT platform for monitoring textile looms (real-time Firebase, push notifications) and introduced the team's Scrum workflow."
+      }
+    }
+  },
   "method": {
     "label": "How I work",
     "stepOne": "It works.",
@@ -40,19 +65,30 @@
     "order": "In that order. My rule against analysis paralysis: first I make it work, then I make it right, and only at the end do I get to optimize it.",
     "domain": "Before all of that comes the domain: I adapt to the business, not the business to me. If the tool I need isn't in my toolbox, I learn it from the fundamentals."
   },
-  "business": {
-    "question": "Does your business run on spreadsheets?",
-    "pitch": "There are probably processes you can automate without throwing away what already works. First I sit down with you to understand how you work; then I tell you what's worth automating and what isn't."
+  "doors": {
+    "employers": {
+      "label": "For employers",
+      "question": "Looking for a backend engineer for your team?",
+      "text": "Backend .NET, Clean Architecture and DDD. I learn the domain before writing code and I direct AI agents without sacrificing design.",
+      "linkedin": "View LinkedIn"
+    },
+    "businesses": {
+      "label": "For businesses",
+      "question": "Does your business run on spreadsheets?",
+      "text": "First I understand how you work; then I tell you what to automate and what to leave alone.",
+      "contact": "Get in touch"
+    }
   },
   "about": {
     "label": "About me",
     "headline": "I started by taking toys apart to see how each piece made the whole thing work.",
     "quote": "“I may not know everything, but I'm open to learning whatever it takes to solve the problem.”",
     "beginnings": "Around twelve I wanted to make cheats for online games, and someone told me I had to learn to program first; that's why I chose programming at a technical high school. I couldn't go to university. At twenty I started working as a developer at a friend's startup and found out that something I was good at was useful to someone else.",
-    "grapht": "At twenty-two, in a remote job with no structure, ADHD made me lose track of too many tasks. I built my own system so I wouldn't lose them; that's how GraphT was born, and with it the habit of doing things right: domain, clean architecture, tests. Today I bring that same mindset to other people's businesses: understand how they work before writing a single line.",
+    "grapht": "At twenty-two, in late 2022, I was working remotely at Dalton with little structure, and ADHD made me lose track of too many tasks. I tried Notion to get organized and it fell short. In August 2023 I started building GraphT in .NET, and with it the habit of doing things right: domain, clean architecture, tests. Today I bring that same mindset to other people's businesses: understand how they work before writing a single line.",
     "outside": "Outside of code I like fixing things and learning for the sheer joy of learning.",
     "contactLabel": "Contact",
     "email": "Email",
     "portraitAlt": "Portrait of José Eduardo Cruz Rosano smiling, chin resting on a hand, in front of a desk."
-  }
+  },
+  "cv": "Download CV"
 }

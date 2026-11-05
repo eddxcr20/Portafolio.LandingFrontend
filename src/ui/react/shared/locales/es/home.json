@@ -9,7 +9,8 @@
     "lineOne": "Desarmar",
     "lineTwo": "para entender.",
     "subtitle": "Construir para que sirva.",
-    "lead": "Analista e ingeniero de software. Backend .NET, Clean Architecture y Domain-Driven Design. Entiendo el dominio antes de escribir código."
+    "lead": "Analista e ingeniero de software. Backend .NET, Clean Architecture y Domain-Driven Design. Entiendo el dominio antes de escribir código.",
+    "availability": "Disponible para backend .NET remoto — de planta o por proyecto."
   },
   "notebook": {
     "caption": "Fig. 1 · La libreta. Flujos, modelos e ideas, antes de escribir código.",
@@ -32,6 +33,30 @@
     "readDossier": "Leer el expediente",
     "imageAlt": "Mesa de Trabajo de GraphT: un grafo de tareas conectadas junto al inspector de la tarea seleccionada."
   },
+  "experience": {
+    "label": "Experiencia",
+    "order": "De la más reciente a la primera",
+    "jobs": {
+      "industrialComplements": {
+        "company": "Industrial Complements",
+        "period": "2021 – actual",
+        "role": "Backend · full-stack",
+        "text": "Mantengo y extiendo el sistema interno del negocio. Modelé con el dueño las reglas de facturación e impuestos que siguen en uso hoy, migré sus datos planos a SQL Server y construí la API de sincronización de precios/inventario con Tiendanube. Mentoré pasantes."
+      },
+      "dalton": {
+        "company": "Dalton",
+        "period": "2022 – 2023",
+        "role": "QA",
+        "text": "QA manual de aplicaciones web: casos de prueba funcionales y de UI, reporte de bugs en Azure DevOps."
+      },
+      "algoritmosInteligentes": {
+        "company": "Algoritmos Inteligentes",
+        "period": "2020 – 2021",
+        "role": "Desarrollo",
+        "text": "Mi primer trabajo, en una startup de cuatro. Desarrollé las apps de escritorio y Android de una plataforma IoT para monitorear telares textiles (Firebase en tiempo real, notificaciones push) y propuse el flujo Scrum del equipo."
+      }
+    }
+  },
   "method": {
     "label": "Cómo trabajo",
     "stepOne": "Funciona.",
@@ -40,19 +65,30 @@
     "order": "En ese orden. Mi regla para no sufrir parálisis por sobreanálisis: primero lo hago funcionar, luego lo hago bien y solo al final lo puedo optimizar.",
     "domain": "Antes de todo eso, el dominio: me adapto al negocio, no el negocio a mí. Si la herramienta que hace falta no está en mi caja, la aprendo desde los fundamentos."
   },
-  "business": {
-    "question": "¿Tu negocio corre en hojas de cálculo?",
-    "pitch": "Probablemente hay procesos que se pueden automatizar sin tirar lo que ya funciona. Primero me siento contigo a entender cómo trabajas; después te digo qué conviene automatizar y qué no."
+  "doors": {
+    "employers": {
+      "label": "Para empleadores",
+      "question": "¿Buscas un ingeniero backend para tu equipo?",
+      "text": "Backend .NET, Clean Architecture y DDD. Aprendo el dominio antes de escribir código y dirijo agentes de IA sin sacrificar el diseño.",
+      "linkedin": "Ver LinkedIn"
+    },
+    "businesses": {
+      "label": "Para negocios",
+      "question": "¿Tu negocio corre en hojas de cálculo?",
+      "text": "Primero entiendo cómo trabajas; luego te digo qué automatizar y qué dejar en paz.",
+      "contact": "Escríbeme"
+    }
   },
   "about": {
     "label": "Sobre mí",
     "headline": "Empecé desarmando juguetes para ver cómo cada pieza hacía que el todo funcionara.",
     "quote": "«Quizá ignoro cosas, pero estoy abierto a aprender lo que sea para resolver la problemática.»",
     "beginnings": "Hacia los doce quería hacer trucos para juegos en línea y me dijeron que primero había que aprender a programar; por eso elegí programación en la preparatoria técnica. No pude ir a la universidad. A los veinte empecé a trabajar como desarrollador en la startup de un amigo y descubrí que algo en lo que era bueno le servía a alguien más.",
-    "grapht": "A los veintidós, en un trabajo remoto sin organización, el TDAH me hizo perder de vista demasiadas tareas. Construí mi propio sistema para no perderlas; así nació GraphT, y con él la costumbre de hacer las cosas bien: dominio, arquitectura limpia, pruebas. Hoy aplico esa misma mentalidad al negocio de otros: entender cómo trabajan antes de escribir una línea.",
+    "grapht": "A los veintidós, a finales de 2022, trabajaba en remoto en Dalton sin mucha organización y el TDAH me hizo perder de vista demasiadas tareas. Probé Notion para organizarme y me quedó corto. En agosto de 2023 empecé a construir GraphT en .NET, y con él la costumbre de hacer las cosas bien: dominio, arquitectura limpia, pruebas. Hoy aplico esa misma mentalidad al negocio de otros: entender cómo trabajan antes de escribir una línea.",
     "outside": "Fuera del código me gusta reparar cosas y aprender por el puro gusto de aprender.",
     "contactLabel": "Contacto",
     "email": "Correo",
     "portraitAlt": "Retrato de José Eduardo Cruz Rosano sonriendo, con la mano en la barbilla, frente a un escritorio."
-  }
+  },
+  "cv": "Descargar CV"
 }

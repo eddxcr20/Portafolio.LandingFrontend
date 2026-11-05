@@ -8,11 +8,11 @@
   "tag": "grapht",
   "es": {
     "label": "Funciona · beta pública",
-    "meta": "Fundador · 2022 – hoy",
+    "meta": "Fundador · desde 2023",
     "summary": [
       "Una herramienta de gestión personal sin jerarquías fijas ni metodologías impuestas. Todo lo que haces, desde lavar los platos hasta construir un producto, es una tarea, y toda tarea puede dividirse, conectarse con otras y contribuir a algo más grande.",
       "Las tareas viven en un grafo: se dividen sin límite de niveles, se relacionan entre proyectos y apuntan a áreas de vida, las partes de tu vida hacia las que diriges tu atención. La pensé primero para mí, para la función ejecutiva que el TDAH complica, y la diseñé, construí y lancé de punta a punta: backend, frontend e infraestructura.",
-      "El núcleo lo escribí a mano desde 2022. Desde 2025 dirijo agentes de IA con reglas de arquitectura escritas, y el blog cuenta cada decisión."
+      "Empecé a construirla en .NET en agosto de 2023 y escribí el núcleo a mano. Desde 2025 dirijo agentes de IA con reglas de arquitectura escritas, y el blog cuenta cada decisión."
     ],
     "problem": [
       "Las aplicaciones de tareas que usé limitaban cuántos niveles podía desmenuzar un proyecto y no mostraban cómo se complementan las tareas entre sí. Metodologías como los OKRs o los KPIs dividen lo grande en partes, pero fijan los niveles posibles.",
@@ -71,11 +71,11 @@
   },
   "en": {
     "label": "Works · public beta",
-    "meta": "Founder · 2022 – present",
+    "meta": "Founder · since 2023",
     "summary": [
       "A personal management tool with no fixed hierarchies and no imposed methodology. Everything you do, from washing the dishes to building a product, is a task, and every task can be broken down, connected to others and contribute to something bigger.",
       "Tasks live in a graph: they split into as many levels as you need, connect across projects and point to life areas, the parts of your life you direct your attention to. I built it for myself first, for the executive function that ADHD makes harder, and I designed, built and shipped it end to end: backend, frontend and infrastructure.",
-      "I wrote the core by hand starting in 2022. Since 2025 I steer AI agents with written architecture rules, and the blog tells every decision."
+      "I started building it in .NET in August 2023 and wrote the core by hand. Since 2025 I steer AI agents with written architecture rules, and the blog tells every decision."
     ],
     "problem": [
       "The task apps I used limited how many levels I could break a project into and never showed how tasks complement each other. Methodologies like OKRs or KPIs split big things into parts, but they fix the number of levels.",

@@ -89,6 +89,15 @@
   --text-row--letter-spacing: -0.025em;
   --text-summary: clamp(20px, 2cqi, 26px);
   --text-summary--line-height: 1.35;
+  --text-timeline: clamp(72px, 10cqi, 160px);
+  --text-timeline--line-height: 0.8;
+  --text-timeline--letter-spacing: -0.06em;
+  --text-company: clamp(28px, 3.4cqi, 52px);
+  --text-company--line-height: 1.02;
+  --text-company--letter-spacing: -0.025em;
+  --text-door: clamp(30px, 3.6cqi, 56px);
+  --text-door--line-height: 1.05;
+  --text-door--letter-spacing: -0.02em;
   --text-story: clamp(24px, 2.6cqi, 36px);
   --text-story--line-height: 1.1;
   --text-story--letter-spacing: -0.02em;
@@ -100,6 +109,7 @@
   --color-ink-2: var(--neutral-800);
   --color-muted: var(--neutral-700);
   --color-ghost: var(--neutral-300);
+  --color-rule: var(--neutral-400);
   --color-print: var(--print);
   --color-tag-ground: var(--neutral-100);
   --color-divider: var(--divider);

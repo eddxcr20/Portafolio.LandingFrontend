@@ -10,8 +10,7 @@ import { DossierSheet } from "~/pages/project-dossier/dossier-sheet";
 import { DossierState } from "~/pages/project-dossier/dossier-state";
 import { FeaturedEntries } from "~/pages/project-dossier/featured-entries";
 import { blogPath, homePath } from "~/shared/lib/site-paths";
-import { formatProjectNumber } from
-  "~/shared/presentation/format-project-number";
+import { formatNumeral } from "~/shared/presentation/format-numeral";
 import { SiteNav } from "~/widgets/site-nav/site-nav";
 
 type DossierPageProps = {
@@ -37,7 +36,7 @@ export function DossierPage({
         language={language}
         alternates={alternates}
         subtitle={t("caseFile", {
-          number: formatProjectNumber(dossier.order),
+          number: formatNumeral(dossier.order),
           name: dossier.name,
         })}
         brandHref={homePath(language)}

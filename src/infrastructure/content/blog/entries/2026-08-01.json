@@ -10,7 +10,7 @@
     "title": "Desarrollar con IA sin perder el control",
     "topic": "Cómo dirijo a la IA: de reglas sueltas en un md de GraphT a dos skills de Claude Code que hoy reuso en otros proyectos. Yo pongo la arquitectura, la IA implementa y yo reviso.",
     "body": [
-      "Antes de 2025 no usaba IA para programar. El núcleo de GraphT, mi app de productividad para personas con TDAH, lo piqué a mano desde 2022, bloque por bloque.",
+      "Antes de 2025 no usaba IA para programar. El núcleo de GraphT, mi app de productividad para personas con TDAH, lo piqué a mano desde 2023, bloque por bloque.",
       "A mediados de 2025 empecé a meterle IA en serio. Probé Cursor con modelos locales, los plugins indexaban mal el código y la IA se inventaba lo que no encontraba. Pero uff, qué castre.",
       "Quería la velocidad sin terminar con código improvisado que luego nadie (o sea, yo) pudiera mantener.",
       "Así que empecé a escribir las reglas una por una en un md dentro de GraphT. En ese entonces usaba Codex, y muchas de las primeras reglas nacieron de corregirlo. Cada error que se repetía se volvía una línea nueva.",
@@ -26,7 +26,7 @@
     "title": "Building with AI without losing control",
     "topic": "How I steer AI: from loose rules in a GraphT markdown file to two Claude Code skills I now reuse in other projects. I set the architecture, the AI implements and I review.",
     "body": [
-      "Before 2025 I didn't use AI to code. I wrote the core of GraphT, my productivity app for people with ADHD, by hand starting in 2022, one block at a time.",
+      "Before 2025 I didn't use AI to code. I wrote the core of GraphT, my productivity app for people with ADHD, by hand starting in 2023, one block at a time.",
       "In mid-2025 I started using AI seriously. I tried Cursor with local models, the plugins indexed the codebase badly, and the AI just made up whatever it couldn't find. What a pain.",
       "I wanted the speed without ending up with a pile of improvised code nobody (meaning me) could maintain later.",
       "So I started writing rules one by one in a markdown file inside GraphT. Back then I was using Codex, and a lot of those early rules came from correcting it. Every mistake that repeated became a new line.",
