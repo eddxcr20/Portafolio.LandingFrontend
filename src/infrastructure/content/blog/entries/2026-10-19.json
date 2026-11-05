@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-19",
+  "tags": [
+    "grapht",
+    "ai",
+    "mcp",
+    "adhd"
+  ],
+  "es": {
+    "title": "IA sin pagar inferencia: MCP genérico y anti-alucinación",
+    "topic": "Integrar IA sin pagar inferencia: el usuario conecta su propio LLM vía MCP; MCP genérico y anti-alucinación",
+    "body": [
+      "Quería conectar una IA a GraphT para que viera mis tareas y me ayudara a desmenuzarlas, y la misma noche que abrí el portal de desarrolladores por fin me puse. El detalle es que no había presupuesto para pagar tokens por los usuarios. Ninguno.",
+      "Mi socio, además, quería conectar su propio sistema de IA. Así que la pregunta era cómo meter IA sin pagar la inferencia y sin casarme con un solo proveedor.",
+      "La respuesta fue MCP, el protocolo con el que un asistente de IA usa herramientas externas. Cada quien conecta su propio modelo, local o de terceros, y la inferencia corre por su cuenta. GraphT solo pone la API.",
+      "La primera versión tenía una herramienta por endpoint y, claro, le faltaba Mi Día. En vez de ir agregando herramientas una por una, pedí cambiarlas por una sola genérica que lee la documentación pública de la API antes de llamar. Así no se queda vieja cada vez que cambio algo.",
+      "Las lecturas son libres. Cualquier escritura se bloquea en el código si no trae una confirmación explícita, sin depender de que el modelo se porte bien. Y el token de acceso vive dentro del proceso del MCP, el modelo nunca lo ve.",
+      "Luego pasó lo que tenía que pasar. La IA le puso a una tarea un área de vida llamada \"Grapht\" que nunca existió. Se la sacó de la manga, así nomás. Con datos de mi vida real eso no se vale, así que la primera regla dura del MCP quedó así: solo afirmar lo que venga textual de la API y resolver cada ID contra su fuente antes de nombrarlo.",
+      "Hoy le hablo a mi asistente y consulta o modifica mi GraphT real, previa confirmación, con un MCP que funciona con cualquier modelo que soporte herramientas. Costo de inferencia para GraphT: cero.",
+      "¿Va a volver a inventarse cosas? Quizá, los modelos son así. Pero ahora la regla está escrita desde el principio y cualquier cambio pasa por mí antes de tocar nada."
+    ]
+  },
+  "en": {
+    "title": "AI without paying for inference: a generic, anti-hallucination MCP",
+    "topic": "Integrating AI without paying for inference: users connect their own LLM through MCP; a generic, anti-hallucination MCP.",
+    "body": [
+      "I wanted to hook an AI up to GraphT so it could see my tasks and help me break them down, and the same night I opened the developer portal, I finally got to it. Small problem: there was no budget to pay for tokens on behalf of users. None.",
+      "My business partner also wanted to plug in his own AI system. So the real question was how to add AI without paying for inference and without marrying a single provider.",
+      "The answer was MCP, the protocol that lets an AI assistant use external tools. Everyone brings their own model, local or third-party, and the inference is on them. GraphT just provides the API.",
+      "The first version had one tool per endpoint and, of course, it was missing My Day. Instead of adding tools one at a time, I asked for a single generic tool that reads the public API docs before every call. That way it doesn't go stale every time I change something.",
+      "Reads are free. Any write is blocked in code unless it comes with explicit confirmation, so it doesn't depend on the model behaving. And the access token lives inside the MCP process, the model never sees it.",
+      "Then the inevitable happened. The AI tagged one of my tasks with a life area called \"Grapht\" that never existed. It just made it up. With data from my actual life that's not okay, so the first hard rule of the MCP became this: only state what comes back verbatim from the API, and resolve every ID against its source before naming it.",
+      "These days I talk to my assistant and it reads or updates my real GraphT, with confirmation, through an MCP that works with any model that supports tool calling. Inference cost to GraphT: zero.",
+      "Will it make things up again? Maybe, that's how these models are. But the rule is there from the start now, and any change still goes through me before it touches anything."
+    ]
+  }
+}

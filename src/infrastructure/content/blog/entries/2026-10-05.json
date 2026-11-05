@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-05",
+  "tags": [
+    "grapht",
+    "softwarearchitecture",
+    "testing"
+  ],
+  "es": {
+    "title": "Plantillas de grafos que respetan sus relaciones",
+    "topic": "Un bug al instanciar plantillas de grafos que se corrigió de raíz (herencia por arista) en lugar de con un parche.",
+    "body": [
+      "Una semana después de abrir la beta, preparando la v0.2, estaba enlazando plantillas de tarea a padres e hijas en GraphT cuando apareció un bug: al instanciar una plantilla de grafo, las tareas hijas no se podían enlazar a su padre.",
+      "Contexto rápido. En GraphT las tareas viven en un grafo, una hija puede heredar cosas de su padre y hay plantillas de grafo, que son árboles de tareas reutilizables. Aah, qué bonitos son los grafos... hasta que una arista no guarda lo que debería.",
+      "Pedí primero un test que reprodujera el fallo. La primera propuesta de la IA fue mandar la herencia en false para que el enlace pasara, y el test quedaba en verde. Pero al revisarlo vi que el problema era otro. Las aristas no guardaban qué heredaba cada hija, y un nodo que apuntaba a una plantilla de tarea ignoraba sus padres e hijas externos. ¿Para qué guardar esas relaciones si al final se ignoran?",
+      "Así que definí la regla: las plantillas siempre respetan sus relaciones con tareas fuera de la plantilla. La herencia pasó a guardarse por arista, editable en el mismo diálogo que ya usa la Mesa de Trabajo. Los nodos del grafo ahora pueden enlazarse a tareas existentes, y si esa tarea se borra se va el enlace pero la plantilla se queda. Instanciar quedó como todo o nada: si un enlace falla, se deshacen todas las tareas creadas.",
+      "El bug quedó corregido de raíz y el parche se fue. De paso salieron dos bugs más, el pomodoro de los nodos que se perdía al editar la plantilla y las tareas huérfanas que podían quedar. En el backend pasan 363 tests de casos de uso y 140 de modelo, y en el frontend 836.",
+      "Ese test en verde me dio tranquilidad por un ratito. Desde entonces, cuando algo pasa demasiado fácil, me pregunto qué está escondiendo."
+    ]
+  },
+  "en": {
+    "title": "Graph templates that keep their relationships",
+    "topic": "A bug when instantiating graph templates, fixed at the root (inheritance per edge) instead of with a patch.",
+    "body": [
+      "A week after opening the beta, while getting v0.2 ready, I was making task templates linkable to parents and children in GraphT when a bug showed up: instantiating a graph template couldn't link child tasks to their parent.",
+      "Quick context. In GraphT tasks live in a graph, a child can inherit stuff from its parent, and graph templates are reusable trees of tasks. Ahh, graphs are beautiful... right up until an edge forgets something it should remember.",
+      "I asked for a failing test first. The AI's first idea was to pass the inheritance flags as false so the link would go through, and the test turned green. But when I reviewed it, the real problem was somewhere else. Edges didn't store what each child inherits, and a node pointing to a task template ignored that template's outside parents and children. Why store those relationships at all if they get ignored?",
+      "So I set a rule: templates always respect their links to tasks outside the template. Inheritance moved onto each edge, editable in the same dialog the Workbench already uses. Graph nodes can now link to existing tasks, and if that task gets deleted the link goes away but the template stays. Instantiation became all or nothing, so if one link fails every task created so far is rolled back.",
+      "The bug got fixed at the root and the patch went in the trash. Two more bugs fell out along the way: node pomodoro settings got lost when editing a template, and orphan tasks could be left behind. Backend has 363 use case tests and 140 model tests passing, frontend has 836.",
+      "That green test made me feel good for a little while. These days, when something passes too easily, I ask myself what it's hiding."
+    ]
+  }
+}

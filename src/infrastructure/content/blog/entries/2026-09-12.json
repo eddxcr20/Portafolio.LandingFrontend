@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-12",
+  "tags": [
+    "grapht",
+    "domaindrivendesign",
+    "neo4j",
+    "adhd"
+  ],
+  "es": {
+    "title": "Borradores multi-dispositivo y un dominio sin capas de más",
+    "topic": "Diseñar borradores de tareas sincronizados entre dispositivos (últimos 5, FIFO), simplificar el modelo (entidad en vez de agregado + value object) y mantener el dominio puro.",
+    "body": [
+      "A mediados de septiembre, a unas dos semanas de la beta, arranqué un sprint de puro backend antes de tocar la UI. Lo primero fueron los borradores de tareas de GraphT, y la IA me propuso un agregado con un value object adentro para guardar algo que, la verdad, era bastante simple.",
+      "Contexto. En GraphT crear una tarea puede llevar varios pasos: prioridad, fechas, recurrencia, padres e hijas en el grafo, áreas de vida. Si empezabas en el teléfono y te pasabas a la computadora, perdías lo avanzado, porque el frontend solo guardaba un borrador en el navegador.",
+      "Así que el reto era guardar en el servidor los últimos 5 borradores de cada usuario, con autoguardado y sacando el más viejo cuando entra uno nuevo. Sin complicar el dominio.",
+      "Revisé la propuesta y me pregunté para qué ese value object del contenido. Con una entidad y sus propiedades directas bastaba. Solo dejé como value object las opciones de herencia, porque esas sí se usan dos veces (padres e hijas), y pedí que el borrador las guardara para que el formulario quede igualito en otro dispositivo.",
+      "La regla de los 5 vive en el caso de uso de crear borrador, que reutiliza el de borrar en vez de duplicar lógica. En Neo4j, padres, hijas, áreas y participantes son relaciones, así que si se borra una tarea o un área desaparece sola del borrador. Y un borrador nunca muestra el nombre de una tarea a la que ya no tienes acceso.",
+      "Ya está en producción. Si cierras el formulario a medias, lo capturado queda como borrador en el lanzador de creación, con tope de 5. El backend tiene pruebas de casos de uso y de adaptadores, y al crear la tarea su borrador se elimina. Después reutilicé el patrón para enlazar las plantillas a padres e hijas, con el mapeo de herencia compartido.",
+      "Creo que me gusta más quitar capas que agregarlas. Quizá algún día ese agregado tenga sentido, pero por ahora cada pieza tiene su razón de estar ahí."
+    ]
+  },
+  "en": {
+    "title": "Multi-device drafts and a domain without extra layers",
+    "topic": "Designing task drafts synced across devices (the last 5, FIFO), simplifying the model (an entity instead of an aggregate plus a value object) and keeping the domain pure.",
+    "body": [
+      "In mid-September, about two weeks before the beta, I started a backend-only sprint before touching the UI. First up were task drafts for GraphT, and the AI suggested an aggregate with a value object inside, for something that was honestly pretty simple.",
+      "Some context. In GraphT, creating a task can take a while: priority, dates, recurrence, parents and children in the graph, life areas. If you started on your phone and moved to your laptop, your progress was gone, because the frontend only kept one draft in the browser.",
+      "So the job was to keep each user's last 5 drafts on the server, autosaved, with the oldest one dropped when a new one comes in. Without bloating the domain.",
+      "I looked at the proposal and asked myself what that content value object was even for. A plain entity with its own properties did the job. The only value object I kept was the inheritance options, since those show up twice (parents and children), and I had drafts store them so the form comes back exactly as you left it on another device.",
+      "The limit of 5 lives in the create-draft use case, which reuses delete-draft instead of copying logic. In Neo4j, parents, children, areas and participants are relationships, so if a task or area gets deleted it just vanishes from the draft. And a draft never shows the name of a task you no longer have access to.",
+      "It's in production now. If you close the form halfway, whatever you entered stays as a draft in the create launcher, capped at 5. The backend has use case and adapter tests, and creating the task removes its draft. Later I reused the same pattern to link templates to parents and children, sharing the inheritance mapping.",
+      "I think I enjoy removing layers more than adding them. Maybe that aggregate will make sense someday, but for now every piece has a reason to be there."
+    ]
+  }
+}

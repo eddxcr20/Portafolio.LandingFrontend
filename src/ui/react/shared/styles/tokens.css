@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light;
+
+  --paper: #f6f0e1;
+  --ink: #121212;
+  --print: #ffffff;
+  --selection: #fedee6;
+  --divider: color-mix(in srgb, #121212 16%, transparent);
+  --scrim: color-mix(in srgb, #121212 24%, transparent);
+
+  --neutral-100: #f6f5f4;
+  --neutral-300: #d7d4d1;
+  --neutral-700: #615d59;
+  --neutral-800: #44413f;
+
+  --accent: #e8307f;
+  --accent-600: #d52773;
+  --accent-700: #a61958;
+  --accent-2: #af63be;
+  --process-yellow: #d9958c;
+
+  --hover-ink: color-mix(in srgb, #121212 7%, transparent);
+  --press-ink: color-mix(in srgb, #121212 14%, transparent);
+  --hover-accent: color-mix(in srgb, #e8307f 10%, transparent);
+  --press-accent: color-mix(in srgb, #e8307f 18%, transparent);
+
+  --print-shadow: 0 1px 2px rgba(45, 43, 41, 0.14);
+  --print-shadow-raised: 0 3px 10px rgba(45, 43, 41, 0.16);
+}

@@ -1,0 +1,23 @@
+{
+  "seo": {
+    "title": "Decision log · José Eduardo Cruz Rosano's blog",
+    "description": "What I decided and why while building GraphT: architecture, product and infrastructure.",
+    "tagTitle": "#{{tag}} · José Eduardo Cruz Rosano's blog",
+    "tagDescription": "Entries tagged #{{tag}} in the decision log.",
+    "entryTitle": "{{title}} · José Eduardo Cruz Rosano's blog"
+  },
+  "subtitle": "Blog",
+  "title": "Decision log",
+  "taggedCount_one": "1 entry with this tag.",
+  "taggedCount_other": "{{count}} entries with this tag.",
+  "read": "Read",
+  "tags": "Tags",
+  "clearFilter": "Clear filter",
+  "previous": "Previous",
+  "next": "Next",
+  "errors": {
+    "entryNotFound": "There's no entry from {{value}}.",
+    "tagNotFound": "There are no entries tagged #{{value}}.",
+    "pageNotFound": "Page {{value}} of this list doesn't exist."
+  }
+}

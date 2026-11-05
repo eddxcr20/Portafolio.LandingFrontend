@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-25",
+  "tags": [
+    "grapht",
+    "dotnet",
+    "neo4j",
+    "postmortem"
+  ],
+  "es": {
+    "title": "Incidente: el limpiador que borró cuentas",
+    "topic": "Un proceso en segundo plano borró en producción las cuentas de usuarios activos al desplegar la lista de espera; causa raíz, tres candados y lo que aprendí de respaldos.",
+    "body": [
+      "Tres días antes de la beta desplegué la lista de espera de GraphT y, en su primer arranque, mi backend borró todas las cuentas de producción. Solo sobrevivió la mía.",
+      "Por suerte eran las cuentas de los mismos amigos a los que les pasé la primera versión en febrero, con la UI vieja, y ninguno tenía tareas guardadas. En la práctica no se perdió nada. Pero con la beta pública a la vuelta de la esquina, la historia pudo ser muy distinta.",
+      "La regla era sencilla. Si una cuenta admitida en la beta pasa 30 días sin usarse, se borra para liberar su lugar, y un proceso en segundo plano lo revisa cada 24 horas. Primero se vació mi base de pruebas. Después del CI/CD, pasó exactamente lo mismo en producción.",
+      "Había que encontrar la causa rápido y frenar el daño, porque cada reinicio con el build anterior podía repetirlo.",
+      "El código lo había generado la IA, pero la culpa también fue mía por no revisar a detalle esa parte del cambio. Lo rastreé con Claude Code. El campo de \"última actividad\" era nuevo, así que en las cuentas viejas estaba vacío y la consulta se iba a la fecha de registro. Toda cuenta con más de 30 días de creada parecía inactiva aunque se usara diario. Y encima el proceso hacía su primera pasada justo al arrancar.",
+      "La mía se salvó de pura suerte. Tenía sesión abierta y la renovación del token ya había marcado su actividad.",
+      "Así que le puse candados:",
+      [
+        "La migración marca la actividad de todas las cuentas existentes al desplegar.",
+        "La consulta ya no usa la fecha de registro.",
+        "El proceso espera el intervalo completo antes de su primera pasada, así que ni un reinicio ni un despliegue disparan borrados."
+      ],
+      "También agregué logs de cuántas cuentas avisa y borra en cada pasada, porque antes borraba en silencio y no quedó ni rastro.",
+      "El bug quedó cerrado media hora después del despliegue, con 333 pruebas en verde. El mismo candado cubrió la purga de cuentas no verificadas, que tenía el mismo disparador. Los procesos que agregué después ya siguen ese molde: esperar antes de actuar y dejar registro.",
+      "La parte que más me dolió fue darme cuenta de que no tenía respaldos automáticos de producción. Y la verdad es que todavía no los tengo, se me pasó implementarlo. Así que ya está en la lista, antes de que la próxima lección me salga más cara."
+    ]
+  },
+  "en": {
+    "title": "Incident: the cleanup job that deleted accounts",
+    "topic": "A background job deleted the accounts of active users in production when the waitlist went live; root cause, three safeguards and what I learned about backups.",
+    "body": [
+      "Three days before the beta, I shipped GraphT's waiting list, and on its first boot my backend deleted every account in production. Only mine survived.",
+      "Luckily, those were the same friends I'd shared the first version with back in February, on the old UI, and none of them had any tasks saved. Nothing was actually lost. But with the public beta right around the corner, this could have gone very differently.",
+      "The rule was simple. If an account admitted to the beta goes 30 days unused, it gets deleted to free up its seat, and a background job checks that every 24 hours. First my test database got wiped. Then, after the CI/CD deploy, the exact same thing happened in production.",
+      "I needed the root cause fast, and I needed to stop the bleeding, because every restart on the old build could do it again.",
+      "The AI wrote that code, but it was also on me for not reviewing that part of the change closely. I traced it with Claude Code. The \"last activity\" field was new, so it was empty on older accounts and the query fell back to the signup date. Any account created more than 30 days ago looked inactive, even if someone used it every day. And on top of that, the job ran its first pass the moment the process started.",
+      "Mine survived by pure luck. I had a live session, and the token refresh had already stamped it as active.",
+      "So I added safeguards:",
+      [
+        "The migration stamps activity on every existing account at deploy time.",
+        "The query no longer falls back to the signup date.",
+        "The job waits a full interval before its first pass, so a restart or a redeploy can't trigger deletions."
+      ],
+      "I also added logs for how many accounts each pass warns and deletes, because before it deleted silently and left nothing behind.",
+      "Bug closed half an hour after the deploy, 333 tests green. The same safeguard covered the purge of unverified accounts, which had the same trigger. Background jobs I've added since follow that pattern: wait before acting, and log what you did.",
+      "The part that stung the most was realizing I had no automated production backups. And honestly, I still don't, it slipped through. So it's on the list now, before the next lesson ends up costing more."
+    ]
+  }
+}

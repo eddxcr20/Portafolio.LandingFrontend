@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-14",
+  "tags": [
+    "grapht",
+    "gamification",
+    "ux",
+    "adhd"
+  ],
+  "es": {
+    "title": "Gamificación más simple y sin castigos",
+    "topic": "Simplificar el sistema de puntos de GraphT: menos mecánicas, puntos base fijos y ningún multiplicador que reste.",
+    "body": [
+      "Esos mismos días de septiembre, antes de la beta, estaba probando la pantalla de completar tarea en GraphT y vi el recibo de puntos: \"10 puntos base × 0.5 superficial = 5\". Una tarea normal, de las más básicas, recibía la mitad de los puntos.",
+      "Para una app pensada para personas con TDAH eso es un castigo. Ya cuesta bastante terminar algo como para que encima la app te diga que valió la mitad. Y mientras investigaba me di cuenta de que el sistema de puntos había ido acumulando mecánicas: logros, rachas, puntos en conjunto, puntos base configurables... Demasiado para algo que quiero escalar después.",
+      "Así que tocó simplificar. Primero rastreé de dónde salía ese ×0.5. Era una regla del backend para las tareas que no marcas como divertidas ni productivas, o sea, casi todas. Yo pensaba que ese 0.5 se sumaba a los 10, no que los partía a la mitad. Pues no. Le puse un piso de ×1 y ningún multiplicador resta.",
+      "Después fijé los puntos base en 10 para todas las tareas y quité logros, rachas y puntos en conjunto. Solo se quedó la recompensa por colaborar, que esa sí me importa. Una migración limpia los datos viejos al arrancar el backend.",
+      "La fórmula quedó así de simple: 10 puntos base por complejidad (×1, ×1.5 o ×3), por relevancia (×1, ×1.5 o ×2) y por prioridad (×1, ×1.25 o ×1.5). Ningún multiplicador baja de 1, así que lo peor que te puede pasar es llevarte tus 10 puntos. Y cuando terminas una tarea padre te llevas un bono del 20% de lo que sumaron sus hijas, porque cerrar un proyecto completo también cuenta.",
+      "Un par de detalles más. Días después, al mandar los puntos en tiempo real, la IA agregó un dato al evento \"por si acaso\". Pregunté para qué servía, no servía para nada, y se fue. También pedí retrasar 200 ms las animaciones, porque eran tan rápidas que ni se notaba que subían los puntos.",
+      "Lo verifiqué en vivo: una tarea básica pasó de +5 a +10. El saldo también se actualiza cuando un colaborador te da puntos, y el canje rápido de recompensas quedó funcionando.",
+      "¿Esta versión será la definitiva? Lo dudo. Pero al menos ya no castiga a nadie por hacer tareas normales."
+    ]
+  },
+  "en": {
+    "title": "Simpler gamification, no penalties",
+    "topic": "Simplifying the GraphT points system: fewer mechanics, fixed base points and no multiplier that takes points away.",
+    "body": [
+      "During those same September days before the beta, I was testing GraphT's task-completion screen when I saw the points receipt: \"10 base points × 0.5 superficial = 5.\" A completely ordinary task was getting half the points.",
+      "For an app built for people with ADHD, that's a punishment. Finishing something is hard enough without the app telling you it only counted for half. And while digging into it, I noticed the points system had piled up a lot of mechanics: achievements, streaks, shared points, per-user base points... Way too much for something I want to grow later.",
+      "So it was time to simplify. First I traced that ×0.5. It was a backend rule for tasks you don't mark as fun or productive, which is basically all of them. I'd actually assumed the 0.5 was added on top of the 10, not cutting it in half. Nope. I set a ×1 floor, so no multiplier ever takes points away.",
+      "Then I fixed base points at 10 for every task and removed achievements, streaks and shared points. The only thing that stayed was the collaboration reward, which I do care about. A migration cleans up the old data when the backend starts.",
+      "The formula ended up dead simple: 10 base points times complexity (×1, ×1.5 or ×3), relevance (×1, ×1.5 or ×2) and priority (×1, ×1.25 or ×1.5). No multiplier goes below 1, so the worst case is you still get your 10 points. And when you finish a parent task you get a 20% bonus on what its children added up to, because closing a whole project should count too.",
+      "A couple of smaller things. A few days later, when points went real-time, the AI added a field to the event \"just in case.\" I asked what it was for, it wasn't for anything, so it went. I also asked for a 200 ms delay on the animations, because they were so fast you couldn't even tell your points went up.",
+      "Verified live: a basic task went from +5 to +10. Your balance also updates when a collaborator earns you points, and quick reward redemption works.",
+      "Is this the final version? I doubt it. But at least it no longer punishes anyone for doing normal tasks."
+    ]
+  }
+}

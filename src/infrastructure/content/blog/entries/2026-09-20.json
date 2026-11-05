@@ -1,0 +1,41 @@
+{
+  "date": "2026-09-20",
+  "tags": [
+    "grapht",
+    "signalr",
+    "dotnet",
+    "react"
+  ],
+  "es": {
+    "title": "Tiempo real multi-dispositivo",
+    "topic": "Tiempo real multi-dispositivo con SignalR/WebSockets y notificaciones push",
+    "body": [
+      "Reconstruyendo la UI de GraphT en septiembre, cuando conecté el tiempo real creí que ya estaba. Luego vi que en realidad iba por long polling, peticiones HTTP que se quedan colgadas esperando a que pase algo. Funcionaba, sí. Pero no era tiempo real.",
+      "El backend en ASP.NET Core ya tenía un hub de SignalR. El problema estaba en medio. En GraphT el navegador nunca habla directo con el backend, todo pasa por el servidor del frontend (React Router), y ese reenvío estaba hecho con fetch, que no puede negociar un WebSocket.",
+      "Quedarme en long polling era lo fácil. Pero el tiempo real es algo fundamental para la app, así que elegí montar un servidor Node propio para el frontend. Ese servidor reenvía /hubs/* conectando el socket del navegador directo con el del backend, y SignalR por fin entra por WebSocket real.",
+      "Con eso resuelto, lo que quería era que la app se sintiera igual en todos mis dispositivos.",
+      "Los puntos se avisan cada vez que cambia el saldo, desde los tres únicos lugares donde puede cambiar, incluso cuando llegan por el trabajo de un colaborador.",
+      "Con el pomodoro, la primera versión que hizo Claude Code solo mandaba un aviso de \"revalida\". La cambié para que el evento traiga la sesión completa y la barra aparezca directo con esos datos.",
+      "Y terminé las notificaciones push con service worker, permiso desde Ajustes y renovación automática de la suscripción cuando el navegador la rota. Eso último lo exigí yo, porque si no los avisos se mueren en silencio.",
+      "De paso, cerrar sesión ahora corta las conexiones de ese usuario, pero esa es otra historia.",
+      "Para probarlo completé una tarea por API desde fuera del navegador y vi el contador pasar de 155 a 165 puntos sin tocar nada. Es un número cambiando en pantalla, ya sé, pero me dio bastante gusto.",
+      "Ahora es un servidor más que mantener. Supongo que es el precio."
+    ]
+  },
+  "en": {
+    "title": "Real time across devices",
+    "topic": "Real time across devices with SignalR/WebSockets and push notifications.",
+    "body": [
+      "While rebuilding GraphT's UI in September, I wired up real-time and thought I was done. Then I noticed it was actually running on long polling, HTTP requests hanging around waiting for something to happen. It worked, sure. It just wasn't real-time.",
+      "The ASP.NET Core backend already had a SignalR hub. The problem was in the middle. In GraphT the browser never talks to the backend directly, everything goes through the frontend server (React Router), and that proxy was built on fetch, which can't do a WebSocket handshake.",
+      "Sticking with long polling was the easy way out. But real-time felt too core to the app to leave half-done, so I chose to run a custom Node server for the frontend. It proxies /hubs/* by piping the browser's socket straight to the backend's, and SignalR finally runs over a real WebSocket.",
+      "With that in place, what I really wanted was for the app to feel the same on every device I use.",
+      "Points now push an update whenever the balance changes, from the only three places where it can change, even when they come from a collaborator's work.",
+      "For pomodoro, Claude Code's first version only sent a \"go refetch\" signal. I changed it so the event carries the whole session and the timer bar renders straight from it.",
+      "And I finished push notifications with a service worker, a permission flow in Settings, and automatic re-subscription when the browser rotates it. That last part I insisted on, because otherwise alerts just die quietly.",
+      "Along the way, logging out now drops that user's connections, but that's a story for another post.",
+      "To test it, I completed a task through the API from outside the browser and watched the counter go from 155 to 165 points on its own. It's just a number changing on a screen, I know. Still made my day.",
+      "It's one more server to look after now. I guess that's the price."
+    ]
+  }
+}

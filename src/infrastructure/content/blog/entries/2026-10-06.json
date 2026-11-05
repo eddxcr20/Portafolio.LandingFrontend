@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-06",
+  "tags": [
+    "grapht",
+    "softwarearchitecture",
+    "backend",
+    "dotnet"
+  ],
+  "es": {
+    "title": "El backend como fuente de verdad del tiempo",
+    "topic": "Un bug de zona horaria que sumaba 6 horas en cada vuelta, un arreglo que respetó el contrato en lugar de moverlo, y una mejora que decidí no hacer por costo/beneficio.",
+    "body": [
+      "Ya con gente usando la beta, a principios de octubre, noté que algunas fechas límite en GraphT se movían solas. Llegué a ver una con 30 horas de diferencia y yo juraba que no la había tocado. Bueno, sí la había tocado... y ese era justo el problema.",
+      "GraphT tiene una regla de arquitectura bastante simple: el backend es la fuente de verdad del tiempo. El usuario elige una hora local y el servidor la convierte con su zona horaria.",
+      "Revisando con la API real encontramos la causa. El frontend mandaba la hora ya con su zona (10:00-06:00) y el backend le volvía a aplicar la zona del usuario. Se guardaba con 6 horas de más, y cada vuelta por una edición o un borrador le sumaba otras 6.",
+      "La primera propuesta de Claude Code fue cambiar el backend para que aceptara instantes con zona. La rechacé. El punto es que el backend ya cumplía el contrato y el error estaba en el cliente. Revertimos esos 11 archivos.",
+      "El arreglo fue en el frontend, que ahora manda la hora tal cual la eligió el usuario, sin offset. Le agregué un test con el caso exacto: elegir las 10:00 del 5 de octubre manda 2026-10-05T10:00:00.",
+      "Las fechas que ya estaban mal, incluidas las de producción, no las corregí automáticamente. No había forma segura de saber cuántas vueltas de +6 h llevaba cada una, y una migración habría sido adivinar. Se corrigen al editarlas.",
+      "Un par de semanas después vi que la UI usa el reloj del navegador para habilitar o deshabilitar controles. Arreglarlo implicaba sincronizar con el reloj del servidor. Lo pensé y lo dejé así. El backend ya valida y nadie lo había reportado, era demasiado trabajo para una sola consideración.",
+      "La regla quedó registrada para no volver a romperla. Supongo que la próxima vez que una fecha se mueva sola al menos ya sé dónde buscar primero."
+    ]
+  },
+  "en": {
+    "title": "The backend as the source of truth for time",
+    "topic": "A timezone bug that added 6 hours on every round trip, a fix that respected the contract instead of moving it, and an improvement I decided not to make on cost/benefit.",
+    "body": [
+      "In early October, with people already using the beta, I noticed some deadlines in GraphT were moving on their own. I saw one off by 30 hours and I was sure I hadn't touched it. Well, I had touched it... and that was exactly the problem.",
+      "GraphT has a pretty simple architecture rule: the backend owns time. The user picks a local time and the server converts it using their time zone.",
+      "Poking at the real API, we found the cause. The frontend sent the time with its zone already attached (10:00-06:00), and the backend applied the user's zone on top of that. It got stored 6 hours late, and every trip through an edit or a draft added another 6.",
+      "Claude Code's first idea was to change the backend so it accepted zoned instants. I said no. The backend was already keeping its side of the deal and the bug lived in the client. We reverted those 11 files.",
+      "The fix went into the frontend, which now sends the time exactly as the user picked it, no offset. I added a test for the exact case: picking 10:00 on October 5 sends 2026-10-05T10:00:00.",
+      "I didn't auto-fix the dates that were already wrong, production included. There was no safe way to tell how many +6 h round trips each one had taken, so a migration would have been pure guessing. They get corrected when someone edits them.",
+      "A couple of weeks later I noticed the UI uses the browser's clock to enable or disable some controls. Fixing that meant syncing with the server clock. I thought about it and let it go. The backend already validates, nobody had reported it, and it was a lot of work for one edge case.",
+      "The rule is written down now so it doesn't get broken again. I guess next time a date wanders off on its own, at least I'll know where to look first."
+    ]
+  }
+}

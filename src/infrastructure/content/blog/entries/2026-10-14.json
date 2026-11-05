@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-14",
+  "tags": [
+    "grapht",
+    "devops",
+    "docker",
+    "selfhosting"
+  ],
+  "es": {
+    "title": "Servidor self-hosted: límites y prioridad a producción",
+    "topic": "Caída del servidor self-hosted por sobrecarga: límites de recursos y prioridad a producción",
+    "body": [
+      "A mediados de octubre, con la beta ya abierta, GraphT dejó de responder en producción y, cuando quise entrar por SSH, la conexión ni siquiera abría. Eran como la 1 de la tarde y yo estaba en el trabajo, así que tuve que pedir permiso para ir hasta mi casa y arreglarlo en persona. GraphT volvió como a las 3. Lo curioso es que mi app no tenía la culpa.",
+      "GraphT corre en un servidor propio de 7.6 GB de RAM. Y como uno es optimista, en la misma máquina también viven Cauce, otro proyecto mío que transcribe audio con Whisper, y un servidor de Minecraft.",
+      "Un deploy pesado de Cauce, con un build corriendo dentro del demonio de Docker, saturó todo. En otra caída la memoria llegó al tope con el swap lleno. El punto es que necesitaba que un proyecto secundario no volviera a tumbar producción y poder entrar siempre a arreglar las cosas.",
+      "Primero, una regla de deploy: cada proyecto actualiza solo su propio contenedor, sin bajar todo y sin tocar el túnel de Cloudflare ni la red de GraphT.",
+      "Después tocaba limitar recursos con Claude Code, pero antes medir. La primera propuesta de límites habría matado procesos al reiniciar, porque los contenedores ya usaban más que eso. Con el uso real rehicimos el reparto y salió el pico, el worker de Whisper llegó a 3.8 GB.",
+      "Todo Docker quedó bajo un tope global con systemd, y el builder con su propio límite. SSH y mi sesión tienen 512 MB garantizados y un núcleo donde Docker no entra. GraphT tiene memoria protegida, más peso de CPU, reinicio automático y es lo último que el kernel mataría.",
+      "Whisper al final lo quité. Siendo honesto, en la práctica rara vez lo iba a usar, y no tenía caso que se comiera casi 4 GB por si acaso. A Minecraft lo puse a dormir cuando no hay nadie, y despierta cuando alguien se conecta.",
+      "La presión de memoria bajó de 99 % a 0 %. Si un proceso secundario se pasa, se reinicia solo ese. Y con Minecraft dormido se liberan unos 1.7 GB. Tiempo después hubo otra caída, y esa la resolví en unos 20 minutos por SSH, sin moverme de donde estaba.",
+      "¿Un servidor casero de 7.6 GB es la infraestructura ideal para producción? La verdad es que no. Pero es la que hay, y al menos ya sé que lo primero en caer no va a ser GraphT."
+    ]
+  },
+  "en": {
+    "title": "Self-hosted server: limits and production first",
+    "topic": "The self-hosted server went down from overload: resource limits and production first.",
+    "body": [
+      "In mid-October, with the beta already open, GraphT stopped responding in production, and when I tried to SSH in, the connection wouldn't even open. It was around 1 p.m. and I was at work, so I had to ask for permission to go all the way home and fix it in person. GraphT was back around 3. The funny part is that my app wasn't the problem.",
+      "GraphT runs on my own server with 7.6 GB of RAM. And because I'm an optimist, the same box also hosts Cauce, another project of mine that transcribes audio with Whisper, plus a Minecraft server.",
+      "A heavy Cauce deploy, with a build running inside the Docker daemon, choked everything. Another time memory maxed out with swap completely full. What I needed was clear: a side project should never take production down again, and I should always be able to get in and fix things.",
+      "First came a deploy rule. Each project only recreates its own container, without tearing down the whole stack or touching the Cloudflare tunnel or GraphT's network.",
+      "Then I sat down with Claude Code to set limits, but measured first. The first proposed caps would have killed processes on restart, because the containers were already above them. Working from real usage we redid the split and found the spike: the Whisper worker peaked at 3.8 GB.",
+      "All of Docker now sits under a global systemd cap, plus a builder with its own limit. SSH and my session get 512 MB guaranteed and a CPU core Docker can't touch. GraphT gets protected memory, more CPU weight, automatic restarts, and it's the last thing the kernel would kill.",
+      "Whisper I ended up removing. Honestly, I'd rarely use it in practice, and there was no point in letting it eat almost 4 GB just in case. Minecraft now sleeps when nobody's on and wakes up when someone connects.",
+      "Memory pressure went from 99% to 0%. If a secondary process goes over, only that one restarts. And with Minecraft asleep, about 1.7 GB frees up. There was another outage later on, and that one took me about 20 minutes over SSH, without leaving my desk.",
+      "Is a 7.6 GB home server the ideal place to run production? Honestly, no. But it's what I've got, and at least I know GraphT won't be the first thing to go down."
+    ]
+  }
+}

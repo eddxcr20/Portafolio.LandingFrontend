@@ -1,0 +1,166 @@
+@import "tailwindcss";
+@import "@fontsource-variable/source-serif-4/wght.css";
+@import "@fontsource-variable/source-serif-4/wght-italic.css";
+@import "../shared/styles/tokens.css";
+@import "../shared/styles/print-plates.css";
+
+@theme {
+  --color-*: initial;
+  --font-*: initial;
+  --breakpoint-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1280px;
+
+  --font-serif: "Source Serif 4 Variable", ui-serif, Georgia, serif;
+  --default-font-family: var(--font-serif);
+
+  --radius-xs: 2px;
+
+  --container-page: 1280px;
+
+  --spacing-gutter: clamp(16px, 5cqi, 72px);
+  --spacing-column: clamp(16px, 2.5cqi, 40px);
+  --spacing-block: clamp(32px, 4cqi, 64px);
+  --spacing-hero-gap: clamp(32px, 5cqi, 96px);
+  --spacing-hero-rise: clamp(32px, 4cqi, 56px);
+  --spacing-contact: clamp(32px, 4cqi, 72px);
+  --spacing-indent: clamp(24px, 9cqi, 160px);
+  --spacing-stair-one: clamp(24px, 8cqi, 144px);
+  --spacing-stair-two: clamp(48px, 16cqi, 280px);
+  --spacing-title-rise: clamp(64px, 10cqi, 160px);
+  --spacing-print: clamp(152px, 21cqi, 304px);
+  --spacing-print-overlap: clamp(48px, 7cqi, 96px);
+  --spacing-side-sheet: 360px;
+
+  --text-body: 17px;
+  --text-body--line-height: 28px;
+  --text-lead: 19px;
+  --text-lead--line-height: 32px;
+  --text-secondary: 15.5px;
+  --text-secondary--line-height: 24px;
+  --text-nav: 14px;
+  --text-nav--line-height: 24px;
+  --text-label: 13px;
+  --text-label--line-height: 16px;
+  --text-label--letter-spacing: 0.08em;
+  --text-caption: 13px;
+  --text-caption--line-height: 20px;
+  --text-tag: 11px;
+  --text-tag--line-height: 16px;
+  --text-tag--letter-spacing: 0.02em;
+
+  --text-hero: clamp(40px, 10.5cqi, 176px);
+  --text-hero--line-height: 0.98;
+  --text-hero--letter-spacing: -0.035em;
+  --text-hero-subtitle: clamp(28px, 4cqi, 64px);
+  --text-hero-subtitle--line-height: 1;
+  --text-hero-subtitle--letter-spacing: -0.025em;
+  --text-numeral: clamp(140px, 24cqi, 360px);
+  --text-numeral--line-height: 0.8;
+  --text-numeral--letter-spacing: -0.06em;
+  --text-project: clamp(40px, 6cqi, 96px);
+  --text-project--line-height: 1;
+  --text-project--letter-spacing: -0.03em;
+  --text-stairs: clamp(40px, 8cqi, 128px);
+  --text-stairs--line-height: 0.98;
+  --text-stairs--letter-spacing: -0.035em;
+  --text-question: clamp(32px, 4.5cqi, 72px);
+  --text-question--line-height: 1.05;
+  --text-question--letter-spacing: -0.02em;
+  --text-about: clamp(32px, 5cqi, 80px);
+  --text-about--line-height: 1.02;
+  --text-about--letter-spacing: -0.03em;
+  --text-quote: clamp(18px, 1.6cqi, 22px);
+  --text-quote--line-height: 1.35;
+  --text-contact: clamp(22px, 2.8cqi, 40px);
+  --text-contact--line-height: 1.1;
+  --text-contact--letter-spacing: -0.02em;
+  --text-section: clamp(32px, 4cqi, 64px);
+  --text-section--line-height: 1;
+  --text-section--letter-spacing: -0.03em;
+  --text-entry: clamp(36px, 6cqi, 96px);
+  --text-entry--line-height: 1;
+  --text-entry--letter-spacing: -0.03em;
+  --text-row: clamp(28px, 3.4cqi, 52px);
+  --text-row--line-height: 1.05;
+  --text-row--letter-spacing: -0.025em;
+  --text-summary: clamp(20px, 2cqi, 26px);
+  --text-summary--line-height: 1.35;
+  --text-story: clamp(24px, 2.6cqi, 36px);
+  --text-story--line-height: 1.1;
+  --text-story--letter-spacing: -0.02em;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--neutral-800);
+  --color-muted: var(--neutral-700);
+  --color-ghost: var(--neutral-300);
+  --color-print: var(--print);
+  --color-tag-ground: var(--neutral-100);
+  --color-divider: var(--divider);
+  --color-scrim: var(--scrim);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-600);
+  --color-link: var(--accent-700);
+  --color-link-hover: var(--accent-600);
+  --color-hover-ink: var(--hover-ink);
+  --color-press-ink: var(--press-ink);
+  --color-hover-accent: var(--hover-accent);
+  --color-press-accent: var(--press-accent);
+
+  --shadow-print: var(--print-shadow);
+  --shadow-print-raised: var(--print-shadow-raised);
+}
+
+@utility trim-cap-start {
+  text-box: trim-start cap alphabetic;
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    scroll-padding-top: 112px;
+  }
+
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    background: var(--paper);
+    text-wrap: pretty;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: 600;
+  }
+
+  a {
+    color: var(--accent-700);
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--accent-600);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--selection);
+  }
+}

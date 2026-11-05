@@ -1,0 +1,29 @@
+{
+  "seo": {
+    "title": "{{name}} · Case file by José Eduardo Cruz Rosano"
+  },
+  "caseFile": "Case file {{number}} · {{name}}",
+  "nav": {
+    "sheet": "Summary",
+    "stories": "Stories",
+    "state": "Status"
+  },
+  "sheet": {
+    "problem": "Problem",
+    "understanding": "What I understood",
+    "decisions": "What I decided",
+    "state": "Status"
+  },
+  "pieces": "Main pieces",
+  "featured": {
+    "label": "Featured stories",
+    "title": "What I decided and why, told on the blog.",
+    "all": "All {{name}} stories",
+    "read": "Read on the blog"
+  },
+  "state": "Status",
+  "back": "← Back to home",
+  "errors": {
+    "projectNotFound": "I couldn't find the case file “{{value}}”."
+  }
+}

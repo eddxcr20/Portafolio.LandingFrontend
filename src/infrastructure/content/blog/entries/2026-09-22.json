@@ -1,0 +1,34 @@
+{
+  "date": "2026-09-22",
+  "tags": [
+    "grapht",
+    "graphs",
+    "ux"
+  ],
+  "es": {
+    "title": "Mesa de Trabajo: de una lista a varios lienzos",
+    "topic": "La Mesa de Trabajo de GraphT pasó de una lista única a varios lienzos libres de grafos, y se cuidó el alcance del cambio.",
+    "body": [
+      "En la recta final hacia la beta, rehaciendo pantallas con la UI nueva, estaba armando los lienzos de la Mesa de Trabajo de GraphT y de repente la IA empezó a guardar en el backend las posiciones de los nodos. Nadie se lo había pedido. Así que la detuve y lo revirtió.",
+      "La Mesa de Trabajo es donde ves tus tareas como un grafo y las acomodas para pensar. Aah, qué bonitos son los grafos, sobre todo cuando los puedes mover a mano. Pero funcionaba como una sola lista para todo, y yo quería varios lienzos, cada uno con sus tareas, que se operaran por separado y fueran libres, sin rejillas ni carriles.",
+      "En el backend definí el CRUD de lienzos: crear, renombrar, borrar y agregar o quitar tareas. Una tarea puede vivir en varios lienzos, el último no se puede borrar y los datos existentes se migran solos. Si agregas una tarea que ya está en el lienzo no se duplica nada y responde como éxito, y en la interfaz el lienzo actual aparece deshabilitado en \"Enviar a la Mesa\".",
+      "Lo de las posiciones era cuestión de alcance. El lienzo es libre, las posiciones viven en la sesión y \"Reacomodar\" solo actúa si el usuario lo pide. Guardarlas quizá llegue después, pero hoy no era lo que importaba.",
+      "También le pregunté a la IA si se podía no cargar un lado del árbol. Resulta que el backend ya lo soportaba y el frontend lo convertía en \"cargar todo\". Se corrigió, se documentó el endpoint con su comportamiento real y el selector ahora abre en \"No cargar\" y en 1 nivel.",
+      "El previsualizador también se volvió un lienzo editable, con el mismo arrastre y zoom de la Mesa, para leer nombres largos sin un scroll eterno.",
+      "Lienzos independientes funcionando en backend y frontend, con 713 tests en verde y build limpio. Ya veré si algún día las posiciones se ganan su lugar en la base."
+    ]
+  },
+  "en": {
+    "title": "Workbench: from one list to several canvases",
+    "topic": "The GraphT Workbench went from a single list to several free-form graph canvases, keeping the scope of the change in check.",
+    "body": [
+      "In the home stretch before the beta, redoing screens on the new UI, I was building multiple canvases for GraphT's Workbench when the AI suddenly started saving node positions to the backend. Nobody had asked for that. So I stopped it and it rolled the change back.",
+      "The Workbench is where you see your tasks as a graph and move them around to think. Ahh, graphs are beautiful, especially when you can drag them around by hand. But it worked as one single list for everything, and I wanted several canvases, each with its own tasks, handled separately and free-form, no grids or lanes.",
+      "On the backend I defined the canvas CRUD: create, rename, delete, and add or remove tasks. A task can live on several canvases, the last canvas can't be deleted, and existing data migrates on its own. Adding a task that's already on a canvas duplicates nothing and returns success, and in the UI the current canvas shows up disabled under \"Send to Workbench\".",
+      "The positions thing was about scope. The canvas is free-form, positions live in the session, and \"Rearrange\" only does something when the user asks. Saving them might come later, but it wasn't what mattered right now.",
+      "I also asked the AI whether one side of the tree could just not load. Turns out the backend already supported it and the frontend was turning it into \"load everything\". That got fixed, the endpoint got documented with what it actually does, and the picker now opens on \"Don't load\" and 1 level.",
+      "The preview became an editable canvas too, with the same drag and zoom as the Workbench, so long task names can be read without endless scrolling.",
+      "Independent canvases working on backend and frontend, 713 tests passing and a clean build. We'll see if positions ever earn their spot in the database."
+    ]
+  }
+}

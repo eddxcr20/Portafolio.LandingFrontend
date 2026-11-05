@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-16",
+  "tags": [
+    "grapht",
+    "backend",
+    "pomodoro",
+    "adhd"
+  ],
+  "es": {
+    "title": "Flujos de estado y reglas del pomodoro",
+    "topic": "Unificar los cambios de estado de las tareas en flujos con reglas de dominio y amarrar el pomodoro a esas reglas.",
+    "body": [
+      "Ya entrado el sprint de backend, le pedí a la IA que rastreara, de punta a punta, qué pasaba en GraphT cuando inicias, pausas o terminas una tarea. La respuesta no fue bonita: el backend aceptaba pasar una tarea de cualquier estado a cualquier otro.",
+      "Las únicas reglas vivían en la interfaz, y era el frontend el que decidía a qué endpoint llamar. Además había un bug feo: marcar \"En curso\" una tarea que ya estaba en curso reiniciaba la sesión y se perdía el tiempo trabajado. Con TDAH, perder el registro de lo que sí hiciste desanima bastante.",
+      "El reto era mover esas reglas al dominio sin volver la app rígida. Quiero decir, uno olvida marcar cosas, o entra en \"la zona\" y no quiere que nada lo interrumpa. Yo el primero.",
+      "Así que tiré el endpoint genérico y los de sesión del pomodoro, y lo dejé en un flujo por intención (iniciar, pausar, finalizar, descartar y planear), cada uno con sus estados válidos. Agregué una fecha opcional para el clásico \"olvidé marcarla ayer\", que no puede ser futura ni anterior al último cambio para no desordenar el historial. Al crear una tarea solo se permiten estados de planeación. Y una tarea terminada se puede repetir, pero los puntos no se vuelven a dar.",
+      "Luego amarré el pomodoro a esas reglas. Ninguna tarea corre sin pomodoro, y al terminarlo la tarea se pausa, reutilizando el caso de uso que ya hacía eso. El pomodoro también dejó de saltar solo al siguiente bloque: cuenta tiempo extra, avisa con una notificación y uno decide cuándo descansar. De paso acepta segundos, porque una ronda de gym de 15 segundos también cuenta.",
+      "Todo eso ya está en producción. Lo último del pomodoro llegó en octubre, como hotfix de la beta, con las pruebas pasando.",
+      "¿Quedó perfecto? Seguro que no. Pero ahora cada cambio de estado pasa por una regla y no por lo que se le ocurra a la pantalla, y eso ya es ganancia."
+    ]
+  },
+  "en": {
+    "title": "State flows and pomodoro rules",
+    "topic": "Unifying task status changes into flows with domain rules, and tying the pomodoro to those rules.",
+    "body": [
+      "Deep into the backend sprint, I asked the AI to trace, end to end, what happened in GraphT when you start, pause or finish a task. The answer wasn't pretty: the backend let a task jump from any status to any other.",
+      "The only rules lived in the UI, and the frontend was the one deciding which endpoint to call. There was also a nasty bug: setting \"Doing\" on a task that was already in progress restarted the session and lost the tracked time. With ADHD, losing the record of what you actually did is pretty discouraging.",
+      "The challenge was moving those rules into the domain without making the app rigid. I mean, people forget to log things, or they get into the zone and don't want anything breaking their flow. Me first.",
+      "So I scrapped the generic endpoint and the pomodoro session ones, and replaced them with one flow per intent (start, pause, finish, discard and plan), each with its own valid statuses. I added an optional date for the classic \"I forgot to mark it yesterday,\" which can't be in the future or before the last change, so the history stays in order. Creating a task only allows planning statuses. And a finished task can be done again, but it never pays out points twice.",
+      "Then I tied the pomodoro to those rules. No task runs without a pomodoro, and ending it pauses the task, reusing the use case that already did that. The pomodoro also stopped jumping to the next block on its own: it counts overtime, sends a notification, and you decide when to take a break. It takes seconds now too, because a 15-second gym round counts.",
+      "All of it is in production now. The last pomodoro changes came in October as a beta hotfix, with tests passing.",
+      "Is it perfect? Definitely not. But now every status change goes through a rule instead of whatever the screen felt like sending, and I'll take that."
+    ]
+  }
+}

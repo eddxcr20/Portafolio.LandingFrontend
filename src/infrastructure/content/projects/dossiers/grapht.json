@@ -1,0 +1,135 @@
+{
+  "slug": "grapht",
+  "name": "GraphT",
+  "order": 1,
+  "link": "https://grapht.com.mx",
+  "leadImage": "/images/grapht-workbench.webp",
+  "closingImage": "/images/grapht-life-areas.webp",
+  "tag": "grapht",
+  "es": {
+    "label": "Funciona · beta pública",
+    "meta": "Fundador · 2022 – hoy",
+    "summary": [
+      "Una herramienta de gestión personal sin jerarquías fijas ni metodologías impuestas. Todo lo que haces, desde lavar los platos hasta construir un producto, es una tarea, y toda tarea puede dividirse, conectarse con otras y contribuir a algo más grande.",
+      "Las tareas viven en un grafo: se dividen sin límite de niveles, se relacionan entre proyectos y apuntan a áreas de vida, las partes de tu vida hacia las que diriges tu atención. La pensé primero para mí, para la función ejecutiva que el TDAH complica, y la diseñé, construí y lancé de punta a punta: backend, frontend e infraestructura.",
+      "El núcleo lo escribí a mano desde 2022. Desde 2025 dirijo agentes de IA con reglas de arquitectura escritas, y el blog cuenta cada decisión."
+    ],
+    "problem": [
+      "Las aplicaciones de tareas que usé limitaban cuántos niveles podía desmenuzar un proyecto y no mostraban cómo se complementan las tareas entre sí. Metodologías como los OKRs o los KPIs dividen lo grande en partes, pero fijan los niveles posibles.",
+      "Para alguien con dificultades en la función ejecutiva eso pesa: el obstáculo no es la falta de voluntad, es no ver el camino entre dónde estás y a dónde vas. Mi primer sistema vivió en Notion, con fórmulas para el progreso y los enlaces, y se volvió cada vez más pesado conforme crecían los niveles."
+    ],
+    "understanding": [
+      "Que en la vida todo es una tarea, no solo lo productivo: cocinar, lavar los trastes o ir al cine con alguien. Y que cualquier tarea se puede dividir hasta llegar a algo que puedes empezar ahora mismo.",
+      "Que si las tareas se dividen sin límite, hace falta algo que nunca termine para saber hacia dónde va el esfuerzo. Esas son las áreas de vida: no metas con fecha de caducidad, sino dimensiones que siempre están en movimiento y que cada quien define."
+    ],
+    "decisions": [
+      "Las tareas como un grafo en Neo4j: atómicas, divisibles sin límite y enlazables entre proyectos, con un progreso que se calcula solo a partir de las hijas y propiedades que se heredan de padre a hija.",
+      "Relevancia, prioridad, complejidad y puntualidad como guías opcionales, no como obligaciones. Clean Architecture en backend (.NET) y frontend (React), con resultados de dominio en vez de excepciones."
+    ],
+    "state": [
+      "Beta pública desde el 28 de septiembre de 2026, con lista de espera. Autoalojada en mi propio servidor. PWA con notificaciones push, iOS incluido."
+    ],
+    "pieces": [
+      {
+        "title": "Grafo de tareas.",
+        "text": "Subtareas sin límite de profundidad ni de amplitud, relaciones entre proyectos distintos y el progreso de cada padre calculado a partir del estado de sus hijas."
+      },
+      {
+        "title": "Áreas de vida.",
+        "text": "Cada tarea se vincula a una o varias dimensiones de tu vida, para ver de un vistazo a qué estás aportando con lo que haces hoy."
+      },
+      {
+        "title": "Relevancia.",
+        "text": "El cuadrante del libro Hyperfocus: con propósito, necesaria, entretenida o superficial, según si la tarea es disfrutable y si es productiva."
+      },
+      {
+        "title": "Estados y puntualidad.",
+        "text": "Siete estados con historial, de Creada a Finalizada; pausar no detiene el progreso general. La fecha límite indica si vas con tiempo, ajustado o tarde."
+      },
+      {
+        "title": "Rutinas.",
+        "text": "Cuatro tipos de recurrencia que regresan la tarea sola a Lista para iniciar: fecha específica, días de la semana, día del mes y día de la semana del mes."
+      },
+      {
+        "title": "Colaboración, Pomodoro y gamificación.",
+        "text": "Participantes en el proyecto completo o solo en subtareas, un Pomodoro que mide el tiempo real de trabajo y puntos que reconocen cada paso dado."
+      }
+    ],
+    "verdict": "Funciona.",
+    "closing": [
+      "La pensé para mí y sigo usándola para organizarme. Las pruebas de la lógica de negocio corren en backend (xUnit, NSubstitute) y frontend (Vitest), y la infraestructura es propia: Docker, Cloudflare Tunnel y un flujo de releases con git.",
+      "Sigue en desarrollo activo: la vista del grafo y la gamificación crecen con lo que aprendo al usarla."
+    ],
+    "leadFigure": {
+      "caption": "Fig. 1 · El grafo de tareas.",
+      "alt": "Mesa de Trabajo de GraphT: un grafo de tareas conectadas junto al inspector de la tarea seleccionada."
+    },
+    "closingFigure": {
+      "caption": "Fig. 2 · Las áreas de vida.",
+      "alt": "Pantalla de Áreas de Vida de GraphT con las tareas completadas en cada área durante los últimos 30 días."
+    }
+  },
+  "en": {
+    "label": "Works · public beta",
+    "meta": "Founder · 2022 – present",
+    "summary": [
+      "A personal management tool with no fixed hierarchies and no imposed methodology. Everything you do, from washing the dishes to building a product, is a task, and every task can be broken down, connected to others and contribute to something bigger.",
+      "Tasks live in a graph: they split into as many levels as you need, connect across projects and point to life areas, the parts of your life you direct your attention to. I built it for myself first, for the executive function that ADHD makes harder, and I designed, built and shipped it end to end: backend, frontend and infrastructure.",
+      "I wrote the core by hand starting in 2022. Since 2025 I steer AI agents with written architecture rules, and the blog tells every decision."
+    ],
+    "problem": [
+      "The task apps I used limited how many levels I could break a project into and never showed how tasks complement each other. Methodologies like OKRs or KPIs split big things into parts, but they fix the number of levels.",
+      "For someone who struggles with executive function that weighs a lot: the obstacle isn't willpower, it's not seeing the path between where you are and where you're going. My first system lived in Notion, with formulas for progress and links, and it got heavier as the levels grew."
+    ],
+    "understanding": [
+      "That in life everything is a task, not only the productive stuff: cooking, doing the dishes or going to the movies with someone. And that any task can be split until you reach something you can start right now.",
+      "That if tasks split without limits, you need something that never ends to know where the effort is going. Those are life areas: not goals with an expiration date, but dimensions that are always moving and that each person defines."
+    ],
+    "decisions": [
+      "Tasks as a graph in Neo4j: atomic, endlessly divisible and linkable across projects, with progress computed from the children and properties inherited from parent to child.",
+      "Relevance, priority, complexity and punctuality as optional guides, not obligations. Clean Architecture on the backend (.NET) and the frontend (React), with domain results instead of exceptions."
+    ],
+    "state": [
+      "Public beta since September 28, 2026, with a waitlist. Self-hosted on my own server. A PWA with push notifications, iOS included."
+    ],
+    "pieces": [
+      {
+        "title": "Task graph.",
+        "text": "Subtasks with no limit on depth or breadth, relationships across different projects and each parent's progress computed from the status of its children."
+      },
+      {
+        "title": "Life areas.",
+        "text": "Every task links to one or more dimensions of your life, so you can see at a glance what you're contributing to with what you do today."
+      },
+      {
+        "title": "Relevance.",
+        "text": "The quadrant from the book Hyperfocus: purposeful, necessary, entertaining or shallow, depending on whether the task is enjoyable and whether it's productive."
+      },
+      {
+        "title": "States and punctuality.",
+        "text": "Seven states with history, from Created to Finished; pausing doesn't stop overall progress. The deadline tells you whether you're on time, cutting it close or late."
+      },
+      {
+        "title": "Routines.",
+        "text": "Four kinds of recurrence that send the task back to Ready to start on their own: a specific date, days of the week, a day of the month and a weekday of the month."
+      },
+      {
+        "title": "Collaboration, Pomodoro and gamification.",
+        "text": "Participants in the whole project or only in some subtasks, a Pomodoro that measures real working time and points that recognize every step you take."
+      }
+    ],
+    "verdict": "It works.",
+    "closing": [
+      "I built it for myself and I still use it to stay organized. Business logic tests run on the backend (xUnit, NSubstitute) and the frontend (Vitest), and the infrastructure is my own: Docker, Cloudflare Tunnel and a git release workflow.",
+      "It's still in active development: the graph view and the gamification keep growing with what I learn from using it."
+    ],
+    "leadFigure": {
+      "caption": "Fig. 1 · The task graph.",
+      "alt": "GraphT Workbench: a graph of connected tasks next to the inspector of the selected task."
+    },
+    "closingFigure": {
+      "caption": "Fig. 2 · Life areas.",
+      "alt": "GraphT Life Areas screen with the tasks completed in each area over the last 30 days."
+    }
+  }
+}
