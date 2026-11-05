@@ -1,12 +1,19 @@
 import { useTranslation } from "react-i18next";
+import type { Language } from "@domain/model/common/language";
+import { ButtonDownload } from "~/shared/components/button-download";
 import { PrintFigure } from "~/shared/components/print-figure";
 import { SectionLabel } from "~/shared/components/section-label";
 import { CONTACT_LINKS } from "~/shared/lib/contact-links";
+import { cvPath } from "~/shared/lib/site-paths";
 
 const PORTRAIT_IMAGE = "/images/portrait.webp";
 const CONTACT_LINK_CLASS_NAME = "text-ink no-underline hover:text-accent";
 
-export function About() {
+type AboutProps = {
+  readonly language: Language;
+};
+
+export function About({ language }: AboutProps) {
   const { t } = useTranslation("home");
 
   return (
@@ -70,6 +77,11 @@ export function About() {
             >
               LinkedIn
             </a>
+          </div>
+          <div className="mt-4">
+            <ButtonDownload tone="secondary" href={cvPath(language)}>
+              {t("cv")}
+            </ButtonDownload>
           </div>
         </div>
       </div>

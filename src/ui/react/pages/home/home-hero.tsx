@@ -17,12 +17,10 @@ export function HomeHero() {
           grid-cols-[repeat(auto-fit,minmax(280px,1fr))]"
       >
         <h2 className="text-hero-subtitle text-muted">{t("hero.subtitle")}</h2>
-        <p
-          className="max-w-[34ch] justify-self-start text-lead
-            lg:justify-self-end"
-        >
-          {t("hero.lead")}
-        </p>
+        <div className="max-w-[34ch] justify-self-start lg:justify-self-end">
+          <p className="text-lead">{t("hero.lead")}</p>
+          <p className="mt-4 font-semibold">{t("hero.availability")}</p>
+        </div>
       </div>
     </section>
   );

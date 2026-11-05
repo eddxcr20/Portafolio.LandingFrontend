@@ -2,7 +2,8 @@ import { useTranslation } from "react-i18next";
 import type { Language } from "@domain/model/common/language";
 import type { Localized } from "@domain/model/common/localized";
 import { About } from "~/pages/home/about";
-import { ForBusiness } from "~/pages/home/for-business";
+import { Doors } from "~/pages/home/doors";
+import { Experience } from "~/pages/home/experience";
 import { GraphtShowcase } from "~/pages/home/grapht-showcase";
 import { HomeHero } from "~/pages/home/home-hero";
 import { HowIWork } from "~/pages/home/how-i-work";
@@ -29,6 +30,7 @@ export function HomePage({ language, alternates, blogUrl }: HomePageProps) {
         brandLabel={t("common:brand.home")}
         links={[
           { href: "#projects", label: t("common:nav.projects") },
+          { href: "#experience", label: t("common:nav.experience") },
           { href: "#how-i-work", label: t("common:nav.method") },
           { href: "#about", label: t("common:nav.about") },
           { href: "#contact", label: t("common:nav.contact") },
@@ -39,9 +41,10 @@ export function HomePage({ language, alternates, blogUrl }: HomePageProps) {
         <HomeHero />
         <Notebook />
         <GraphtShowcase language={language} />
+        <Experience />
         <HowIWork />
-        <ForBusiness />
-        <About />
+        <Doors language={language} />
+        <About language={language} />
       </main>
     </div>
   );

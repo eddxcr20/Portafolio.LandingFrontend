@@ -5,6 +5,9 @@ export const homePath = (language: Language): string => `/${language}`;
 export const dossierPath = (language: Language, slug: string): string =>
   `/${language}/projects/${slug}`;
 
+export const cvPath = (language: Language): string =>
+  `/cv/eduardo-cruz-cv-${language}.pdf`;
+
 export const blogPath = (language: Language): string =>
   `/${language}/blog`;
 
