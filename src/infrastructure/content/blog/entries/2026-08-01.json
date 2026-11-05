@@ -1,0 +1,41 @@
+{
+  "date": "2026-08-01",
+  "tags": [
+    "grapht",
+    "claudecode",
+    "cleanarchitecture",
+    "dotnet"
+  ],
+  "es": {
+    "title": "Desarrollar con IA sin perder el control",
+    "topic": "Cómo dirijo a la IA: de reglas sueltas en un md de GraphT a dos skills de Claude Code que hoy reuso en otros proyectos. Yo pongo la arquitectura, la IA implementa y yo reviso.",
+    "body": [
+      "Antes de 2025 no usaba IA para programar. El núcleo de GraphT, mi app de productividad para personas con TDAH, lo piqué a mano desde 2022, bloque por bloque.",
+      "A mediados de 2025 empecé a meterle IA en serio. Probé Cursor con modelos locales, los plugins indexaban mal el código y la IA se inventaba lo que no encontraba. Pero uff, qué castre.",
+      "Quería la velocidad sin terminar con código improvisado que luego nadie (o sea, yo) pudiera mantener.",
+      "Así que empecé a escribir las reglas una por una en un md dentro de GraphT. En ese entonces usaba Codex, y muchas de las primeras reglas nacieron de corregirlo. Cada error que se repetía se volvía una línea nueva.",
+      "Hacia julio y agosto de 2026 vi que buena parte de esas reglas no eran de GraphT, eran mi forma de trabajar. Así que las separé. Lo general se fue a dos skills de Claude Code, backend en .NET y frontend, y en GraphT se quedó solo lo propio, como Neo4j o el sistema de diseño.",
+      "Algunas de las que más me importan. Los errores de negocio se devuelven como resultado de dominio, no se lanzan como excepciones. Prohibido parchar sobre parches, si un diseño ya no encaja se corrige, no se le apilan flags. Prohibido el código muerto, lo que deja de usarse se elimina en el mismo cambio. Y un caso de uso que necesita algo que ya existe llama a ese caso de uso, no al repositorio directo, para no saltarse su validación.",
+      "Hoy las reuso en la migración de un sistema legacy en mi trabajo, que suma sus propias reglas, como que toda consulta de lectura en EF Core lleve AsNoTracking(). Ahí también aprendí que hasta las reglas necesitan reglas. La IA empezó a documentar cada componente en los lineamientos como si fueran catálogo y tuve que sacarlo.",
+      "Con Claude Code yo pongo la arquitectura y el dominio, la IA implementa y yo reviso. Si toca algo que no pedí, se revierte.",
+      "¿Es el flujo ideal? Ni idea. Pero el trabajo de arquitecto sigue siendo mío, solo que ahora está por escrito y no nada más en mi cabeza.",
+      "Con esas reglas encima arrancó, a mediados de septiembre, el sprint hacia la beta de GraphT."
+    ]
+  },
+  "en": {
+    "title": "Building with AI without losing control",
+    "topic": "How I steer AI: from loose rules in a GraphT markdown file to two Claude Code skills I now reuse in other projects. I set the architecture, the AI implements and I review.",
+    "body": [
+      "Before 2025 I didn't use AI to code. I wrote the core of GraphT, my productivity app for people with ADHD, by hand starting in 2022, one block at a time.",
+      "In mid-2025 I started using AI seriously. I tried Cursor with local models, the plugins indexed the codebase badly, and the AI just made up whatever it couldn't find. What a pain.",
+      "I wanted the speed without ending up with a pile of improvised code nobody (meaning me) could maintain later.",
+      "So I started writing rules one by one in a markdown file inside GraphT. Back then I was using Codex, and a lot of those early rules came from correcting it. Every mistake that repeated became a new line.",
+      "Around July and August 2026 I saw that a good chunk of those rules weren't about GraphT at all, they were just how I work. So I split them. The general stuff went into two Claude Code skills, .NET backend and frontend, and GraphT kept only what's truly its own, like Neo4j and the design system.",
+      "A few I care about most. Business errors come back as a domain result, they're never thrown as exceptions. No patching on top of patches, if a design no longer fits you fix it, you don't stack flags on it. No dead code, whatever stops being used gets deleted in the same change. And a use case that needs something that already exists calls that use case, not the repository directly, so it doesn't skip its validation.",
+      "Today I reuse them on a legacy system migration at my job, which adds its own rules on top, like every read query in EF Core carrying AsNoTracking(). That's also where I learned even the rules need rules. The AI started documenting every single component in the guidelines like a catalog, and I had to pull it out.",
+      "With Claude Code I set the architecture and the domain, the AI implements, and I review. If it touches something I didn't ask for, it gets reverted.",
+      "Is this the ideal workflow? No idea. But the architect part is still my job. It just lives in writing now instead of only in my head.",
+      "With those rules in place, in mid-September, I kicked off the sprint toward GraphT's beta."
+    ]
+  }
+}

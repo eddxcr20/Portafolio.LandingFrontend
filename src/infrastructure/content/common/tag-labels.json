@@ -1,0 +1,134 @@
+{
+  "grapht": {
+    "es": "GraphT",
+    "en": "GraphT"
+  },
+  "claudecode": {
+    "es": "ClaudeCode",
+    "en": "ClaudeCode"
+  },
+  "cleanarchitecture": {
+    "es": "CleanArchitecture",
+    "en": "CleanArchitecture"
+  },
+  "dotnet": {
+    "es": "DotNet",
+    "en": "DotNet"
+  },
+  "domaindrivendesign": {
+    "es": "DomainDrivenDesign",
+    "en": "DomainDrivenDesign"
+  },
+  "neo4j": {
+    "es": "Neo4j",
+    "en": "Neo4j"
+  },
+  "adhd": {
+    "es": "TDAH",
+    "en": "ADHD"
+  },
+  "backend": {
+    "es": "Backend",
+    "en": "Backend"
+  },
+  "gamification": {
+    "es": "Gamificación",
+    "en": "Gamification"
+  },
+  "ux": {
+    "es": "UX",
+    "en": "UX"
+  },
+  "pomodoro": {
+    "es": "Pomodoro",
+    "en": "Pomodoro"
+  },
+  "productdesign": {
+    "es": "DiseñoDeProducto",
+    "en": "ProductDesign"
+  },
+  "systemdesign": {
+    "es": "SystemDesign",
+    "en": "SystemDesign"
+  },
+  "frontend": {
+    "es": "Frontend",
+    "en": "Frontend"
+  },
+  "designsystems": {
+    "es": "DesignSystems",
+    "en": "DesignSystems"
+  },
+  "react": {
+    "es": "React",
+    "en": "React"
+  },
+  "signalr": {
+    "es": "SignalR",
+    "en": "SignalR"
+  },
+  "performance": {
+    "es": "Performance",
+    "en": "Performance"
+  },
+  "graphs": {
+    "es": "Grafos",
+    "en": "Graphs"
+  },
+  "buildinpublic": {
+    "es": "BuildInPublic",
+    "en": "BuildInPublic"
+  },
+  "postmortem": {
+    "es": "Postmortem",
+    "en": "Postmortem"
+  },
+  "productdevelopment": {
+    "es": "Producto",
+    "en": "ProductDevelopment"
+  },
+  "mvp": {
+    "es": "MVP",
+    "en": "MVP"
+  },
+  "cybersecurity": {
+    "es": "Ciberseguridad",
+    "en": "CyberSecurity"
+  },
+  "softwarearchitecture": {
+    "es": "ArquitecturaDeSoftware",
+    "en": "SoftwareArchitecture"
+  },
+  "testing": {
+    "es": "Testing",
+    "en": "Testing"
+  },
+  "git": {
+    "es": "Git",
+    "en": "Git"
+  },
+  "devops": {
+    "es": "DevOps",
+    "en": "DevOps"
+  },
+  "docker": {
+    "es": "Docker",
+    "en": "Docker"
+  },
+  "selfhosting": {
+    "es": "SelfHosting",
+    "en": "SelfHosting"
+  },
+  "apis": {
+    "es": "APIs",
+    "en": "APIs"
+  },
+  "mcp": {
+    "es": "MCP",
+    "en": "MCP"
+  },
+  "ai": {
+    "es": "InteligenciaArtificial",
+    "en": "AI"
+  }
+}

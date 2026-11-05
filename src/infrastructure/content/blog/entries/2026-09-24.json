@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-24",
+  "tags": [
+    "grapht",
+    "buildinpublic",
+    "adhd",
+    "backend"
+  ],
+  "es": {
+    "title": "Lista de espera para la beta",
+    "topic": "Lanzar una beta en un servidor casero: lista de espera, cupo de 20 y limpieza de cuentas inactivas",
+    "body": [
+      "A tres días de abrir la beta pública de GraphT caí en algo que no había pensado bien: todo corre en un servidor propio de 7.6 GB de RAM. Muy digno, pero no es precisamente un rack de 2,000 dólares.",
+      "Esa máquina la pago y la opero yo. Así que dejar que cualquiera se registrara sin límite era pedir que me la tumbaran.",
+      "Lo que quería era un poco raro. Registro abierto para quien fuera, pero que solo un puñado de cuentas pudiera entrar, y que los lugares se liberaran solos cuando alguien dejara de usar la app.",
+      "La regla quedó así: con el cupo lleno, la cuenta se forma en una fila y entra cuando yo subo el cupo o cuando se libera un lugar. Mientras espera puede iniciar sesión para ver su lugar, pero no recibe token ni sesión. No hay nada que robar.",
+      "Luego un detalle que casi se me pasa. Ya existía un proceso que borra cuentas sin verificar, y alguien con más de una semana en la fila iba a caer ahí. Moví la verificación de correo al primer acceso de una cuenta ya admitida.",
+      "Para la inactividad, correo de aviso a los 20 días sin uso y borrado a los 30, y ese lugar pasa al siguiente de la fila.",
+      "Lo implementé con Claude Code. Su primera propuesta sembraba el cupo en 100, una visión bastante optimista de mi servidor, así que lo bajé a 10. Antes de que empezara a formarse gente lo subí a 20, que es lo que el servidor aguanta con calma. También pedí un correo de \"tu lugar está apartado\" y reescribí el texto para que dijera quién escribe y por qué.",
+      "La beta abrió el 28 de septiembre con la fila funcionando desde el primer arranque, un cupo que puedo ajustar sin tocar código, cinco correos automáticos en español e inglés y las pruebas del backend y de la app en verde. Hoy somos 10 en la beta, yo y 9 personas más.",
+      "¿Aguantará cuando la fila crezca? Ni idea. Quiero decir, ahora depende de un número que controlo yo, y por lo pronto con eso me basta."
+    ]
+  },
+  "en": {
+    "title": "A waitlist for the beta",
+    "topic": "Launching a beta on a home server: a waitlist, a cap of 20 and cleanup of inactive accounts.",
+    "body": [
+      "Three days before GraphT's public beta opened, it hit me that I hadn't really thought something through: the whole thing runs on my own server with 7.6 GB of RAM. Respectable, sure. Not exactly a $2,000 rack.",
+      "I pay for that machine and I run it. So letting anyone sign up with no limit was basically asking for it to fall over.",
+      "What I wanted was a little odd. Open sign-up for anyone, but only a handful of accounts actually getting in, and seats freeing up on their own when someone stopped using the app.",
+      "Here's the rule I landed on. When the cap is full, new accounts join a queue and get in when I raise the cap or a seat opens. While they wait they can sign in to check their place, but they get no token and no session. Nothing to steal.",
+      "Then there was a detail I almost missed. A job already deleted unverified accounts, and anyone waiting more than a week would have been swept up by it. So I moved email verification to the first sign-in after an account is admitted.",
+      "Inactivity gets a reminder email at 20 days and deletion at 30, and that seat goes to the next person in line.",
+      "I built it with Claude Code. Its first draft set the cap at 100, which is a very generous view of my hardware, so I dropped it to 10. Before anyone actually had to queue, I raised it to 20, which the server handles comfortably. I also asked for a \"your spot is saved\" email and rewrote the copy so it says who's writing and why.",
+      "The beta opened on September 28 with the queue working from the first boot, a cap I can adjust without touching code, five automated emails in Spanish and English, and green test suites on the backend and the app. Right now there are 10 of us in the beta, me plus 9 other people.",
+      "Will it hold up when the line gets longer? No idea. But it now comes down to a number I control, and for now that's enough for me."
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "seo": {
+    "title": "José Eduardo Cruz Rosano · Analista e ingeniero de software",
+    "description": "Analista e ingeniero de software. Backend .NET, Clean Architecture y Domain-Driven Design. Entiendo el dominio antes de escribir código.",
+    "jobTitle": "Analista e ingeniero de software"
+  },
+  "tagline": "Tlaxcala, México · Disponible",
+  "hero": {
+    "lineOne": "Desarmar",
+    "lineTwo": "para entender.",
+    "subtitle": "Construir para que sirva.",
+    "lead": "Analista e ingeniero de software. Backend .NET, Clean Architecture y Domain-Driven Design. Entiendo el dominio antes de escribir código."
+  },
+  "notebook": {
+    "caption": "Fig. 1 · La libreta. Flujos, modelos e ideas, antes de escribir código.",
+    "alts": {
+      "taskStates": "Página de la libreta con los estados de una tarea de GraphT.",
+      "quotes": "Página de la libreta con el flujo de cotización, remisión e inventario.",
+      "whiteboard": "Pizarrón lleno de diagramas junto al escritorio de trabajo.",
+      "payments": "Página de la libreta con el flujo de pago de facturas.",
+      "ideas": "Página de la libreta con una tabla y notas de pantallas por construir."
+    }
+  },
+  "grapht": {
+    "label": "Funciona · beta pública",
+    "meta": "Fundador · grapht.com.mx",
+    "caption": "Fig. 2 · GraphT, beta pública.",
+    "problemLabel": "Problema",
+    "decisionLabel": "Qué decidí",
+    "problem": "Las aplicaciones de tareas fijan cuántos niveles puedes dividir un proyecto y no muestran cómo se conectan las tareas entre sí. Con TDAH, no ver el camino completo es lo que paraliza. Notion no alcanzó.",
+    "decision": "Las tareas como un grafo en Neo4j, divisibles sin límite y conectadas a áreas de vida que le dan contexto a cada paso. Clean Architecture en backend y frontend.",
+    "readDossier": "Leer el expediente",
+    "imageAlt": "Mesa de Trabajo de GraphT: un grafo de tareas conectadas junto al inspector de la tarea seleccionada."
+  },
+  "method": {
+    "label": "Cómo trabajo",
+    "stepOne": "Funciona.",
+    "stepTwo": "Bien hecho.",
+    "stepThree": "Optimizado.",
+    "order": "En ese orden. Mi regla para no sufrir parálisis por sobreanálisis: primero lo hago funcionar, luego lo hago bien y solo al final lo puedo optimizar.",
+    "domain": "Antes de todo eso, el dominio: me adapto al negocio, no el negocio a mí. Si la herramienta que hace falta no está en mi caja, la aprendo desde los fundamentos."
+  },
+  "business": {
+    "question": "¿Tu negocio corre en hojas de cálculo?",
+    "pitch": "Probablemente hay procesos que se pueden automatizar sin tirar lo que ya funciona. Primero me siento contigo a entender cómo trabajas; después te digo qué conviene automatizar y qué no."
+  },
+  "about": {
+    "label": "Sobre mí",
+    "headline": "Empecé desarmando juguetes para ver cómo cada pieza hacía que el todo funcionara.",
+    "quote": "«Quizá ignoro cosas, pero estoy abierto a aprender lo que sea para resolver la problemática.»",
+    "beginnings": "Hacia los doce quería hacer trucos para juegos en línea y me dijeron que primero había que aprender a programar; por eso elegí programación en la preparatoria técnica. No pude ir a la universidad. A los veinte empecé a trabajar como desarrollador en la startup de un amigo y descubrí que algo en lo que era bueno le servía a alguien más.",
+    "grapht": "A los veintidós, en un trabajo remoto sin organización, el TDAH me hizo perder de vista demasiadas tareas. Construí mi propio sistema para no perderlas; así nació GraphT, y con él la costumbre de hacer las cosas bien: dominio, arquitectura limpia, pruebas. Hoy aplico esa misma mentalidad al negocio de otros: entender cómo trabajan antes de escribir una línea.",
+    "outside": "Fuera del código me gusta reparar cosas y aprender por el puro gusto de aprender.",
+    "contactLabel": "Contacto",
+    "email": "Correo",
+    "portraitAlt": "Retrato de José Eduardo Cruz Rosano sonriendo, con la mano en la barbilla, frente a un escritorio."
+  }
+}

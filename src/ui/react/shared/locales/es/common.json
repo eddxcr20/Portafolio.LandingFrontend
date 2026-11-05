@@ -1,0 +1,37 @@
+{
+  "person": {
+    "name": "José Eduardo Cruz Rosano"
+  },
+  "brand": {
+    "home": "eddxcr20, inicio",
+    "portfolio": "eddxcr20, portada",
+    "entries": "eddxcr20, entradas"
+  },
+  "language": {
+    "label": "Idioma",
+    "es": "ES",
+    "en": "EN"
+  },
+  "nav": {
+    "projects": "Proyectos",
+    "method": "Cómo trabajo",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "blog": "Blog",
+    "home": "Portada",
+    "entries": "Entradas",
+    "portfolio": "Portafolio",
+    "menu": "Menú",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "errors": {
+    "unexpected": "Algo salió mal al cargar esta página.",
+    "notFound": "No encontré esta página."
+  },
+  "errorScreen": {
+    "notFoundTitle": "No está aquí.",
+    "unexpectedTitle": "Algo se rompió.",
+    "back": "← Volver a la portada"
+  }
+}

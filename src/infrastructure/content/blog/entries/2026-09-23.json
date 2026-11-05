@@ -1,0 +1,36 @@
+{
+  "date": "2026-09-23",
+  "tags": [
+    "grapht",
+    "ux",
+    "react"
+  ],
+  "es": {
+    "title": "UX táctil: los detalles que no salen en el diseño",
+    "topic": "Ajustes de UX en móvil y táctil para GraphT: inspectores apilados, pulsación prolongada, zoom acotado al grafo, celdas más altas y texto que no se recorta.",
+    "body": [
+      "Ya con la UI nueva arriba, unos días antes de la beta, empecé a usar GraphT con el dedo y noté que tocar una tarjeta solo abría el inspector, y el menú contextual, que con mouse sale rapidísimo, no había forma de sacarlo. Así que propuse que mantener presionada la tarjeta lo abriera.",
+      "Resulta que el gesto ya existía (500 ms). Lo cancelaba el umbral de arrastre de 4 px, que con un dedo se supera nomás con el temblor natural. Ahora el umbral depende del puntero, 4 px con mouse y 12 con dedo, y mantener presionado abre el menú mientras arrastrar sigue moviendo la tarjeta.",
+      "La app tiene que funcionar en 320, 768 y 1280 px. Usándola yo mismo en el teléfono, de ahí hasta ya entrado octubre, fueron saliendo otras fricciones que ningún diseño mostraba.",
+      "Al navegar de una tarea a su padre o a una hija, el inspector reemplazaba el panel y perdías la ruta. Ahora se apilan, uno encima del otro.",
+      "Ctrl + rueda o el pellizco hacían zoom a toda la app. La IA encontró la causa, React registra ese evento como pasivo, y ahora el zoom solo afecta al grafo, en el lienzo y en el previsualizador.",
+      "En el calendario las celdas del mes crecieron para dedos anchos. La vista por horas pasó a ser un plano con el eje de horas fijo y scroll horizontal, con tarjetas de ancho fijo y el nombre en dos líneas.",
+      "Y el texto. La regla general es cortar con elipsis después de la segunda línea, pero los recordatorios se tienen que leer completos, así que ahí baja de renglón y nunca se recorta. Quedó documentado, excepción incluida.",
+      "Cada ajuste quedó verificado en los anchos de la app y con las pruebas en verde. La verdad es que ninguno salía en el diseño. Supongo que hay cosas que solo aparecen cuando traes la app en la mano todo el día."
+    ]
+  },
+  "en": {
+    "title": "Touch UX: the details the design doesn't show",
+    "topic": "Mobile and touch UX tweaks for GraphT: stacked inspectors, long press, zoom limited to the graph, taller cells and text that doesn't get cut off.",
+    "body": [
+      "Once the new UI was up, a few days before the beta, I started using GraphT with my finger and noticed that tapping a card only opened the inspector, and the context menu, which pops up instantly with a mouse, was basically unreachable. So I suggested that pressing and holding a card should open it.",
+      "Turns out the gesture already existed (500 ms). It was being canceled by a 4 px drag threshold, and a finger's natural wobble crosses that without even trying. Now the threshold depends on the pointer, 4 px for a mouse and 12 for a finger, so holding opens the menu and dragging still moves the card.",
+      "The app has to work at 320, 768 and 1280 px. Using it on my own phone, from then until well into October, more friction kept showing up that no design file had warned me about.",
+      "Jumping from a task to its parent or a child used to replace the inspector panel, and you'd lose your trail. Now panels stack on top of each other.",
+      "Ctrl + wheel or a pinch zoomed the entire app. The AI tracked down the cause, React registering that event as passive, and now zoom only affects the graph, both on the canvas and in the preview.",
+      "On the calendar, month cells got taller for chunky fingers. The hourly view turned into a grid with a fixed hour axis and horizontal scrolling, with fixed-width cards and names on two lines.",
+      "Then there's text. The general rule is an ellipsis after the second line, but reminders need to be read in full, so those wrap and never get cut. That's documented now, exception included.",
+      "Every change was checked at the app's widths with tests passing. Honestly, none of these were in the design. I guess some things only show up once the app lives in your hand all day."
+    ]
+  }
+}

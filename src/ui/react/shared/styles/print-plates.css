@@ -1,0 +1,75 @@
+.cmyk {
+  position: relative;
+  background: var(--paper);
+}
+
+.cmyk::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.22) 30%,
+    transparent 32%
+  );
+  background-size: 3px 3px;
+  mix-blend-mode: multiply;
+}
+
+.cmyk .print {
+  position: relative;
+  width: 100%;
+  filter: url(#sep-all);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cmyk .print:hover {
+    filter: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .cmyk .print {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+.cmyk-headline {
+  text-box: trim-both cap alphabetic;
+}
+
+.cmyk-head {
+  position: relative;
+}
+
+.cmyk-head .paper {
+  color: var(--paper);
+  text-shadow:
+    0.027em 0.0185em 0 var(--paper),
+    -0.0245em -0.0175em 0 var(--paper);
+}
+
+.cmyk-head .plate {
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  user-select: none;
+  text-box: trim-both cap alphabetic;
+}
+
+.cmyk-head .plate-c {
+  color: var(--accent);
+}
+
+.cmyk-head .plate-m {
+  color: var(--accent-2);
+  translate: 0.018em 0.0125em;
+}
+
+.cmyk-head .plate-y {
+  color: var(--process-yellow);
+  translate: -0.0155em -0.0115em;
+}

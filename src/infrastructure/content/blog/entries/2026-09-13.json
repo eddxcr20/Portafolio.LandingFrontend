@@ -1,0 +1,35 @@
+{
+  "date": "2026-09-13",
+  "tags": [
+    "grapht",
+    "domaindrivendesign",
+    "backend",
+    "cleanarchitecture"
+  ],
+  "es": {
+    "title": "Pestañas de búsqueda vs. consultas guardadas",
+    "topic": "Modelar pestañas de búsqueda y consultas guardadas como conceptos separados, y convertir un estado inválido (orden vacío) en un error de dominio explícito.",
+    "body": [
+      "Todavía en el sprint de backend de septiembre, antes de la beta, le tocó a la búsqueda de tareas de GraphT, que solo servía una vez. Armaba el filtro, veía los resultados y al salir se perdía todo. Yo quería varias búsquedas listas, cada una con su filtro, su orden y su paginación.",
+      "El problema es que ahí se esconden dos ideas que se mezclan facilísimo. Las pestañas abiertas son lo que tienes abierto y las consultas guardadas son lo que decidiste guardar. Puedo tener dos pestañas con la misma consulta y nada guardado, o una sola guardada y varias pestañas distintas.",
+      "Así que las modelé como dos entidades independientes, cada una con su propia copia de la consulta. Editar una pestaña nunca cambia una guardada, ni al revés, y nunca se guardan resultados. El filtro es un árbol recursivo de grupos y reglas que en la base de datos guardé como JSON dentro del adaptador, mientras el dominio y la API siguen usando el modelo tipado.",
+      "Lo implementé con Claude Code. En el camino resultó que un orden vacío llegaba hasta el generador de consultas y tronaba ahí, y la validación que yo juraba haber agregado no estaba por ningún lado. La convertí en un error de dominio, SortingGroupCannotBeEmpty, validado en los cinco casos de uso que reciben filtro y orden. Ahora es un HTTP 400 con su mensaje en el frontend en vez de una excepción.",
+      "También moví al backend la regla de la pestaña inicial, \"Todas\", ordenada de la más reciente a la más vieja. El frontend solo consume el endpoint.",
+      "Lo divertido vino días después, ya probándolo con la UI nueva. Abrí tres pestañas en el teléfono, recargué en la PC y ahí estaban. Pensé que era un bug. Lo revisé contra el diseño y resulta que era justo lo que yo había definido. Lo dejé así.",
+      "Mis Tareas quedó completa en 320, 768 y 1280 px con datos reales. Quizá no es la historia más vistosa, pero al menos para mí nombrar bien esos dos conceptos fue lo que más trabajo me ahorró."
+    ]
+  },
+  "en": {
+    "title": "Search tabs vs. saved queries",
+    "topic": "Modeling search tabs and saved queries as separate concepts, and turning an invalid state (an empty sort) into an explicit domain error.",
+    "body": [
+      "Still in the September backend sprint before the beta, it was task search's turn. In GraphT it was strictly one-and-done. I'd build a filter, look at the results, and the moment I left it was gone. What I wanted was a few searches always ready, each with its own filter, sorting and paging.",
+      "The catch is that there are two ideas hiding in there that blur together really easily. Open tabs are what you have open. Saved queries are what you chose to keep. I can have two tabs running the same query with nothing saved, or one saved query and a bunch of unrelated tabs.",
+      "So I modeled them as two separate entities, each holding its own copy of the query. Editing a tab never touches a saved query and vice versa, and results are never stored, only the query. The filter is a recursive tree of groups and rules, which I stored as JSON inside the database adapter, while the domain and the API keep working with the typed model.",
+      "I built it with Claude Code. Along the way it turned out an empty sorting group was making it all the way to the query builder and blowing up there, and the validation I was sure I'd added was nowhere to be found. I turned it into a domain error, SortingGroupCannotBeEmpty, checked in all five use cases that take a filter and sorting. Now it's an HTTP 400 with a proper message in the frontend instead of an exception.",
+      "I also moved the first-tab rule to the backend: it's called \"All\" and sorts newest first. The frontend just reads the endpoint.",
+      "The fun part came a few days later, testing it on the new UI. I opened three tabs on my phone, reloaded on my PC, and there they were. I figured it was a bug. Checked the design, and nope, that's exactly what I had specified. I left it alone.",
+      "The My Tasks screen is done at 320, 768 and 1280 px with real data. Maybe not the flashiest story, but for me, naming those two concepts right is what saved the most work."
+    ]
+  }
+}

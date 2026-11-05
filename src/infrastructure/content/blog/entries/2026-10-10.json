@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-10",
+  "tags": [
+    "grapht",
+    "git",
+    "claudecode"
+  ],
+  "es": {
+    "title": "Un flujo de git para desarrollar con IA",
+    "topic": "Las reglas de git y releases que definí para GraphT (rama por cambio, mensajes de merge, release y versionado de la beta) y cómo hacen revisable el trabajo de la IA.",
+    "body": [
+      "Una vez la IA dio por hecho que yo tenía instalada la extensión git-flow porque la configuración existía. Sus comandos no hicieron nada, y desde ese día trabajamos con git puro.",
+      "Esa fue una de varias reglas que fui juntando desde que abrí la beta, cuando con gente usando la app cada release tenía que salir limpio. GraphT vive en varios repos (backend en .NET, app y landing, entre otros) y desarrollo con Claude Code. Yo defino la arquitectura y las reglas, la IA implementa y yo reviso. Con tantos cambios en paralelo, si todo cae revuelto en una sola rama no hay forma de probar ni revertir nada con seguridad.",
+      "Así que cada cambio va en su propia rama desde dev y se mergea a dev, donde lo pruebo. En una tanda, la IA partió por fragmentos los archivos que mezclaban dos cambios, y cada rama compilaba y pasaba sus pruebas sola.",
+      "Los mensajes de commit, merge y tag los escribo yo, a mano, después de revisar lo que hizo la IA. Siempre en inglés, con descripción y entre comillas simples, porque las dobles rompían el comando. Escribirlos yo me obliga a entender cada cambio antes de que entre, y más de una vez ahí mismo encontré algo que había que corregir.",
+      "Para publicar hay un patrón fijo. Rama release/vX.Y.Z con un solo commit que sube la versión, merge a main con tag anotado, regreso a dev y después limpieza de ramas mergeadas y de respaldos en el servidor.",
+      "La beta arrancó con todos los repos en 0.1.0-beta.1, y en el backend la versión se declara una sola vez y la heredan sus 12 proyectos. La v0.4.0-beta.1 salió en todos los repos con tag y empujada a GitHub. Se borraron 9 ramas feature ya mergeadas y main quedó idéntico a dev. En el servidor, publicar es bajar main.",
+      "No sé si es el flujo perfecto. Al menos para mí, es lo que hace que lo que escribe la IA se pueda revisar sin perder la cabeza."
+    ]
+  },
+  "en": {
+    "title": "A git workflow for building with AI",
+    "topic": "The git and release rules I defined for GraphT (a branch per change, merge messages, releases and beta versioning) and how they make the AI's work reviewable.",
+    "body": [
+      "At one point the AI assumed I had the git-flow extension installed because its config existed. Its commands did absolutely nothing, and from that day on we've used plain git.",
+      "That's one of a bunch of rules I've been collecting since the beta opened, when having people on the app meant every release had to go out clean. GraphT lives across several repos (a .NET backend, the app and the landing page, among others), and I build it with Claude Code. I set the architecture and the rules, the AI implements, and I review. With that many changes going on at once, dumping everything into one branch would make it impossible to test or roll back anything safely.",
+      "So every change gets its own branch off dev and is merged into dev, where I test it. In one batch, the AI split files that mixed two changes hunk by hunk, and each branch built and passed its tests on its own.",
+      "I write the commit, merge and tag messages myself, by hand, after reviewing what the AI did. Always in English, always with a body, and in single quotes because double quotes kept breaking the command. Writing them myself forces me to understand every change before it goes in, and more than once that's exactly where I caught something that needed fixing.",
+      "Shipping follows a fixed pattern. A release/vX.Y.Z branch with one commit that bumps the version, a merge into main with an annotated tag, a merge back into dev, and then cleaning up merged branches and leftover backups on the server.",
+      "The beta started with every repo at 0.1.0-beta.1, and in the backend the version is declared once and inherited by its 12 projects. v0.4.0-beta.1 went out across every repo, tagged and pushed to GitHub. 9 merged feature branches were deleted and main ended up identical to dev. On the server, deploying is just pulling main.",
+      "I don't know if it's the perfect workflow. For me, at least, it's what makes the AI's code reviewable without losing my mind."
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-27",
+  "tags": [
+    "grapht",
+    "productdevelopment",
+    "mvp",
+    "buildinpublic"
+  ],
+  "es": {
+    "title": "Decir que no para llegar a la beta",
+    "topic": "Recortar alcance para lanzar: PWA en vez de app nativa, quitar vistas y botones que no aportaban, pausar el tema oscuro para rehacer su paleta y posponer bugs menores.",
+    "body": [
+      "Rumbo a la beta pública de GraphT me tocó borrar cosas que ya funcionaban. Y no, no fue tan divertido como suena.",
+      "La construyo solo, y la lista de pendientes no dejaba de crecer. Vistas a medio pulir, un tema oscuro que no me convencía, ideas que sonaban chido pero que no eran para ese momento.",
+      "Quería llegar con algo sólido sin que cada detalle empujara la fecha. Y sin dejar código huérfano regado por todos lados después de los recortes.",
+      "Así que empecé a decir que no. La vista \"Camino\" de Mi Día se fue completa y me quedé solo con \"Enfoque\". Se fue sin restos, con todo y los componentes, textos, estilos y pruebas que solo existían para ella.",
+      "El tema oscuro lo apagué en la app y en el sitio. El que había generado Claude Design apenas tenía contraste, y no era cosa de invertir el tema claro. Esos colores no reflejaban casi nada de la intención de la app ni de la variedad de colores que cambia según lo que estás viendo. Así que decidí reconstruir la paleta oscura desde cero, como una paleta propia con su propio trabajo de definición y el tiempo que eso implica. Mientras tanto, si alguien intenta cambiarlo ve \"Tema no disponible, estamos trabajando en ello\".",
+      "También fijé los puntos base de cada tarea en 10 y quité la opción de configurarlos, junto con su endpoint y el código que solo la usaba. Del sitio saqué los botones que llevaban a páginas que todavía no existen.",
+      "Lo que no era crítico lo pospuse a propósito. Un mensaje opcional que el destinatario ni alcanza a ver quedó para cuando alguien lo pida, y unas pruebas rotas quedaron anotadas para otra rama.",
+      "La beta pública salió el 28 de septiembre de 2026. Ya en octubre, con la beta andando, seguí con el mismo criterio y descarté el plan de una app móvil nativa, porque la PWA ya hace lo suficiente.",
+      "El tema oscuro va a regresar pronto, pero bien hecho. Por ahora prefiero algo más chico pero limpio, con lo que falta anotado en algún lado para no olvidarlo."
+    ]
+  },
+  "en": {
+    "title": "Saying no to reach the beta",
+    "topic": "Cutting scope to launch: a PWA instead of a native app, removing views and buttons that added nothing, pausing the dark theme to rework its palette and postponing minor bugs.",
+    "body": [
+      "On the way to GraphT's public beta, I had to delete things that already worked. Not as fun as it sounds.",
+      "I build it solo, and the to-do list kept growing. Half-polished views, a dark theme I wasn't happy with, ideas that sounded cool but weren't for right now.",
+      "I wanted to ship something solid without every little detail pushing the date back. And without leaving orphaned code lying around after the cuts.",
+      "So I started saying no. My Day's \"Path\" view went away entirely and I kept only \"Focus\". It went with no leftovers, including the components, strings, styles and tests that only existed for it.",
+      "I switched off dark mode in the app and on the website. The one Claude Design generated barely had any contrast, and fixing it wasn't a matter of inverting the light theme. Those colors said almost nothing about what the app is meant to feel like, or about how its colors shift depending on what you're looking at. So I decided to rebuild the dark palette from scratch, as its own palette with its own definition work and all the time that takes. Meanwhile, anyone who tries to switch sees \"Theme not available, we're working on it\".",
+      "I also locked every task's base points at 10 and removed the option to configure them, along with its endpoint and the code only it used. On the website, I pulled the buttons that pointed to pages that don't exist yet.",
+      "Anything non-critical got pushed back on purpose. An optional message the recipient never even gets to see can wait until someone asks for it, and a few broken tests were logged for a separate branch.",
+      "The public beta went live on September 28, 2026. In October, with the beta running, I kept the same mindset and dropped the plan for a native mobile app, because the PWA already does enough.",
+      "Dark mode is coming back soon, just done right. For now I'd rather have something smaller but clean, with whatever's missing written down somewhere so I don't forget it."
+    ]
+  }
+}
