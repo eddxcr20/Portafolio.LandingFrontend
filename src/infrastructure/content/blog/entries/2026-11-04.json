@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-04",
+  "tags": [
+    "industrialcomplements",
+    "datamigration",
+    "cleanarchitecture",
+    "legacymodernization"
+  ],
+  "es": {
+    "title": "Migrar datos a través de los casos de uso",
+    "topic": "Para el inventario cambié la forma de migrar: en vez de insertar directo en la base nueva, cada registro del legacy pasa por los mismos casos de uso que la captura manual. Así la migración se vuelve un filtro con reporte, y el legacy queda en su lugar: la fuente del error, nunca de la verdad.",
+    "body": [
+      "A principios de noviembre retomé el inventario de Industrial Complements. El dominio y sus casos de uso llevaban semanas listos en su rama, mientras develop avanzaba con todo lo que el cliente pedía en Cuentas. Lo primero fue ponerlos al día: la rama del inventario iba veintinueve commits atrás y había tres archivos en conflicto. Lo resolvimos y quedó como regla del proyecto: cada vez que se actualiza la demo, develop se sincroniza contra las demás ramas. Si seguimos gitflow, así debe ser.",
+      "Luego le pedí a Claude todo lo pendiente del inventario, desde la base hasta el frontend, empezando por algo concreto: buscar productos. Un grupo nuevo en el menú lateral, Inventario, con una primera pantalla, Almacén, con búsqueda rápida y búsqueda avanzada con filtros, orden y paginación, respetando la regla de consultas que ya teníamos.",
+      "Y después, traer los productos del legacy a la base nueva. Ahí cambié algo que habíamos hecho distinto en Cuentas.",
+      "En Cuentas el migrador leía del legacy e insertaba directo en la base nueva. Funcionó, pero tenía un problema de fondo: un dato sucio podía entrar sin que nadie se enterara de que violaba el dominio, porque la base solo revisa lo que su esquema sabe revisar.",
+      "Para el inventario decidí que la migración pase por los casos de uso. El migrador lee una fila del legacy, arma la misma entrada que armaría un usuario al capturar, y llama al caso de uso. Cada fila sale con un resultado: o entró, o regresó un error de dominio que dice por qué no.",
+      "Así sabemos exactamente qué datos están malformados y cuáles no. Es la idea del transformador que vi en la metodología Butterfly en septiembre, ahora con mis propias reglas: cada registro que no pasa es una pregunta concreta sobre el negocio.",
+      "Y lo dejé escrito para que no se olvide: la fuente de verdad es el modelo de dominio, nunca la base legacy, bajo ningún concepto. El legacy siempre es la fuente del error, y parte de nuestro trabajo en la migración es depurar esos datos. Si una fila no pasa, el problema es la fila: se reporta, se limpia o se descarta según yo lo indique. El modelo no se afloja para que entre. El mapeo de cada dato tampoco lo inventa la IA, se lo voy indicando yo.",
+      "Una condición más: la migración de datos de un módulo va hasta que su frontend esté completo. Primero el usuario puede ver y buscar sus productos, después se cargan.",
+      "Esa noche quedó lista la persistencia del inventario, con sus tablas y un script para sellar la base de la demo sin tocar los datos del cliente, y la búsqueda de productos en el Almacén. La migración de productos es lo siguiente.",
+      "Al final, migrar datos también es probar el dominio. Solo que esta vez los casos de prueba los escribió el legacy durante años."
+    ]
+  },
+  "en": {
+    "title": "Migrating data through the use cases",
+    "topic": "For inventory I changed how data gets migrated: instead of inserting straight into the new database, every legacy record goes through the same use cases as manual entry. The migration becomes a filter with a report, and the legacy system stays where it belongs: the source of errors, never of truth.",
+    "body": [
+      "In early November I picked the Industrial Complements inventory back up. Its domain and use cases had been sitting ready in their branch for weeks, while develop moved forward with everything the client kept asking for in Accounts. The first step was catching up: the inventory branch was twenty-nine commits behind, with three conflicting files. We sorted it out and it became a project rule: every time the demo gets updated, develop gets synced into the other branches. If we're following gitflow, that's how it should be.",
+      "Then I asked Claude for everything still missing in inventory, from the database to the frontend, starting with something concrete: searching products. A new group in the sidebar, Inventory, with a first screen, Warehouse, with quick search and advanced search with filters, sorting and paging, following the query rule we already had.",
+      "And after that, bringing products over from the legacy system into the new database. That's where I changed something we had done differently in Accounts.",
+      "In Accounts, the migrator read from the legacy database and inserted straight into the new one. It worked, but it had a fundamental problem: dirty data could get in without anyone noticing it broke the domain, because the database only checks what its schema knows how to check.",
+      "For inventory I decided the migration goes through the use cases. The migrator reads a legacy row, builds the same input a user would build when entering data by hand, and calls the use case. Every row comes out with a result: either it went in, or it came back with a domain error saying why not.",
+      "That way we know exactly which data is malformed and which isn't. It's the idea of the transformer I saw in the Butterfly methodology back in September, now with my own rules: every record that doesn't pass is a concrete question about the business.",
+      "And I wrote it down so it doesn't get forgotten: the source of truth is the domain model, never the legacy database, under any circumstances. The legacy system is always the source of the error, and part of our job in the migration is cleaning that data. If a row doesn't pass, the row is the problem: it gets reported, cleaned or discarded as I decide. The model doesn't get loosened to let it in. And the AI doesn't invent the mapping for each piece of data either; I'm the one telling it.",
+      "One more condition: a module's data migration waits until its frontend is complete. First the user can see and search their products, then they get loaded.",
+      "That night the inventory persistence was done, with its tables and a script to seal the demo database without touching the client's data, along with product search in the Warehouse. Migrating the products is next.",
+      "In the end, migrating data is also testing the domain. It's just that this time the test cases were written by the legacy system over years."
+    ]
+  }
+}

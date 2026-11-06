@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-21",
+  "tags": [
+    "industrialcomplements",
+    "businessrules",
+    "domaindrivendesign",
+    "legacymodernization"
+  ],
+  "es": {
+    "title": "La plantilla de precios también tenía bugs",
+    "topic": "Reconstruir el cálculo del costo de entrada desde una plantilla de Excel: corregir la fórmula de lotes, repartir los costos indirectos por valor, separar los errores que el libro arrastraba desde hace años y diseñar un registro de entradas que se puede reintentar sin duplicar nada.",
+    "body": [
+      "Cuando a Industrial Complements le llega un pedido con varios productos, no se capturan uno por uno en el formulario. Se usa una plantilla de precios en Excel: se listan las partidas del pedido, sus lotes, el tipo de cambio y los costos indirectos (envío, aduana, comisiones), y la plantilla calcula cuánto le costó realmente cada pieza a la empresa.",
+      "Le pasé la plantilla a Claude para extraer sus reglas y el primer cálculo que me devolvió tenía un error en los lotes. La fórmula correcta es simple pero hay que saberla: las piezas totales son lotes por piezas por lote, y el costo unitario es lotes por costo entre piezas totales. Si no hay lotes, el costo unitario es el costo. Luego se pasa a pesos con el tipo de cambio, se le suma el sobrecosto por pieza, y eso es el costo de entrada.",
+      "Los indirectos se reparten por valor, no por piezas. Cuando yo decía que se \"diluyen\" entre los productos, me refería a eso: no se suman al total y ya, cada partida absorbe una parte proporcional a lo que vale.",
+      "Revisando las fórmulas celda por celda, la IA encontró errores que el libro arrastraba desde hace años, y los confirmé. Una celda que calculaba contra una fila fija en lugar de su propia fila. Fórmulas viejas que nunca se arreglaron. Cuatro filas para sobrecostos de las que hoy solo se usa la primera. Ninguno se va a replicar.",
+      "También salieron reglas que el Excel nunca validó. Un pedido es todo en pesos o en moneda extranjera, y si es extranjera, debe traer exactamente una de dos cosas: lo que se pagó en pesos o un tipo de cambio forzado. Las dos a la vez o ninguna es inválido.",
+      "La parte más fina fue qué pasa después. La IA propuso recalcular sobre lo ya registrado cuando cambia algo del pedido. Le expliqué que la prima siempre sale de todas las partidas del pedido, y que no hay forma operativa de que un indirecto tardío afecte solo a lo ya registrado: eso nunca pasa.",
+      "Así que el pedido es su propio agregado: cabecera, partidas e indirectos, guardados aunque todavía no se registren las entradas. Si cambian costos, partidas o indirectos, cambia la prima de cada partida y el sistema avisa que hay que volver a registrar las entradas. Una partida solo se recalcula si no hay ningún movimiento posterior del producto; si lo hay, solo se actualiza el registro de la entrada y lo demás lo corrige el usuario.",
+      "Y registrar las entradas de un pedido admite éxito parcial. Si de dos productos el primero entra y el segundo falla, al reintentar el primero se omite porque ya tiene su entrada, y solo se registra el segundo. Reintentar nunca duplica.",
+      "El Excel resolvía todo eso con disciplina humana. El sistema nuevo lo resuelve con reglas que no dependen de que alguien se acuerde."
+    ]
+  },
+  "en": {
+    "title": "The pricing template had bugs too",
+    "topic": "Rebuilding the landed cost calculation from an Excel template: fixing the lots formula, splitting indirect costs by value, setting aside the errors the workbook had carried for years, and designing entry registration that can be retried without duplicating anything.",
+    "body": [
+      "When an order with several products arrives at Industrial Complements, they don't enter them one by one through the form. It uses an Excel pricing template: you list the order's line items, their lots, the exchange rate and the indirect costs (shipping, customs, fees), and the template works out what each piece really cost the company.",
+      "I gave Claude the template to extract its rules, and the first calculation it gave back had a mistake in the lots. The correct formula is simple, but you have to know it: total pieces are lots times pieces per lot, and the unit cost is lots times cost divided by total pieces. With no lots, the unit cost is just the cost. Then it's converted to pesos with the exchange rate, the per-piece overhead is added, and that's the landed cost.",
+      "Indirect costs are split by value, not by pieces. When I said they get \"diluted\" across the products, that's what I meant: they aren't just added to the total, each line item absorbs a share proportional to what it's worth.",
+      "Going through the formulas cell by cell, the AI found mistakes the workbook had been carrying for years, and I confirmed them. A cell that calculated against a fixed row instead of its own. Old formulas that were never fixed. Four rows for overhead of which only the first one is used today. None of them gets replicated.",
+      "Rules the Excel workbook never validated also came up. An order is either all in pesos or in a foreign currency, and if it's foreign, it has to carry exactly one of two things: what was paid in pesos or a forced exchange rate. Both at once, or neither, is invalid.",
+      "The finest part was what happens afterwards. The AI proposed recalculating over what had already been registered when something in the order changed. I explained that the premium always comes from all of the order's line items, and that there's no real-world way for a late indirect cost to affect only what's already registered: that never happens.",
+      "So the order is its own aggregate: header, line items and indirect costs, stored even before any stock entries are registered. If costs, line items or indirect costs change, each line item's premium changes and the system warns that the entries need to be registered again. A line item only gets recalculated if the product has no later movement; if it does, only the entry record gets updated and the user fixes the rest.",
+      "And registering an order's entries allows partial success. If out of two products the first goes in and the second fails, on retry the first one is skipped because it already has its entry, and only the second gets registered. Retrying never duplicates.",
+      "The Excel workbook handled all of that with human discipline. The new system handles it with rules that don't depend on someone remembering."
+    ]
+  }
+}

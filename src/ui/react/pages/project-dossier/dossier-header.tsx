@@ -1,10 +1,10 @@
 import type { ProjectDossierView } from
   "@domain/model/projects/project-dossier";
 import { ProjectNumeral } from "~/entities/project/project-numeral";
+import { ProjectStatusTag } from "~/entities/project/project-status-tag";
 import { ProjectTitleBlock } from "~/entities/project/project-title-block";
 import { FigureCaption } from "~/shared/components/figure-caption";
 import { PrintFigure } from "~/shared/components/print-figure";
-import { Tag } from "~/shared/components/tag";
 import { formatLinkLabel } from "~/shared/presentation/format-link-label";
 
 type DossierHeaderProps = {
@@ -23,12 +23,16 @@ export function DossierHeader({ dossier }: DossierHeaderProps) {
       <ProjectTitleBlock>
         <div className="flex flex-wrap items-baseline gap-x-8 gap-y-4">
           <h1 className="text-project">{dossier.name}</h1>
-          <Tag>{dossier.label}</Tag>
+          <ProjectStatusTag status={dossier.status} label={dossier.label} />
         </div>
         <p className="mt-4 text-secondary text-muted">
-          {dossier.meta} · <a href={dossier.link}>
-            {formatLinkLabel(dossier.link)}
-          </a>
+          {dossier.meta}
+          {dossier.link !== null && (
+            <>
+              {" · "}
+              <a href={dossier.link}>{formatLinkLabel(dossier.link)}</a>
+            </>
+          )}
         </p>
       </ProjectTitleBlock>
       <div

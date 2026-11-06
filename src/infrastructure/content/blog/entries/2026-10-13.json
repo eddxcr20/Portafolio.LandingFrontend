@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-13",
+  "tags": [
+    "industrialcomplements",
+    "cleanarchitecture",
+    "backend",
+    "git"
+  ],
+  "es": {
+    "title": "Filtros, orden y paginación: completos o nada",
+    "topic": "Con una lista larga de cambios del cliente dejé de validar cada paso: la IA trabaja en una rama por cambio y me reporta al final. A cambio, nada a medias: los filtros se reconstruyeron con grupos anidados como en GraphT, y filtros, orden y paginación quedaron como una sola pieza con una regla de consultas.",
+    "body": [
+      "El 11 de octubre, Industrial Complements me mandó catorce cambios para Cuentas: filtrar cuentas en cero, que la búsqueda rápida solo busque en la pestaña abierta, normalizar fechas pegadas, importar transacciones desde un CSV, ligar los productos bancarios a su banco, mantener la sesión iniciada y varios más.",
+      "Hasta ese momento yo revisaba cada cambio antes del siguiente, y a ese ritmo la migración no iba a terminar nunca. Así que cambié la forma de trabajar. Definimos el orden de las ramas y le dejé todo a Claude, desde crear cada rama hasta mezclarla a develop. Al final me tenía que decir qué hizo y qué necesitaba mi validación o mi corrección. Y una condición: nada en git que diga que lo hizo la IA.",
+      "Delegar no significó aceptar cualquier cosa. El primer constructor de filtros que entregó era plano. Le pedí que lo hiciera completo, con grupos anidados, igual que en GraphT, donde ya existe un sistema de filtros documentado. La implementación cambia entre Neo4j y EF Core, pero el objetivo es el mismo. Las piezas del seedwork ya eran las mismas: grupos y reglas de filtro, reglas de orden, paginación.",
+      "Lo que más tuve que repetir fue la paginación. Tres o cuatro veces apareció el filtro sin el selector de páginas o sin el orden. Filtros, ordenamiento y paginación van juntos, siempre, igual que en GraphT. Y en cada pantalla, sin importar si llegas desde el menú lateral o desde el detalle de una entidad.",
+      "También traje una regla de GraphT: una consulta no puede llegar con filtros vacíos y orden vacío al mismo tiempo. En el frontend cada listado tiene un orden por defecto que no se puede quitar, para que nunca se vacíe todo. En noviembre la afiné: sin filtro, el orden y la paginación son obligatorios, porque una consulta sin filtro, sin orden y sin página vuelca la tabla entera en un orden arbitrario.",
+      "La búsqueda rápida tuvo su propia vuelta. La IA la había hecho como búsqueda de texto libre. Le pedí que buscara sobre todos los campos de la entidad de la pestaña activa, como si en el filtro avanzado pusieras el mismo valor en cada campo y los unieras con OR. Así la búsqueda rápida y la avanzada son la misma cosa con distinta interfaz.",
+      "En tres días entraron casi cincuenta commits entre backend y frontend, cada cambio en su rama. Yo revisé el resultado en la demo y le devolví lo que estaba mal en lotes.",
+      "Reusar las reglas de otro proyecto me ahorró discutirlas otra vez. Ya sabía cuáles funcionan, solo había que exigirlas completas."
+    ]
+  },
+  "en": {
+    "title": "Filters, sorting and paging: complete or nothing",
+    "topic": "With a long list of client changes, I stopped validating every step: the AI works in one branch per change and reports at the end. In exchange, nothing half-done: filters were rebuilt with nested groups like in GraphT, and filters, sorting and paging became a single piece with a query rule.",
+    "body": [
+      "On October 11, Industrial Complements sent me fourteen changes for Accounts: filter out accounts at zero, make the quick search look only at the open tab, normalize pasted dates, import transactions from a CSV, tie banking products to their bank, keep the session alive and several more.",
+      "Up to then I had been reviewing every change before moving on, and at that pace the migration was never going to end. So I changed how we worked. We set the order of the branches and I handed everything to Claude, from creating each branch to merging it into develop. At the end it had to tell me what it did and what needed my validation or correction. And one condition: nothing in git saying the AI did it.",
+      "Delegating didn't mean accepting anything. The first filter builder it delivered was flat. I asked for the full thing, with nested groups, the same as in GraphT, where there's already a documented filtering system. The implementation differs between Neo4j and EF Core, but the goal is the same. The seedwork pieces were already the same: filter groups and rules, sorting rules, paging.",
+      "What I had to repeat the most was paging. Three or four times the filter showed up without the page selector or without sorting. Filters, sorting and paging go together, always, just like in GraphT. And on every screen, whether you got there from the sidebar or from an entity's details.",
+      "I also brought over a rule from GraphT: a query can't arrive with empty filters and empty sorting at the same time. On the frontend every listing has a default sort that can't be removed, so it never ends up completely empty. In November I refined it: without a filter, sorting and paging are mandatory, because a query with no filter, no sort and no page dumps the whole table in an arbitrary order.",
+      "Quick search had its own round. The AI had built it as free-text search. I asked it to search across every field of the active tab's entity, as if you put the same value in every field of the advanced filter and joined them with OR. That way quick search and advanced search are the same thing with a different interface.",
+      "In three days almost fifty commits landed across backend and frontend, each change in its own branch. I reviewed the result on the demo and sent back what was wrong in batches.",
+      "Reusing another project's rules saved me from debating them again. I already knew which ones work; I just had to demand them in full."
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-07",
+  "tags": [
+    "industrialcomplements",
+    "domaindrivendesign",
+    "backend",
+    "dotnet"
+  ],
+  "es": {
+    "title": "La liquidación es una regla, no una casilla",
+    "topic": "El cliente pidió marcar a mano qué movimiento liquida una cuenta. Terminó siendo un dato derivado del saldo, con un candado sobre la historia, y el frontend aprendió a preguntarle al backend en vez de calcularlo por su cuenta.",
+    "body": [
+      "Ya con el modelo de Cuentas armado, Industrial Complements pidió dos cosas más: que cada cuenta tuviera un estado (abierta, cerrada o liquidada) y que cada movimiento dijera si es una liquidación. Sabían que era redundante, pero así lo querían ver.",
+      "La primera versión hizo exactamente eso. Un estado que se cambiaba a mano y una casilla obligatoria en cada movimiento, desacoplados. Y la IA me dejó dos preguntas que no le tocaba decidir: ¿una cuenta cerrada sigue aceptando movimientos? ¿Marcar una liquidación cambia el estado de la cuenta?",
+      "Al responderlas apareció la regla de verdad. Una cuenta cerrada o liquidada sí recibe movimientos, y en cuanto entra uno vuelve a estar abierta. Y un movimiento es liquidación cuando deja el saldo en cero. La primera forma en que lo escribí (el monto menos el saldo es cero) fallaba con un caso simple: si la empresa pide prestados 100, el saldo queda en −100, y al devolverlos esa resta da 200. Lo que define una liquidación es el saldo que queda después del movimiento.",
+      "Con eso la casilla dejó de ser un dato que alguien captura y pasó a ser un dato derivado: un movimiento es liquidación si su saldo posterior es cero, y la cuenta queda liquidada si el último movimiento lo es. Cerrar es la única transición que decide el usuario, y solo con saldo en cero. Como el saldo se recalcula en orden cada vez que algo cambia, insertar un movimiento con fecha vieja también reacomoda qué movimientos fueron liquidación y cuáles dejaron de serlo.",
+      "La segunda regla fue el candado. Una vez liquidada, lo anterior a esa liquidación no se edita ni se borra; lo posterior sí, sin poder moverle la fecha hacia atrás. En ese momento dejé una sola excepción: dar de alta un movimiento con fecha anterior y recalcular. La IA la dejó fijada con una prueba, para que existiera por decisión y no por omisión.",
+      "Semanas después, ya con el cliente usando la demo, pidió que al liquidar se le avisara que todo lo anterior quedaría bloqueado. La IA calculó en el frontend si el movimiento dejaba el saldo en cero. Lo detuve. La fuente de verdad es el backend: si después de registrar o editar un movimiento recalcula todo y el último queda en cero, eso es una liquidación, y el frontend tiene que saberlo preguntándole, no deduciéndolo con lo que trae cargado en pantalla.",
+      "Así nació un caso de uso de solo lectura que responde si un movimiento dejaría la cuenta liquidada, con su endpoint. El formulario lo consulta antes de guardar y muestra la advertencia solo cuando aplica.",
+      "Ese candado todavía tenía un hueco, y lo encontró el propio cliente a finales de octubre. Pero esa es otra historia."
+    ]
+  },
+  "en": {
+    "title": "Settlement is a rule, not a checkbox",
+    "topic": "The client asked to mark by hand which transaction settles an account. It ended up as data derived from the balance, with a lock over history, and the frontend learned to ask the backend instead of working it out on its own.",
+    "body": [
+      "With the Accounts model in place, Industrial Complements asked for two more things: a status on every account (open, closed or settled) and a flag on every transaction saying whether it settles the account. They knew it was redundant, but that's how they wanted to see it.",
+      "The first version did exactly that. A status you changed by hand and a mandatory checkbox on every transaction, unrelated to each other. And the AI left me two questions that weren't its call: does a closed account still accept transactions? Does marking a settlement change the account's status?",
+      "Answering them surfaced the real rule. A closed or settled account does accept transactions, and the moment one comes in it's open again. And a transaction is a settlement when it leaves the balance at zero. The first way I wrote it down (amount minus balance equals zero) broke on a simple case: if the company borrows 100, the balance sits at −100, and paying it back gives 200 with that subtraction. What defines a settlement is the balance left after the transaction.",
+      "So the checkbox stopped being something someone types in and became derived data: a transaction is a settlement if its resulting balance is zero, and the account is settled if its last transaction is one. Closing is the only transition the user decides, and only with a zero balance. Since the balance is recalculated in order every time something changes, inserting a backdated transaction also reshuffles which transactions were settlements and which ones stopped being one.",
+      "The second rule was the lock. Once settled, anything before that settlement can't be edited or deleted; anything after it can, but its date can't move backwards. At the time I left a single exception: adding a backdated transaction and recalculating. The AI pinned it with a test, so it would exist by decision and not by omission.",
+      "Weeks later, with the client already using the demo, he asked to be warned when a transaction would settle the account, since everything before it would be locked. The AI computed in the frontend whether the transaction left the balance at zero. I stopped it. The backend is the source of truth: if after registering or editing a transaction it recalculates everything and the last one lands on zero, that's a settlement, and the frontend has to find out by asking, not by working it out from whatever it has loaded on screen.",
+      "That's how a read-only use case was born, with its own endpoint, that answers whether a transaction would leave the account settled. The form checks it before saving and only shows the warning when it applies.",
+      "That lock still had a hole, and the client found it himself at the end of October. But that's another story."
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-22",
+  "tags": [
+    "industrialcomplements",
+    "businessrules",
+    "domaindrivendesign",
+    "cleanarchitecture"
+  ],
+  "es": {
+    "title": "Una especificación que no menciona al Excel",
+    "topic": "Cerrar el análisis del inventario: preguntar solo lo que toca a esta fase, juntar todo en un solo documento y, al final, escribir una especificación limpia que se pueda implementar en cualquier lenguaje, sin una sola referencia al legacy. Con ella, el modelo y sus casos de uso salieron en veinte ramas.",
+    "body": [
+      "Después de la arqueología del VBA y de la plantilla de precios, el análisis del inventario de Industrial Complements se estaba volviendo una conversación interminable. Y yo no quería que el resultado fuera una conversación, quería un documento.",
+      "El primer ajuste fue en las preguntas. Claude me mandó una tanda de dudas, varias sobre el precio de referencia de los tickets del punto de venta. El punto de venta no entra en esta fase. Esas consideraciones van como notas al margen para cuando se migre ese módulo, y mientras tanto se usa el precio de venta del inventario. Otra pregunta era si un proveedor puede emitir dos pedidos con el mismo folio. En el mundo real eso no pasa, así que se declara como invariante y no se pregunta.",
+      "Quedó como regla: preguntar solo lo genuinamente ambiguo y dentro de la fase, con un ejemplo concreto. Lo que se deduce del negocio se declara, y yo lo veto si no es así. Y antes de preguntar, revisar si ya lo había respondido.",
+      "El segundo ajuste fue el orden. La IA creó un archivo aparte para las reglas de las tareas de inventario. No tenía sentido: yo ya tenía un documento del inventario. Todo, absolutamente todo, tenía que quedar integrado y ordenado ahí: producto, categorías, unidades, existencias, precios, movimientos, pedidos, sucursales, y además lo descartado del legacy y qué código estaba vivo o era rezago. El archivo aparte se borró.",
+      "Ese documento servía para mí, porque guardaba la trazabilidad hacia el Excel. Pero no servía para construir. Así que pedí uno nuevo a partir de él, sin nada que viniera de fuentes externas: ni fórmulas de Excel, ni referencias al código viejo, ni pantallas. Todo descrito como reglas lógicas: tipos de valor, conceptos, invariantes, cálculos, casos de uso con sus condiciones, consultas, permisos y errores. Lo que fuera de la UI, al final y aparte.",
+      "Salieron casi 700 líneas. Una búsqueda confirmó que no quedaba ninguna mención al legacy, al Excel, al VBA, a tablas ni a columnas. La IA me dejó una lista de interpretaciones que tomó para cerrar huecos, para que yo las vetara.",
+      "Con esa especificación le pedí el modelo y los casos de uso, todavía sin infraestructura ni app. Una rama para el modelo y una rama por cada caso de uso con sus pruebas, todas mezcladas a la rama del inventario, mientras develop se quedaba intacta para la demo del cliente.",
+      "Fueron veinte ramas. Al cerrar, el backend pasó de 552 a 807 pruebas, sin advertencias.",
+      "Ahora tengo dos documentos con dos trabajos distintos. El consolidado explica de dónde salió cada regla. La especificación explica qué construir. Y el segundo ya no necesita al primero para entenderse."
+    ]
+  },
+  "en": {
+    "title": "A specification that never mentions Excel",
+    "topic": "Closing out the inventory analysis: asking only what belongs to this phase, gathering everything into a single document and, finally, writing a clean spec that can be built in any language without a single reference to the legacy system. From it, the model and its use cases came out in twenty branches.",
+    "body": [
+      "After the VBA archaeology and the pricing template, the Industrial Complements inventory analysis was turning into an endless conversation. And I didn't want the result to be a conversation, I wanted a document.",
+      "The first adjustment was to the questions. Claude sent me a batch of doubts, several of them about the reference price on point-of-sale tickets. The point of sale isn't part of this phase. Those considerations go in as margin notes for when that module gets migrated, and meanwhile we use the inventory's sale price. Another question was whether a supplier can issue two orders with the same invoice number. In the real world that doesn't happen, so it gets declared as an invariant, not asked.",
+      "It became a rule: ask only what's genuinely ambiguous and within the phase, with a concrete example. Whatever follows from the business gets declared, and I veto it if it's wrong. And before asking, check whether I already answered it.",
+      "The second adjustment was about order. The AI created a separate file for the inventory task rules. That made no sense: I already had an inventory document. Everything, absolutely everything, had to be integrated and organized there: products, categories, units, stock, prices, movements, orders, branches, plus whatever was discarded from the legacy system and which code was alive or dead. The separate file was deleted.",
+      "That document worked for me, because it kept the traceability back to Excel. But it didn't work for building. So I asked for a new one derived from it, with nothing coming from external sources: no Excel formulas, no references to the old code, no screens. Everything described as logical rules: value types, concepts, invariants, calculations, use cases with their conditions, queries, permissions and errors. Anything UI-specific, at the end and separate.",
+      "It came out at almost 700 lines. A search confirmed there wasn't a single mention left of the legacy system, Excel, VBA, tables or columns. The AI left me a list of the interpretations it had made to close gaps, so I could veto them.",
+      "With that spec I asked for the model and the use cases, still without infrastructure or app. One branch for the model and one branch per use case with its tests, all merged into the inventory branch, while develop stayed untouched for the client's demo.",
+      "That was twenty branches. When it closed, the backend went from 552 to 807 tests, with no warnings.",
+      "Now I have two documents with two different jobs. The consolidated one explains where each rule came from. The spec explains what to build. And the second one no longer needs the first to make sense."
+    ]
+  }
+}

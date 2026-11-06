@@ -130,5 +130,37 @@
   "ai": {
     "es": "InteligenciaArtificial",
     "en": "AI"
+  },
+  "industrialcomplements": {
+    "es": "IndustrialComplements",
+    "en": "IndustrialComplements"
+  },
+  "legacymodernization": {
+    "es": "ModernizaciónLegacy",
+    "en": "LegacyModernization"
+  },
+  "datamigration": {
+    "es": "MigraciónDeDatos",
+    "en": "DataMigration"
+  },
+  "businessrules": {
+    "es": "ReglasDeNegocio",
+    "en": "BusinessRules"
+  },
+  "efcore": {
+    "es": "EFCore",
+    "en": "EFCore"
+  },
+  "sqlserver": {
+    "es": "SQLServer",
+    "en": "SQLServer"
+  },
+  "freelancing": {
+    "es": "Freelance",
+    "en": "Freelancing"
+  },
+  "datavisualization": {
+    "es": "VisualizaciónDeDatos",
+    "en": "DataVisualization"
   }
 }

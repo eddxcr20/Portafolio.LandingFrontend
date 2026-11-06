@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-15",
+  "tags": [
+    "industrialcomplements",
+    "legacymodernization",
+    "datamigration",
+    "ux"
+  ],
+  "es": {
+    "title": "Un CSV como puente para tirar la base",
+    "topic": "Importar y exportar CSV empezó como una petición del cliente para no capturar a mano. Terminó siendo la forma de rehacer la base de la demo sin pedirle que volviera a registrar sus datos, con una importación que nunca inserta sin que el usuario valide cada fila.",
+    "body": [
+      "Entre los cambios que pidió Industrial Complements a mediados de octubre venía uno que parecía secundario: poder importar transacciones desde un archivo de Excel o CSV. El cliente ya llevaba sus cuentas en hojas de cálculo y no quería capturar todo otra vez.",
+      "La propuesta que le hice fue un formulario donde se relacionan las columnas del archivo con los campos del dominio. Las entidades se buscan por nombre, y si no existen el campo queda en blanco. Y nada de lógica nueva: el importador reusa los casos de uso que ya existen en el frontend, primero crea la entidad si falta, luego la cuenta, y después registra cada transacción con el mismo caso de uso que usa el formulario.",
+      "La primera versión insertaba directo. La paré: el formulario de importación no inserta solo. El usuario tiene que validar desde dónde y hacia dónde va cada dato. El dominio no acepta una transacción sin entidad, pero ese error nunca debería llegar al dominio, porque antes de importar el usuario ya tuvo que asignarle una entidad a cada fila.",
+      "Probándolo salieron más reglas. Una fila incompleta no puede impedir que se importen las demás, así que cada fila se puede seleccionar o descartar y una mala no detiene el resto. Cada campo de destino se puede editar o crear desde ahí mismo. Si el nombre de la entidad ya existe, aunque venga sin acentos, se reusa en vez de duplicarse. Y al terminar, el usuario ve qué entró y qué no.",
+      "Luego el cliente pidió lo contrario: exportar sus datos en el mismo formato y descargar una plantilla vacía con los encabezados para llenarla por fuera. La IA puso el botón de exportar solo en la pantalla de transacciones. Le pedí que estuviera en cada pantalla con su alcance: desde Entidades se exporta todo, desde una entidad sus cuentas y movimientos, y desde una cuenta sus movimientos. Y que se exportara todo de verdad, incluidas las entidades sin cuentas y las cuentas sin movimientos. No tiene sentido exportar cosas a medias. El formato se rehízo para cargar las dos cosas.",
+      "Aquí está la parte que más me gustó. Mientras desarrollo, la base de la demo es desechable: cuando el esquema cambia, se tira y se crea de nuevo con un solo InitialCreate. El problema es que el cliente ya tenía datos reales capturados. Por eso agrupé los cambios de esquema en uno grande, en vez de tirarle la base por cada detalle.",
+      "Con la exportación lista, el cliente sacó su CSV, tiramos la base de la demo, la recreamos con el esquema nuevo y él importó sus datos de regreso. Sin respaldos raros y sin pedirle que capturara nada otra vez.",
+      "Una función que el cliente pidió por comodidad terminó siendo parte del proceso de migración. No lo planeé así, pero ahora lo veo como una regla: lo que el usuario puede exportar completo, lo puedes reconstruir."
+    ]
+  },
+  "en": {
+    "title": "A CSV as a bridge to drop the database",
+    "topic": "Importing and exporting CSV started as a client request to avoid retyping. It ended up as the way to rebuild the demo database without asking him to enter his data again, with an import that never inserts until the user validates every row.",
+    "body": [
+      "Among the changes Industrial Complements asked for in mid-October there was one that looked minor: being able to import transactions from an Excel or CSV file. The client already kept his accounts in spreadsheets and didn't want to type everything in again.",
+      "What I proposed was a form where the file's columns get mapped to the domain fields. Entities are looked up by name, and if they don't exist the field stays blank. And no new logic: the importer reuses the use cases that already exist on the frontend, first creating the entity if it's missing, then the account, and then registering each transaction with the same use case the form uses.",
+      "The first version inserted straight away. I stopped it: the import form doesn't insert on its own. The user has to validate where every piece of data comes from and where it's going. The domain doesn't accept a transaction without an entity, but that error should never reach the domain, because before importing the user has already had to assign an entity to every row.",
+      "Testing it surfaced more rules. One incomplete row can't keep the rest from being imported, so every row can be selected or dropped and a bad one doesn't stop the others. Every destination field can be edited or created right there. If the entity's name already exists, even typed without accents, it gets reused instead of duplicated. And when it's done, the user sees what went in and what didn't.",
+      "Then the client asked for the opposite: export his data in the same format and download an empty template with the headers to fill in elsewhere. The AI put the export button only on the transactions screen. I asked for it on every screen with its own scope: from Entities you export everything, from one entity its accounts and transactions, and from one account its transactions. And for it to really export everything, including entities with no accounts and accounts with no transactions. There's no point in exporting half of things. The format was rebuilt to carry both.",
+      "Here's the part I liked the most. While I'm developing, the demo database is disposable: when the schema changes, it gets dropped and recreated with a single InitialCreate. The problem is that the client already had real data in it. That's why I grouped schema changes into one big batch instead of dropping his database for every detail.",
+      "With export ready, the client pulled his CSV, we dropped the demo database, recreated it with the new schema and he imported his data back. No odd backups, and no asking him to type anything in again.",
+      "A feature the client asked for out of convenience ended up being part of the migration process. I didn't plan it that way, but now I see it as a rule: whatever the user can export in full, you can rebuild."
+    ]
+  }
+}

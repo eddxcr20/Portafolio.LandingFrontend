@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-04",
+  "tags": [
+    "industrialcomplements",
+    "domaindrivendesign",
+    "cleanarchitecture",
+    "dotnet"
+  ],
+  "es": {
+    "title": "Una moneda por cuenta",
+    "topic": "Modelar Cuentas a partir de lo que dice el cliente, no de lo que parece elegante: la divisa vive en la cuenta y no en cada movimiento, las etiquetas no necesitan ser entidades y una regla de bancos que tardé varias vueltas en explicar.",
+    "body": [
+      "El primer módulo de la migración de Industrial Complements fue Cuentas: el registro de lo que la empresa le debe a otros y lo que otros le deben a ella, con préstamos, inversiones y ahorros. Escribí un documento con el contexto del módulo y sobre él Claude armó el primer modelo de dominio.",
+      "La primera versión venía con una entidad completa para las etiquetas de las contrapartes. Le pregunté qué era eso. Una etiqueta no tiene vida propia: basta con un diccionario donde la llave es la entidad y el valor su lista de etiquetas. Y dos empresas pueden etiquetar distinto a la misma entidad.",
+      "Luego vino la moneda. Le había dicho que los montos podían estar en distintas divisas, así que la IA puso la divisa en cada transacción con un value object de dinero, y la cuenta pasó a tener un saldo por cada moneda que hubiera movido. Técnicamente impecable, y equivocado.",
+      "Le pregunté al cliente. La moneda la define la cuenta: una cuenta de préstamos entre dos partes siempre se mueve en pesos, y una de inversiones con otra parte puede moverse solo en dólares. Una transacción nunca va en una moneda distinta a la de su cuenta.",
+      "Con eso se borró el value object de dinero y la moneda pasó a la cuenta. Lo mejor es lo que eso provoca: una transacción en otra divisa ya no es un error que haya que validar, simplemente no hay dónde escribirla.",
+      "Los movimientos también se pueden editar y borrar, y el saldo de la cuenta es la foto de la última transacción. Yo propuse una lista doblemente enlazada para recalcular hacia adelante. Claude no la implementó y explicó por qué: el orden ya lo dan la fecha del movimiento y la de captura, y los punteros serían una segunda fuente de verdad que se puede desincronizar al cambiar una fecha. Era el mismo error que acabábamos de quitar con la moneda, así que lo dejé así.",
+      "Las reglas de la cuenta quedaron dentro del modelo, no en los casos de uso: las dos partes siempre son la empresa y su contraparte, el emisor no puede ser el receptor, el monto es positivo y el tipo de movimiento pertenece al contexto de la cuenta. Si algo no cumple, el modelo devuelve un error de dominio.",
+      "Lo que más me costó fue la regla de bancos. Tardé varias vueltas en explicarla, y al final la resolví con un ejemplo. Un préstamo recibido por transferencia necesita el banco al que llegó, pero no un producto bancario. Un préstamo otorgado por transferencia necesita el banco y el producto de donde salió el dinero. Así que los dos campos son opcionales y el método de pago decide cuál aplica.",
+      "Ni siquiera esa quedó fija. En octubre el cliente corrigió algo que yo había entendido mal: los productos bancarios sí pertenecen a su banco. El modelo cambió y los métodos de pago pasaron de ser una lista fija a un catálogo de cada empresa, con una bandera que dice si requieren banco.",
+      "Creo que modelar es eso. Una idea elegante dura hasta que el cliente cuenta cómo trabaja."
+    ]
+  },
+  "en": {
+    "title": "One currency per account",
+    "topic": "Modeling Accounts from what the client says, not from what looks elegant: the currency lives on the account and not on every transaction, labels don't need to be entities, and a bank rule that took me several rounds to explain.",
+    "body": [
+      "The first module in the Industrial Complements migration was Accounts: tracking what the company owes others and what others owe it, across loans, investments and savings. I wrote a document with the module's context and Claude built the first domain model on top of it.",
+      "The first version came with a full entity for counterparty labels. I asked what that was for. A label doesn't have a life of its own: a dictionary keyed by entity with its list of labels is enough. And two companies can label the same entity differently.",
+      "Then came currency. I had said amounts could be in different currencies, so the AI put the currency on every transaction with a money value object, and the account ended up with one balance per currency it had ever moved. Technically spotless, and wrong.",
+      "I asked the client. The account defines the currency: a loan account between two parties always moves in pesos, and an investment account with another party can move only in dollars. A transaction is never in a currency other than its account's.",
+      "So the money value object was deleted and the currency moved to the account. The best part is what that does: a transaction in another currency is no longer an error you have to validate, there's just nowhere to write it.",
+      "Transactions can also be edited and deleted, and the account balance is a snapshot of the last transaction. I proposed a doubly linked list to recalculate forward. Claude didn't implement it and explained why: the order already comes from the transaction date and the capture date, and the pointers would be a second source of truth that can drift when a date changes. It was the same mistake we had just removed with the currency, so I left it at that.",
+      "The account rules ended up inside the model, not in the use cases: both parties are always the company and its counterparty, the sender can't be the receiver, the amount is positive and the movement type belongs to the account's context. If something breaks a rule, the model returns a domain error.",
+      "The hardest part was the bank rule. It took me several rounds to explain, and in the end an example settled it. A loan received by bank transfer needs the bank it arrived at, but not a banking product. A loan given by bank transfer needs both the bank and the product the money came out of. So both fields are optional and the payment method decides which one applies.",
+      "Not even that one stayed put. In October the client corrected something I had misunderstood: banking products do belong to their bank. The model changed, and payment methods went from a fixed list to a per-company catalog with a flag that says whether they require a bank.",
+      "I think that's what modeling is. An elegant idea lasts until the client explains how they actually work."
+    ]
+  }
+}

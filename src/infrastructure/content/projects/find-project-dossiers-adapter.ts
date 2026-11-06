@@ -3,6 +3,7 @@ import type { FindProjectDossiersPort } from
 import type {
   ProjectDossier,
   ProjectDossierText,
+  ProjectStatus,
 } from "@domain/model/projects/project-dossier";
 import { type TagLabelsDocument, toTag } from
   "@infrastructure/content/common/tag-labels";
@@ -11,7 +12,8 @@ export type ProjectDossierDocument = {
   readonly slug: string;
   readonly name: string;
   readonly order: number;
-  readonly link: string;
+  readonly status: ProjectStatus;
+  readonly link: string | null;
   readonly leadImage: string;
   readonly closingImage: string;
   readonly tag: string;
@@ -26,6 +28,7 @@ const toProjectDossier = (
   slug: document.slug,
   name: document.name,
   order: document.order,
+  status: document.status,
   link: document.link,
   leadImage: document.leadImage,
   closingImage: document.closingImage,
