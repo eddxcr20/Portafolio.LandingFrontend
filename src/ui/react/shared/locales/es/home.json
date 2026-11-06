@@ -22,16 +22,37 @@
       "ideas": "Página de la libreta con una tabla y notas de pantallas por construir."
     }
   },
+  "showcase": {
+    "problemLabel": "Problema",
+    "decisionLabel": "Qué decidí"
+  },
   "grapht": {
     "label": "Funciona · beta pública",
     "meta": "Fundador · grapht.com.mx",
     "caption": "Fig. 2 · GraphT, beta pública.",
-    "problemLabel": "Problema",
-    "decisionLabel": "Qué decidí",
     "problem": "Las aplicaciones de tareas fijan cuántos niveles puedes dividir un proyecto y no muestran cómo se conectan las tareas entre sí. Con TDAH, no ver el camino completo es lo que paraliza. Notion no alcanzó.",
     "decision": "Las tareas como un grafo en Neo4j, divisibles sin límite y conectadas a áreas de vida que le dan contexto a cada paso. Clean Architecture en backend y frontend.",
     "readDossier": "Leer el expediente",
     "imageAlt": "Mesa de Trabajo de GraphT: un grafo de tareas conectadas junto al inspector de la tarea seleccionada."
+  },
+  "industrialComplements": {
+    "title": "Migración del sistema interno",
+    "label": "En curso",
+    "meta": "Industrial Complements · Ingeniero contratado por módulo",
+    "caption": "Fig. 3 · Industrial Complements, en curso.",
+    "problem": "Cotizaciones, facturación, almacén, inventario entre sucursales y las cuentas internas de la empresa, repartidos entre Excel y VBA, con las reglas del negocio enredadas con la presentación.",
+    "decision": "Primero el dominio: el Excel como especificación, el legacy congelado en vez de borrado y una migración por fases en .NET y EF Core, donde cada dato pasa por las reglas del negocio antes de entrar.",
+    "readProgress": "Ver el avance",
+    "imageAlt": "Pantalla de inicio de sesión del sistema nuevo de Industrial Complements."
+  },
+  "cauce": {
+    "label": "En uso · en desarrollo",
+    "meta": "Proyecto personal · uso diario",
+    "caption": "Fig. 4 · Cauce, con datos simulados.",
+    "problem": "Las ideas me duran segundos y llegar a mis notas costaba más: copiar, abrir Obsidian, pegar. Y las conversaciones con IA quedaban repartidas entre apps y sesiones que se compactan.",
+    "decision": "Una capa encima de mi Zettelkasten en git, no una app con su propia base: una PWA para todos los dispositivos, conversaciones guardadas como cadenas de notas y Claude Code tal cual, en una terminal.",
+    "readDossier": "Leer el expediente",
+    "imageAlt": "Editor de notas de Cauce en vista dividida, con una nota de ejemplo."
   },
   "experience": {
     "label": "Experiencia",

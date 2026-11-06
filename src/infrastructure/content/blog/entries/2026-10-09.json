@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-09",
+  "tags": [
+    "industrialcomplements",
+    "cleanarchitecture",
+    "react",
+    "legacymodernization"
+  ],
+  "es": {
+    "title": "Validar el modelo antes de tocar la base",
+    "topic": "Antes de escribir la persistencia de Cuentas, puse el modelo frente al cliente con adaptadores en memoria. Durante una semana lo usó, pidió cambios y el modelo se ajustó sin migraciones de por medio. La base llegó cuando él dijo que así era como trabajaba.",
+    "body": [
+      "Con el dominio de Cuentas de Industrial Complements y sus casos de uso listos, el siguiente paso \"lógico\" era la base de datos. No lo hice. Quería diseñar primero el frontend, pero lo quería ver funcionando ya.",
+      "Así que le pedí a Claude adaptadores en memoria solo para Cuentas, sin tocar EF Core. Los puertos eran los mismos y los casos de uso no se enteraban de dónde vivían los datos. Se le pasó la mano y también mudó a memoria los usuarios y el login, que ya funcionaban contra SQL Server. Le pedí regresar eso: solo lo de Cuentas.",
+      "Encima de eso armamos la UI con shadcn. Cambiamos Base UI por Radix a media semana porque estaba dando demasiados problemas, y de todas formas la empresa podría tener su propio sistema de diseño algún día. La IA empezó a meter ids y parámetros en la URL de cada pantalla, cuando con el render del servidor se resuelve con loaders, como ya lo hacíamos en GraphT. En celular propuse navegar en cascada: primero eliges qué te deben o qué debes, luego las entidades, luego sus cuentas, luego sus movimientos.",
+      "Para que el cliente lo viera desde su casa expuse la app de mi máquina, sin subir nada a su servidor. Y empezó a pedir cambios.",
+      "Una de las peticiones mostró por qué valía la pena hacerlo así. En un movimiento de inversión la etiqueta decía \"inversión recibida\", sin decir de dónde ni hacia quién. Le propuse etiquetas desde la perspectiva de quien mira: \"invertiste\", \"te invirtieron\", \"devolviste\", \"te devolvieron\". Si algún día se generan reportes desde la perspectiva de la otra parte, las mismas etiquetas se invierten y nadie se confunde sin importar quién vea los movimientos.",
+      "Otras fueron reglas: cualquier cuenta se puede eliminar sin importar su saldo, pero solo se puede cerrar con saldo en cero. Las entidades con saldo en cero no deben aparecer como \"te deben\". Cada una de esas correcciones movió el modelo, y ninguna costó una migración, porque todavía no había esquema que migrar.",
+      "A los pocos días el cliente dijo que le gustaba el enfoque. Ahí sí escribí los adaptadores de EF Core sobre el modelo que él ya había usado. Cuando la persistencia quedó lista borré el proyecto en memoria completo, porque ya no tenía ningún consumidor.",
+      "Al final de esa semana el cliente me dijo que le gustaba lo que veía y cómo estaba estructurado. Para mí eso significaba que el modelo estaba completo, y no porque yo lo hubiera decidido.",
+      "Lo veo así: la base de datos es lo más caro de cambiar, así que es lo último que se escribe."
+    ]
+  },
+  "en": {
+    "title": "Validate the model before touching the database",
+    "topic": "Before writing persistence for Accounts, I put the model in front of the client with in-memory adapters. For a week he used it, asked for changes and the model adjusted with no migrations in between. The database came when he said that's how he works.",
+    "body": [
+      "With the Accounts domain for Industrial Complements and its use cases ready, the \"logical\" next step was the database. I didn't take it. I wanted to design the frontend first, and I wanted to see it running right away.",
+      "So I asked Claude for in-memory adapters, only for Accounts, without touching EF Core. The ports stayed the same and the use cases never found out where the data lived. It overdid it and moved users and login to memory too, even though they already worked against SQL Server. I had it roll that back: Accounts only.",
+      "On top of that we built the UI with shadcn. We swapped Base UI for Radix midweek because it kept causing problems, and the company might get its own design system someday anyway. The AI started stuffing ids and parameters into the URL of every screen, when server rendering solves that with loaders, the way we already did it in GraphT. On mobile I proposed a drill-down: first you pick what you're owed or what you owe, then the entities, then their accounts, then their transactions.",
+      "So the client could see it from home, I exposed the app from my own machine, without deploying anything to his server. And he started asking for changes.",
+      "One of those requests showed why it was worth doing it this way. On an investment transaction the label said \"investment received\", without saying from where or to whom. I proposed labels from the viewer's perspective: \"you invested\", \"they invested in you\", \"you paid back\", \"they paid you back\". If reports are ever generated from the other party's point of view, the same labels just flip and nobody gets confused, no matter who's looking at the transactions.",
+      "Others were rules: any account can be deleted regardless of its balance, but it can only be closed with a zero balance. Entities with a zero balance shouldn't show up under \"owed to you\". Each of those corrections moved the model, and none of them cost a migration, because there was no schema to migrate yet.",
+      "A few days in, the client said he liked the approach. That's when I wrote the EF Core adapters, on top of the model he had already used. Once persistence was ready I deleted the whole in-memory project, since nothing used it anymore.",
+      "By the end of that week the client told me he liked what he saw and how it was structured. To me that meant the model was complete, and not because I had decided so.",
+      "The way I see it: the database is the most expensive thing to change, so it's the last thing you write."
+    ]
+  }
+}

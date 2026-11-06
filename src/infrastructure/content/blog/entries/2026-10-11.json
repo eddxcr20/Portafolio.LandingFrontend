@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-11",
+  "tags": [
+    "industrialcomplements",
+    "domaindrivendesign",
+    "softwarearchitecture",
+    "dotnet"
+  ],
+  "es": {
+    "title": "Quién puede actuar no es lo mismo que de quién es el dato",
+    "topic": "Modelar varias empresas en un mismo sistema: membresías con roles, una empresa principal como dato y no como código, una objeción de la IA que mezclaba acceso con propiedad, y una normalización que el cliente echó para atrás el mismo día.",
+    "body": [
+      "A principios de octubre, Industrial Complements pidió que la app abriera con una empresa por defecto. Sonaba a un detalle de la UI, pero abría una pregunta de dominio: el sistema lo usan varias empresas relacionadas entre sí, con inversiones cruzadas y en algún momento hasta inventario compartido.",
+      "Mi propuesta fue mantenerlo simple. Los usuarios se asocian a empresas y sus roles van ligados a cada empresa: alguien puede ser vendedor en una y almacenista en otra, y solo ve los módulos de la empresa que tiene seleccionada. El administrador de la empresa principal, la que mantiene el sistema, administra todo. El administrador de cualquier otra solo administra la suya.",
+      "Claude estuvo de acuerdo con el fondo y propuso un ajuste que adopté: no escribir en el código cuál es la empresa principal. Que sea un atributo de la empresa, una bandera que solo una puede tener. El día que cambie quién sostiene el sistema se cambia un dato, no el código. Le agregué una regla: solo puede existir una principal hasta que el cliente diga otra cosa.",
+      "Pero también dijo que compartir inventario entre empresas rompía ese modelo. Eso me hizo ruido y se lo dije. Lo revisó y reconoció que había mezclado dos ejes. La membresía responde quién puede actuar en una empresa. Compartir inventario responde de quién es un dato. Lo segundo se resuelve en el modelo del inventario, no en el de accesos, y el propio código ya lo hacía así en Cuentas.",
+      "También le paré un análisis que no hacía falta. Los usuarios del sistema viejo ya ni trabajan en la empresa, así que en la migración todos quedan en la empresa principal y se corrigen a mano cuando exista el módulo de empleados.",
+      "El mismo patrón apareció días después con las contrapartes. La IA modeló las empresas del grupo y las entidades externas por separado, y le pregunté qué sentido tenía duplicar empresas. Le propuse un solo modelo de entidades, donde las empresas del grupo fueran una lista de referencias a ellas. Le pusimos nombre: BusinessEntity.",
+      "Esa misma tarde el cliente cambió la regla: cada empresa del grupo lleva su propia lista de entidades, aunque los datos se repitan. Si una entidad tiene cuentas con dos empresas, se registra dos veces. Regresamos las empresas del grupo a su propia entidad y cada lista de contrapartes quedó como propiedad de su empresa.",
+      "Me dolió un poco deshacer la normalización. Pero la regla del cliente decía algo que la mía no: esas listas son de cada empresa, aunque se parezcan."
+    ]
+  },
+  "en": {
+    "title": "Who can act isn't who owns the data",
+    "topic": "Modeling several companies in one system: memberships with roles, a main company as data rather than code, an AI objection that mixed access with ownership, and a normalization the client rolled back the same day.",
+    "body": [
+      "In early October, Industrial Complements asked for the app to open with a default company. It sounded like a UI detail, but it opened a domain question: the system is used by several companies related to each other, with cross investments and at some point even shared inventory.",
+      "My proposal was to keep it simple. Users are associated with companies and their roles are tied to each company: someone can be a salesperson in one and a warehouse clerk in another, and they only see the modules of the company they have selected. The admin of the main company, the one that maintains the system, administers everything. The admin of any other company only administers their own.",
+      "Claude agreed with the substance and suggested a tweak I adopted: don't hardcode which company is the main one. Make it an attribute of the company, a flag only one of them can carry. The day the company that sustains the system changes, you change data, not code. I added a rule: there can only be one main company until the client says otherwise.",
+      "But it also said that sharing inventory between companies broke that model. That didn't sit right with me and I told it so. It went back over it and admitted it had mixed two axes. Membership answers who can act within a company. Shared inventory answers who a piece of data belongs to. The second one gets solved in the inventory model, not in the access model, and the code was already doing exactly that in Accounts.",
+      "I also cut off an analysis we didn't need. The users in the old system don't even work at the company anymore, so in the migration they all land in the main company and get fixed by hand once the employees module exists.",
+      "The same pattern showed up days later with counterparties. The AI modeled the group's companies and the external entities separately, and I asked what the point of duplicating companies was. I proposed a single entity model, where the group's companies would be a list of references to entities. We gave it a name: BusinessEntity.",
+      "That same afternoon the client changed the rule: each company in the group keeps its own list of entities, even if the data repeats. If an entity has accounts with two companies, it gets registered twice. We moved the group's companies back to their own entity, and each counterparty list became the property of its company.",
+      "Undoing the normalization stung a little. But the client's rule said something mine didn't: those lists belong to each company, even if they look alike."
+    ]
+  }
+}

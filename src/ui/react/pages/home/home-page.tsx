@@ -2,11 +2,14 @@ import { useTranslation } from "react-i18next";
 import type { Language } from "@domain/model/common/language";
 import type { Localized } from "@domain/model/common/localized";
 import { About } from "~/pages/home/about";
+import { CauceShowcase } from "~/pages/home/cauce-showcase";
 import { Doors } from "~/pages/home/doors";
 import { Experience } from "~/pages/home/experience";
 import { GraphtShowcase } from "~/pages/home/grapht-showcase";
 import { HomeHero } from "~/pages/home/home-hero";
 import { HowIWork } from "~/pages/home/how-i-work";
+import { IndustrialComplementsShowcase } from
+  "~/pages/home/industrial-complements-showcase";
 import { Notebook } from "~/pages/home/notebook";
 import { homePath } from "~/shared/lib/site-paths";
 import { SiteNav } from "~/widgets/site-nav/site-nav";
@@ -41,6 +44,8 @@ export function HomePage({ language, alternates, blogUrl }: HomePageProps) {
         <HomeHero />
         <Notebook />
         <GraphtShowcase language={language} />
+        <IndustrialComplementsShowcase language={language} />
+        <CauceShowcase language={language} />
         <Experience />
         <HowIWork />
         <Doors language={language} />

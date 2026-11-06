@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-02",
+  "tags": [
+    "industrialcomplements",
+    "efcore",
+    "dotnet",
+    "claudecode"
+  ],
+  "es": {
+    "title": "EF Core con IA: el proceso lo controlo yo",
+    "topic": "No confiaba en la IA para diseñar entidades y migraciones de EF Core, así que le pedí investigar quién ya había tenido ese problema. De ahí salieron reglas: ella no ejecuta migraciones, cada migración es un ciclo completo de esquema y datos, y mientras dure el desarrollo solo existe un InitialCreate.",
+    "body": [
+      "Con el login funcionando en la migración del sistema interno de Industrial Complements llegó la parte que más me preocupaba: EF Core. No confío en la IA para diseñar las entidades de persistencia, y menos para ir apilando una migración por cada cambio mínimo.",
+      "En vez de dictarle reglas de memoria, le pedí que buscara quién se había topado ya con este problema y qué proponía.",
+      "Lo que encontró confirmó mi desconfianza. La avalancha de migraciones es un problema conocido desde antes de la IA: hay un issue en el repo de EF Core donde 220 archivos de migración llevaron el build de 12 minutos a más de una hora. Y EF Core no tiene un comando para compactarlas: el issue que lo pide está abierto desde 2015. Cada migración de más es deuda que se paga a mano.",
+      "La idea que más se repetía sobre agentes y bases de datos era \"macro determinista, micro agéntico\". El proceso, con sus etapas y aprobaciones, lo controla una persona. El agente trabaja dentro de zonas acotadas y nunca amplía su propia autoridad.",
+      "De ahí salieron las reglas. Claude escribe las entidades y sus configuraciones, pero no ejecuta «migrations add» ni «database update». Antes de aplicar nada se genera el script SQL y yo lo reviso: ese es el punto de aprobación. Y «has-pending-model-changes» sirve como verificación final.",
+      "A una de sus reglas le hice un cambio. Una migración no es un cambio suelto, es un conjunto de cambios que funcionan juntos, porque con cada cambio de esquema también migramos datos del legacy. Si el esquema y su migración de datos no operan en conjunto, se descarta y se regenera.",
+      "Después lo llevé más lejos. La base nueva es desechable mientras no esté todo migrado, así que no tiene sentido acumular historial: siempre hay un solo InitialCreate. Cuando a mediados de octubre la IA agregó una segunda migración con un relleno escrito a mano, la quitamos y volvimos a consolidar. Para la base de la demo, donde el cliente ya tenía sus datos, el cambio de id se resuelve sellando el historial de migraciones con un script, sin tocar sus datos.",
+      "Lo demás quedó en las reglas de arquitectura del proyecto, en español: cada entidad se configura en su propia clase dentro de su carpeta y se registra de forma explícita, toda entidad con Guid como Id separa la llave primaria de la llave agrupada para no fragmentar la tabla, y toda consulta de lectura lleva AsNoTracking(). Ese último fue un buen detalle de la IA; le pedí escribirlo como regla para que no se le olvidara después.",
+      "Hoy los scripts del proyecto envuelven ese ciclo en comandos con nombre. La IA los usa, pero no los modifica: esos los necesito entender yo."
+    ]
+  },
+  "en": {
+    "title": "EF Core with AI: I control the process",
+    "topic": "I didn't trust AI to design EF Core entities and migrations, so I asked it to research who had already hit that problem. Out came rules: it doesn't run migrations, every migration is a full cycle of schema and data, and during development there's only one InitialCreate.",
+    "body": [
+      "With login working in the migration of Industrial Complements' internal system, it was time for the part that worried me most: EF Core. I don't trust AI to design persistence entities, and even less to keep stacking a new migration for every tiny change.",
+      "Instead of dictating rules from memory, I asked it to find out who had already run into this problem and what they proposed.",
+      "What it found confirmed my distrust. The migration pile-up is a known problem that predates AI: there's an issue in the EF Core repo where 220 migration files took a build from 12 minutes to over an hour. And EF Core has no command to squash them; the issue asking for one has been open since 2015. Every extra migration is debt you pay off by hand.",
+      "The idea that kept showing up about agents and databases was \"deterministic macro, agentic micro\". A person controls the process, with its stages and approvals. The agent works inside bounded zones and never expands its own authority.",
+      "That's where the rules came from. Claude writes the entities and their configurations, but it doesn't run \"migrations add\" or \"database update\". Before anything gets applied, we generate the SQL script and I review it: that's the approval point. And \"has-pending-model-changes\" works as the final check.",
+      "I changed one of its rules. A migration isn't a single change, it's a set of changes that work together, because every schema change also comes with migrating data from the legacy system. If the schema and its data migration don't work as a whole, it gets discarded and regenerated.",
+      "Later I took it further. The new database is disposable until everything is migrated, so there's no point in keeping a history: there's always a single InitialCreate. When the AI added a second migration with a hand-written backfill in mid-October, we removed it and consolidated again. For the demo database, where the client already had real data, the new migration id gets handled by sealing the migration history with a script, without touching their data.",
+      "Everything else went into the project's architecture rules, written in Spanish: each entity is configured in its own class inside its own folder and registered explicitly, every entity with a Guid id splits the primary key from the clustered key so the table doesn't fragment, and every read query uses AsNoTracking(). That last one was a good catch by the AI; I asked for it to be written down as a rule so it wouldn't forget it later.",
+      "Today the project's scripts wrap that cycle in named commands. The AI uses them, but doesn't change them: those are the ones I need to understand."
+    ]
+  }
+}

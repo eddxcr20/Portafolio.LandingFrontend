@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-05",
+  "tags": [
+    "industrialcomplements",
+    "dotnet",
+    "sqlserver",
+    "businessrules"
+  ],
+  "es": {
+    "title": "Megámetros, milímetros y 100 µF",
+    "topic": "Las unidades y las propiedades del inventario: el sistema internacional completo con sus 24 prefijos, factores en notación científica porque un decimal no alcanza, una colación distinta para que \"Mm\" no sea \"mm\", y propiedades clave-valor que se filtran como \"Faradios: 100uF\".",
+    "body": [
+      "En el inventario de Industrial Complements hay de todo: cable que se vende por metro, piezas sueltas, componentes que se describen por sus propiedades. Las reglas de unidades las había definido en octubre, al extraer las reglas del Excel. Las unidades se pueden agregar libremente, pero el peso y la longitud siempre son estándar, con los prefijos del sistema internacional, y nunca se pueden borrar. Dentro del sistema internacional la conversión es automática; entre metros y piezas no hay conversión directa, así que la define el usuario.",
+      "Cuando tocó implementarlo, el detalle salió en los extremos. El sistema internacional tiene 24 prefijos, del quecto al quetta: de 10⁻³⁰ a 10³⁰. Sembrar el gramo y el metro con todos sus prefijos da 50 unidades protegidas. Y un decimal de .NET no alcanza para guardar factores de ese tamaño. Así que el factor se guarda en notación científica, un coeficiente y un exponente normalizados, y una conversión que no cabe regresa un error de dominio en lugar de un número equivocado.",
+      "El otro detalle fue la colación. Desde el login, toda la base es insensible a mayúsculas y acentos, para que la búsqueda encuentre \"conexión\" aunque se escriba sin acento. Pero en los símbolos de unidades eso es un error: \"Mm\" es megámetro y \"mm\" es milímetro. La columna del símbolo lleva su propia colación sensible a mayúsculas. Es la excepción que la regla de la colación ya preveía: cuando un código sí debe distinguir mayúsculas, se declara en esa columna.",
+      "Las propiedades fueron mi corrección al revisar el Almacén. Un producto se describe con pares clave-valor, por ejemplo \"Faradios: 100uF\", así que filtrar por propiedades no puede ser un campo de texto más. El filtro tiene su propio tipo: \"Y propiedades contiene / no contiene / está vacío / no está vacío\", y cuando contiene, eliges la clave de un catálogo y escribes el valor. Se lee como \"Y propiedades contiene Faradios: 100uF\". La búsqueda rápida busca el término en los valores de cualquier clave.",
+      "Y una regla de negocio que no estaba escrita: dentro de un producto, las claves nunca se repiten. Las claves pasaron a ser un catálogo, único por nombre, con el mismo patrón que las etiquetas de Cuentas. El dominio sigue viendo texto y la colación decide si \"Faradios\" y \"faradios\" son la misma clave.",
+      "Agregué al menú del inventario las secciones de Propiedades, Categorías y Catálogos: código SAT, fabricantes, rangos, tecnologías de montaje, encapsulados y unidades estándar. Algunas páginas quedaron vacías a propósito, para marcar lo que falta.",
+      "Me gusta que dos reglas que parecían contradecirse convivan. La colación insensible es la regla general y la sensible es la excepción declarada. Lo importante es que cada columna diga explícitamente cuál le toca."
+    ]
+  },
+  "en": {
+    "title": "Megameters, millimeters and 100 µF",
+    "topic": "Units and properties in the inventory: the full international system with its 24 prefixes, factors in scientific notation because a decimal falls short, a different collation so that \"Mm\" isn't \"mm\", and key-value properties you filter as \"Farads: 100uF\".",
+    "body": [
+      "Industrial Complements' inventory has a bit of everything: cable sold by the meter, individual parts, components described by their properties. I had defined the unit rules back in October, while extracting rules from the Excel workbook. Units can be added freely, but weight and length are always standard, with the international system's prefixes, and can never be deleted. Within the international system conversion is automatic; between meters and pieces there's no direct conversion, so the user defines it.",
+      "When it was time to build it, the details showed up at the extremes. The international system has 24 prefixes, from quecto to quetta: from 10⁻³⁰ to 10³⁰. Seeding the gram and the meter with every prefix gives 50 protected units. And a .NET decimal can't hold factors that size. So the factor is stored in scientific notation, a normalized coefficient and exponent, and a conversion that doesn't fit returns a domain error instead of a wrong number.",
+      "The other detail was the collation. Since login, the whole database is case- and accent-insensitive, so search finds \"conexión\" even when typed without the accent. But for unit symbols that's a bug: \"Mm\" is megameter and \"mm\" is millimeter. The symbol column carries its own case-sensitive collation. It's the exception the collation rule already anticipated: when a code does need to tell casing apart, you declare it on that column.",
+      "Properties were my correction when reviewing the Warehouse. A product is described with key-value pairs, for example \"Farads: 100uF\", so filtering by properties can't just be another text field. The filter has its own type: \"And properties contains / doesn't contain / is empty / isn't empty\", and when it contains, you pick the key from a catalog and type the value. It reads as \"And properties contains Farads: 100uF\". Quick search looks for the term in the values of any key.",
+      "And a business rule that wasn't written down: within a product, keys never repeat. Keys became a catalog, unique by name, following the same pattern as the labels in Accounts. The domain still sees text, and the collation decides whether \"Farads\" and \"farads\" are the same key.",
+      "I added Properties, Categories and Catalogs to the inventory menu: SAT product code, manufacturers, ranges, mounting technologies, packages and standard units. Some pages were left empty on purpose, to mark what's still missing.",
+      "I like that two rules that seemed to contradict each other live side by side. The insensitive collation is the general rule and the sensitive one is the declared exception. What matters is that each column says explicitly which one applies."
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-27",
+  "tags": [
+    "industrialcomplements",
+    "ux",
+    "react",
+    "datavisualization"
+  ],
+  "es": {
+    "title": "Una gráfica que restaba antes de mostrar",
+    "topic": "El tablero de Cuentas neteaba lo que se debe contra lo que te deben antes de graficar, y uno de los dos lados siempre salía en cero. Separarlos en tres gráficas con su propia diferencia, y aprender que una cifra por tarjeta es mejor que una global.",
+    "body": [
+      "El tablero de Cuentas del sistema nuevo de Industrial Complements tiene gráficas de pastel para ver de un vistazo cuánto debes y cuánto te deben. A finales de octubre el cliente las estaba usando con datos de prueba y algo no cuadraba.",
+      "Una entidad tenía cuatro cuentas: debía 5,000 en inversiones, debía 8,600 en préstamos, le debían 2,000.35 en otro préstamo y otros 2,000 en ahorros. La gráfica mostraba un solo número: debes 9,599.65. El tablero restaba todo por entidad antes de separar los lados, así que una entidad siempre caía completa en \"debes\" o completa en \"te deben\", y el otro lado quedaba en cero.",
+      "Eso hacía inútil la gráfica. Si siempre sale un lado en cero, no tiene caso ver los dos. El punto es ver el total de lo que debes y el total de lo que te deben, y la diferencia como dato aparte.",
+      "Lo que pedí fueron tres gráficas por moneda, cada una en su tarjeta. La general, con debes contra te deben. Una de lo que debes, partida por contexto (préstamos, inversiones, ahorros). Y una de lo que te deben, también por contexto. La diferencia no va como rebanada del pastel, va como leyenda debajo.",
+      "Y el diseño por tamaño de pantalla. En celular las tres van en un carrusel que se desliza en ciclo, con la leyenda debajo. En tablet, una cuadrícula de dos por dos con la lista de entidades abajo. En escritorio, las tres en la misma fila con la leyenda a la derecha.",
+      "La primera entrega repitió la misma diferencia global en las tres tarjetas. Lo corregí: cada gráfica cierra con su propia cifra. En la general, la diferencia es lo que te deben menos lo que debes. En las otras dos, el total de su lado. Una cifra por tarjeta, nunca una sola para todas.",
+      "El cliente pidió un último detalle en el desglose por contexto del tablero: una columna de diferencia con signo, en rojo cuando debes y en verde cuando te deben.",
+      "Lo que me quedó es una regla que ya está escrita en el proyecto: cualquier gráfica o total por dirección suma cuenta por cuenta y muestra la diferencia aparte. Netear antes de mostrar destruye justo la información que la gráfica debía enseñar."
+    ]
+  },
+  "en": {
+    "title": "A chart that subtracted before showing",
+    "topic": "The Accounts dashboard netted what you owe against what you're owed before charting, so one side always showed zero. Splitting them into three charts with their own difference, and learning that one figure per card beats a global one.",
+    "body": [
+      "The Accounts dashboard in Industrial Complements' new system has pie charts to show at a glance how much you owe and how much you're owed. At the end of October the client was using them with test data and something didn't add up.",
+      "One entity had four accounts: it owed 5,000 in investments, owed 8,600 in loans, was owed 2,000.35 on another loan and another 2,000 in savings. The chart showed a single number: you owe 9,599.65. The dashboard netted everything per entity before splitting the sides, so an entity always landed entirely in \"you owe\" or entirely in \"you're owed\", and the other side came out as zero.",
+      "That made the chart useless. If one side always shows zero, there's no point in seeing both. The whole idea is to see the total you owe and the total you're owed, with the difference as a separate figure.",
+      "What I asked for was three charts per currency, each in its own card. The general one, owed against owing. One for what you owe, split by context (loans, investments, savings). And one for what you're owed, also by context. The difference isn't a slice of the pie, it's a legend underneath.",
+      "And the layout by screen size. On mobile the three go in a carousel that loops as you swipe, with the legend below. On tablet, a two-by-two grid with the entity list underneath. On desktop, all three in one row with the legend to the right.",
+      "The first delivery repeated the same global difference on all three cards. I corrected it: each chart closes with its own figure. On the general one, the difference is what you're owed minus what you owe. On the other two, the total of their side. One figure per card, never a single one for all of them.",
+      "The client asked for one last detail in the dashboard's breakdown by context: a signed difference column, red when you owe and green when you're owed.",
+      "What I kept is a rule that's now written into the project: any chart or total split by direction adds up account by account and shows the difference separately. Netting before you display destroys exactly the information the chart was supposed to show."
+    ]
+  }
+}

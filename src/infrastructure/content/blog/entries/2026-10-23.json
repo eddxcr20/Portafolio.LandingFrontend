@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-23",
+  "tags": [
+    "industrialcomplements",
+    "backend",
+    "dotnet",
+    "ux"
+  ],
+  "es": {
+    "title": "Adjuntos: fuera de la base y pensados para iPhone",
+    "topic": "El cliente quería adjuntar fotos a sus movimientos. Antes de tocar código pedí opciones, descarté guardar archivos en la base y fijé los límites: formatos populares, conversión en el navegador, 10 MB, tres por movimiento, una carpeta real del servidor y un dominio que solo conoce referencias.",
+    "body": [
+      "A mediados de octubre, Industrial Complements pidió poder adjuntar imágenes a las transacciones: el comprobante de una transferencia, la foto de un recibo. Yo tenía una idea (un volumen en el servidor) pero no sabía cómo hacer el envío. En otro proyecto había tenido que codificar archivos en base64, y no sabía si era lo mejor. Le pedí a Claude opciones antes de cambiar nada.",
+      "Entre las opciones venía guardar los archivos en la base de datos. No tiene sentido: la base guarda datos, no archivos. Lo lógico era el volumen. Y el contexto de uso ayudaba a decidir: el archivo solo se ve cuando abres el detalle de una transacción, así que los listados siguen viajando solo con texto.",
+      "Lo que más pesaba era el iPhone, porque el cliente usa iPhone. La IA propuso aceptar muchos formatos, incluido el RAW de Apple. Lo recorté: JPEG, PNG, HEIC, HEIF y WebP, más PDF, y lo demás cuando haga falta. Le pregunté si se podía forzar la conversión, del lado del cliente o del servidor. Y por qué un navegador no podría mostrar un HEIC si en mi Linux veo sus miniaturas en el explorador de archivos sin problema.",
+      "Las reglas las puse yo. Diez megas por archivo son más que suficientes; si alguien sube algo más pesado, que lo reduzca de su lado. Máximo tres adjuntos por transacción, pero que el modelo pueda permitir más sin muchos cambios. Borrar y reemplazar adjuntos sigue las reglas de la liquidación: si la cuenta ya se liquidó, nada de esas transacciones cambia. Y al eliminar una transacción se eliminan sus archivos.",
+      "Lo más importante fue dónde vive cada cosa. En el modelo y en los casos de uso la transacción solo guarda referencias a sus adjuntos, lo suficiente para mostrar cuántos tiene. El archivo en sí lo trae la infraestructura cuando el usuario abre el detalle. Así el dominio no carga con consideraciones que son puramente de almacenamiento y transporte. Validar que un adjunto se puede abrir quedó como un caso de uso de solo lectura.",
+      "Quedó así: el navegador convierte HEIC, HEIF y WebP a JPEG antes de subir, y el backend solo acepta JPEG, PNG y PDF, validados por sus primeros bytes y no por la extensión.",
+      "Una corrección más. La IA montó un volumen de Docker sin más. Los archivos tienen que ir a una carpeta real del servidor, porque el usuario debe poder ver sus fotos desde su computadora. Y después el cliente pidió arrastrar archivos desde su sistema operativo al campo de adjuntos.",
+      "Pedí que todo esto fuera reutilizable. Hoy el inventario abre las fotos de los productos desde una carpeta compartida de Windows. Cuando lleguen las imágenes de productos usarán este mismo almacenamiento, y esa carpeta compartida desaparece."
+    ]
+  },
+  "en": {
+    "title": "Attachments: out of the database and built for iPhone",
+    "topic": "The client wanted to attach photos to his transactions. Before touching code I asked for options, ruled out storing files in the database and set the limits: popular formats, conversion in the browser, 10 MB, three per transaction, a real folder on the server and a domain that only knows references.",
+    "body": [
+      "In mid-October, Industrial Complements asked to be able to attach images to transactions: a transfer receipt, a photo of a ticket. I had an idea (a volume on the server) but didn't know how to handle the upload. In another project I had to encode files as base64, and I wasn't sure that was the best way. I asked Claude for options before changing anything.",
+      "One of the options was storing the files in the database. That makes no sense: the database stores data, not files. The volume was the logical choice. And how it gets used helped decide: the file is only shown when you open a transaction's details, so listings keep traveling as plain text.",
+      "What mattered most was the iPhone, because the client uses one. The AI proposed accepting lots of formats, Apple's RAW included. I trimmed it: JPEG, PNG, HEIC, HEIF and WebP, plus PDF, and anything else when it's actually needed. I asked whether conversion could be forced, on the client or the server. And why a browser couldn't show a HEIC when my Linux file manager shows their thumbnails just fine.",
+      "I set the rules. Ten megabytes per file is more than enough; if someone uploads something heavier, they can shrink it on their side. At most three attachments per transaction, but the model should be able to allow more without big changes. Deleting and replacing attachments follows the settlement rules: once the account is settled, nothing in those transactions changes. And deleting a transaction deletes its files.",
+      "The most important part was where each thing lives. In the model and the use cases, a transaction only keeps references to its attachments, enough to show how many it has. The file itself is fetched by the infrastructure when the user opens the details. That way the domain doesn't carry concerns that are purely about storage and transport. Checking that an attachment can be opened became a read-only use case.",
+      "This is how it ended up: the browser converts HEIC, HEIF and WebP to JPEG before uploading, and the backend only accepts JPEG, PNG and PDF, validated by their first bytes rather than their extension.",
+      "One more correction. The AI mounted a plain Docker volume. The files have to go to a real folder on the server, because the user has to be able to see their photos from their own computer. And later the client asked to drag files from their operating system onto the attachments field.",
+      "I asked for all of this to be reusable. Today, inventory opens product photos from a Windows shared folder. When product images arrive, they'll use this same storage, and that shared folder goes away."
+    ]
+  }
+}

@@ -22,16 +22,37 @@
       "ideas": "Notebook page with a table and notes for screens to build."
     }
   },
+  "showcase": {
+    "problemLabel": "Problem",
+    "decisionLabel": "What I decided"
+  },
   "grapht": {
     "label": "Works · public beta",
     "meta": "Founder · grapht.com.mx",
     "caption": "Fig. 2 · GraphT, public beta.",
-    "problemLabel": "Problem",
-    "decisionLabel": "What I decided",
     "problem": "Task apps fix how many levels you can break a project into and never show how tasks connect to each other. With ADHD, not seeing the whole path is what paralyzes you. Notion wasn't enough.",
     "decision": "Tasks as a graph in Neo4j, endlessly divisible and tied to life areas that give every step its context. Clean Architecture on the backend and the frontend.",
     "readDossier": "Read the case file",
     "imageAlt": "GraphT Workbench: a graph of connected tasks next to the inspector of the selected task."
+  },
+  "industrialComplements": {
+    "title": "Internal system migration",
+    "label": "In progress",
+    "meta": "Industrial Complements · Engineer contracted per module",
+    "caption": "Fig. 3 · Industrial Complements, in progress.",
+    "problem": "Quotes, invoicing, the warehouse, inventory across branches and the company's internal accounts, spread across Excel and VBA, with business rules tangled up with presentation.",
+    "decision": "Domain first: Excel as the specification, the legacy system frozen instead of deleted, and a phased migration on .NET and EF Core where every piece of data goes through the business rules before it gets in.",
+    "readProgress": "See the progress",
+    "imageAlt": "Sign-in screen of Industrial Complements' new system."
+  },
+  "cauce": {
+    "label": "In use · in development",
+    "meta": "Personal project · daily use",
+    "caption": "Fig. 4 · Cauce, with simulated data.",
+    "problem": "Ideas last me seconds, and getting them into my notes cost more: copy, open Obsidian, paste. And conversations with AI were scattered across apps and sessions that get compacted.",
+    "decision": "A layer on top of my Zettelkasten in git, not an app with its own database: one PWA for every device, conversations stored as chains of notes and Claude Code as it is, in a terminal.",
+    "readDossier": "Read the case file",
+    "imageAlt": "Cauce's note editor in split view, with a sample note."
   },
   "experience": {
     "label": "Experience",

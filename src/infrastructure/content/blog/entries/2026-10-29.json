@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-29",
+  "tags": [
+    "cauce",
+    "zettelkasten",
+    "secondbrain",
+    "systemdesign"
+  ],
+  "es": {
+    "title": "Anclas, no etiquetas: el frontmatter se queda limpio",
+    "topic": "La IA propuso un frontmatter lleno: fuente, dispositivo, uuid, etiquetas, y para cada chat una nota ancla con campos para la conversación y el padre. Lo dejé como estaba: título y, si acaso, el modelo. Las relaciones van en el cuerpo, la clasificación la hacen las notas ancla y lo fugaz vive aparte de lo permanente.",
+    "body": [
+      "Mi vault sigue dos ideas que adopté hace años. La del Zettelkasten: notas atómicas, nombradas por fecha y hora, enlazadas entre sí. Y la de las notas evergreen de Andy Matuschak: notas que se escriben para durar, orientadas a un concepto y densamente enlazadas.",
+      "Encima de eso tengo una convención propia. Unas pocas notas con un prefijo fijo funcionan como anclas: ideas fundamentales que casi no cambian y a las que se enlazan las demás. No uso etiquetas. El único eje de clasificación que pongo yo son las anclas.",
+      "Cuando definimos el formato de lo que entraría por Cauce, Claude propuso un frontmatter con fuente, dispositivo, uuid, fecha de captura y etiquetas. Y para las conversaciones, una nota ancla por chat, con campos para la conversación y el padre de cada mensaje.",
+      "Ahí corregí tres cosas.",
+      "Primero, no hay etiquetas. Hay anclas, y si al capturar ya sé a cuál pertenece una idea, la marco desde ahí.",
+      "Segundo, una conversación no es un ancla. Las anclas son perdurables y estáticas. Si cada chat fuera una, en un mes tendría cientos de anclas que no significan nada.",
+      "Tercero, el frontmatter se queda tan limpio como está hoy. Una nota de la bandeja lleva título, estado, la URL si hay una y las anclas que elegí. Una nota permanente lleva solo el título, y una nota de conversación, el título y el modelo. Lo que relaciona una nota con otra va en el cuerpo, como un enlace, que es donde Obsidian lo sabe leer.",
+      "El uuid lo resolvió la IA mejor de lo que esperaba: el nombre del archivo es el instante en que capturé. Si una captura se reintenta después de estar sin red, sobrescribe en vez de duplicar, y no hace falta ningún campo extra.",
+      "La otra regla fue la frontera. Lo fugaz entra a una bandeja y lo permanente vive en mis notas. El sistema puede agregar notas, pero nunca modifica las que ya existen. Y cuando algo sale de la bandeja, se borra junto con su archivo original: no quiero llenar el disco de basura.",
+      "Puede sonar a manía. Pero el vault tiene que poder leerse dentro de diez años sin Cauce, y cada campo que no aporta es algo que alguien tendrá que entender."
+    ]
+  },
+  "en": {
+    "title": "Anchors, not tags: the frontmatter stays clean",
+    "topic": "The AI proposed bloated frontmatter: source, device, uuid, tags, and for every chat an anchor note with fields for the conversation and the parent. I left it as it was: a title and, at most, the model. Relationships go in the body, anchor notes do the classifying and fleeting things live apart from permanent ones.",
+    "body": [
+      "My vault follows two ideas I adopted years ago. The Zettelkasten one: atomic notes, named by date and time, linked to each other. And Andy Matuschak's evergreen notes: notes written to last, concept-oriented and densely linked.",
+      "On top of that I have a convention of my own. A few notes with a fixed prefix work as anchors: fundamental ideas that barely change and that the other notes link to. I don't use tags. The only classification axis I set myself is the anchors.",
+      "When we defined the format for whatever would come in through Cauce, Claude proposed frontmatter with source, device, uuid, capture date and tags. And for conversations, one anchor note per chat, with fields for the conversation and the parent of each message.",
+      "That's where I corrected three things.",
+      "First, there are no tags. There are anchors, and if I already know which one an idea belongs to when I capture it, I mark it right there.",
+      "Second, a conversation is not an anchor. Anchors are durable and static. If every chat were one, in a month I'd have hundreds of anchors that mean nothing.",
+      "Third, the frontmatter stays as clean as it is today. An inbox note carries a title, a status, the URL if there is one and the anchors I picked. A permanent note carries only the title, and a conversation note, the title and the model. Whatever relates one note to another goes in the body, as a link, which is where Obsidian knows how to read it.",
+      "The AI solved the uuid better than I expected: the file name is the instant I captured. If a capture is retried after being offline, it overwrites instead of duplicating, and no extra field is needed.",
+      "The other rule was the border. Fleeting things go into an inbox and permanent ones live in my notes. The system can add notes, but it never modifies the ones that already exist. And when something leaves the inbox, it's deleted along with its original file: I don't want to fill the disk with junk.",
+      "It may sound like an obsession. But the vault has to be readable ten years from now without Cauce, and every field that adds nothing is something someone will have to understand."
+    ]
+  }
+}

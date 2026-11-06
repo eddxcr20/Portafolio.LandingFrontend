@@ -7,6 +7,7 @@ import type { ActiveTag } from
   "@domain/use-cases/blog/find-blog-entries/use-case";
 import { EntryRow } from "~/pages/blog-list/entry-row";
 import { TagIndex } from "~/pages/blog-list/tag-index";
+import { CamelCaseText } from "~/shared/components/camel-case-text";
 import { Pager } from "~/shared/components/pager";
 import { blogPath, blogTagPath, pagedPath } from "~/shared/lib/site-paths";
 import { SiteNav } from "~/widgets/site-nav/site-nav";
@@ -63,7 +64,11 @@ export function BlogListPage({
       <main>
         <section className="px-gutter pt-6 pb-8 md:pt-10 md:pb-14">
           <h1 className="-ml-[0.04em] text-stairs">
-            {activeTag === null ? t("title") : `#${activeTag.label}`}
+            {activeTag === null ? t("title") : (
+              <>
+                #<CamelCaseText text={activeTag.label} />
+              </>
+            )}
           </h1>
           {activeTag !== null && (
             <p className="mt-8 text-lead">

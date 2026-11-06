@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-30",
+  "tags": [
+    "cauce",
+    "ai",
+    "secondbrain",
+    "systemdesign"
+  ],
+  "es": {
+    "title": "Una conversación es una cadena de notas",
+    "topic": "Las conversaciones con IA son líneas que se compactan y se pierden. Diseñé que cada turno, mi pregunta y la respuesta, sea su propia nota fechada, enlazada a la anterior. Se ve como un chat, pero por dentro es una lista enlazada de notas atómicas, y el historial queda en mi vault, no en el proveedor.",
+    "body": [
+      "Las conversaciones con IA son una buena fuente de conocimiento. Parten de una pregunta o de una hipótesis a la que quiero darle seguimiento. El problema es su forma: una línea continua. Si quiero retomar algo que dije hace tres semanas, tengo que buscarlo a ojo. Y si el contexto se compacta, lo de antes ya no está.",
+      "En octubre me di cuenta de que una conversación ya funciona como una lista enlazada: cada respuesta depende del mensaje anterior. Así que la diseñé así en mis notas.",
+      "Cada turno es una nota atómica y fechada. Empieza con mi pregunta y sigue con la respuesta del modelo, tal cual. Arriba lleva un enlace embebido a la nota anterior, para que en Obsidian se vea de dónde viene. Si pregunto otra cosa, nace otra nota enlazada a esa. La conversación es la cadena completa, de la última nota hasta la raíz.",
+      "Claude dudó entre una nota por turno o una sola nota por conversación que fuera creciendo. Le dije que una por turno, como ya son mis notas. Visualmente la app puede mostrarme el chat de siempre, pero por detrás cada intercambio es su propia nota.",
+      "Había un detalle que cuidar, y la IA lo señaló. Si cada nota embebe a la anterior, y esa a la suya, abrir la última dibuja la conversación entera, anidada. La regla fue que la vista previa muestre solo la nota inmediata, nunca la recursión.",
+      "También quería poder editar un mensaje viejo, como en el navegador. Con la cadena eso sale casi solo: la nota nueva enlaza a la que estaba antes del mensaje editado, y la conversación se bifurca. Las dos ramas quedan guardadas.",
+      "Lo que más me gustó es que la memoria deja de depender del chat. Aunque la sesión se compacte o se cierre, lo que pregunté y lo que me respondieron ya está en el vault. Con fecha, rastreable y enlazable con cualquier otra nota mía.",
+      "Al final es lo mismo que hago con cualquier lectura: cada idea en su nota, y los enlaces dicen de dónde vino."
+    ]
+  },
+  "en": {
+    "title": "A conversation is a chain of notes",
+    "topic": "AI conversations are threads that get compacted and lost. I designed every turn, my question and the answer, to be its own dated note linked to the previous one. It looks like a chat, but underneath it's a linked list of atomic notes, and the history stays in my vault, not with the provider.",
+    "body": [
+      "Conversations with AI are a good source of knowledge. They start from a question or a hypothesis I want to follow up on. The problem is their shape: one continuous thread. If I want to go back to something I said three weeks ago, I have to look for it by eye. And if the context gets compacted, whatever came before is gone.",
+      "In October I realized that a conversation already works like a linked list: every answer depends on the message before it. So that's how I designed it in my notes.",
+      "Every turn is an atomic, dated note. It starts with my question and continues with the model's answer, as is. At the top it carries an embedded link to the previous note, so Obsidian shows where it comes from. If I ask something else, a new note is born, linked to that one. The conversation is the whole chain, from the last note back to the root.",
+      "Claude hesitated between one note per turn and a single note per conversation that keeps growing. I told it one per turn, the way my notes already are. Visually the app can show me the usual chat, but underneath every exchange is its own note.",
+      "There was a detail to watch, and the AI pointed it out. If every note embeds the previous one, and that one embeds its own, opening the last note draws the whole conversation, nested. The rule was that the preview shows only the immediate note, never the recursion.",
+      "I also wanted to be able to edit an old message, like in the browser. With the chain that comes almost for free: the new note links to the one before the edited message, and the conversation branches. Both branches are kept.",
+      "What I liked most is that memory stops depending on the chat. Even if the session gets compacted or closed, what I asked and what I was told is already in the vault. Dated, traceable and linkable with any other note of mine.",
+      "In the end it's the same thing I do with anything I read: each idea in its own note, and the links tell where it came from."
+    ]
+  }
+}

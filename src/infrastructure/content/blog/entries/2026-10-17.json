@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-17",
+  "tags": [
+    "industrialcomplements",
+    "domaindrivendesign",
+    "efcore",
+    "softwarearchitecture"
+  ],
+  "es": {
+    "title": "Catálogos: la identidad vive en la base, no en el dominio",
+    "topic": "Las etiquetas y las monedas son value objects sin identidad, pero el cliente necesitaba editarlas como catálogo. La solución no tocó el modelo de dominio: la base les da un Id y una restricción de unicidad, y el dominio las sigue viendo como texto.",
+    "body": [
+      "A mediados de octubre, Industrial Complements reportó que en la pantalla de catálogos no aparecían las etiquetas de las entidades ni las monedas, así que no podía editarlas. Bancos, productos bancarios y métodos de pago sí estaban, porque esos son entidades con identidad. Etiquetas y monedas no.",
+      "Conceptualmente tenía sentido que no estuvieran. Una etiqueta es un texto que describe a una entidad, y una moneda es un código. No tienen vida propia, son value objects. Por eso en el dominio eran una lista de textos en la entidad y un código en la cuenta.",
+      "La tentación obvia era convertirlas en entidades del dominio con su propio Id, para poder listarlas, renombrarlas y borrarlas. Le dije a Claude que no hacía falta modificar el modelo: es un problema de infraestructura. Del lado de la base, etiquetas y monedas sí se representan como filas con Id; en el modelo de dominio se quedan como value objects. Y debe haber una restricción para que no existan dos con el mismo nombre en la misma empresa, para mantener la consistencia.",
+      "Quedó así. Cada catálogo tiene su tabla con Id y un índice único por empresa y nombre. La entidad que los usa guarda la referencia a la fila. El adaptador hace la traducción en los dos sentidos: al escribir busca la fila por su texto o la crea, y al leer devuelve el texto. Los casos de uso del catálogo trabajan por nombre, no por Id, porque el Id es un detalle físico que nunca sale de la infraestructura.",
+      "¿Y quién decide si dos nombres son el mismo? Tampoco el código. Desde el login habíamos dejado la colación de la base insensible a mayúsculas y acentos, así que \"Proveedores\" y \"proveedores\" chocan en el índice único sin una sola comparación escrita a mano.",
+      "En la misma ronda salió otro problema de catálogos, este de la UI. Los productos bancarios se mostraban como una lista plana, sin ver a qué banco pertenecían, y al editar uno no se podía cambiar de banco. El dominio ya decía que el producto pertenece a su banco; la pantalla no. Se reorganizó para mostrar los productos dentro del banco que los emite.",
+      "Me gusta esta solución porque no le miente a nadie. El dominio dice lo que el negocio piensa: una etiqueta es un texto. La base hace lo que necesita para que ese texto sea administrable. Y si mañana el almacenamiento cambia, el modelo no se entera.",
+      "Después usamos el mismo patrón en el inventario, para las claves de las propiedades de los productos. Ya no hubo que discutirlo."
+    ]
+  },
+  "en": {
+    "title": "Catalogs: identity lives in the database, not in the domain",
+    "topic": "Labels and currencies are value objects with no identity, but the client needed to edit them as a catalog. The fix didn't touch the domain model: the database gives them an id and a uniqueness constraint, and the domain still sees them as text.",
+    "body": [
+      "In mid-October, Industrial Complements reported that business entity labels and currencies didn't show up on the catalogs screen, so they couldn't edit them. Banks, banking products and payment methods were there, because those are entities with identity. Labels and currencies weren't.",
+      "Conceptually, it made sense they were missing. A label is a piece of text describing an entity, and a currency is a code. They have no life of their own; they're value objects. That's why in the domain they were a list of strings on the entity and a code on the account.",
+      "The obvious temptation was to turn them into domain entities with their own id, so they could be listed, renamed and deleted. I told Claude there was no need to touch the model: this is an infrastructure problem. On the database side, labels and currencies do get represented as rows with an id; in the domain model they stay value objects. And there has to be a constraint so no two of them share a name within the same company, to keep things consistent.",
+      "That's how it ended up. Each catalog has its own table with an id and a unique index on company and name. The entity that uses them stores a reference to the row. The adapter translates both ways: on write it finds the row by its text or creates it, and on read it returns the text. The catalog use cases work by name, not by id, because the id is a physical detail that never leaves the infrastructure.",
+      "And who decides whether two names are the same? Not the code either. Back when we built login we had set the database collation to be case- and accent-insensitive, so \"Suppliers\" and \"suppliers\" collide on the unique index without a single hand-written comparison.",
+      "The same round surfaced another catalog problem, this one in the UI. Banking products were shown as a flat list, without seeing which bank they belonged to, and editing one didn't let you move it to another bank. The domain already said a product belongs to its bank; the screen didn't. It was reorganized to show the products inside the bank that issues them.",
+      "I like this solution because it doesn't lie to anyone. The domain says what the business thinks: a label is text. The database does what it needs to make that text manageable. And if storage changes tomorrow, the model never finds out.",
+      "We later used the same pattern in inventory, for product property keys. There was nothing left to debate."
+    ]
+  }
+}

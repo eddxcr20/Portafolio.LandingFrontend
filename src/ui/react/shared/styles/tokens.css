@@ -18,6 +18,8 @@
   --accent-600: #d52773;
   --accent-700: #a61958;
   --accent-2: #af63be;
+  --accent-2-100: #fbf1fd;
+  --accent-2-800: #582f60;
   --process-yellow: #d9958c;
 
   --hover-ink: color-mix(in srgb, #121212 7%, transparent);

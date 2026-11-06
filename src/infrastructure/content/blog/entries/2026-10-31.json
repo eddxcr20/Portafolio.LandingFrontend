@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-31",
+  "tags": [
+    "cauce",
+    "pwa",
+    "ux",
+    "selfhosting"
+  ],
+  "es": {
+    "title": "Por qué una PWA: sin red no hablo con una IA",
+    "topic": "El iPhone era el muro: sin App Store no hay app propia. La IA propuso un plugin de Obsidian y una app de git de pago para meter el vault al iPhone. Mi razonamiento fue otro: sin internet nunca hablo con una IA, y con internet puedo abrir una web. Una sola PWA cubrió todos los dispositivos, y lo offline se quedó solo donde importa, en la captura.",
+    "body": [
+      "El iPhone era el muro. No tengo mis notas ahí, y no iba a publicar una app en la App Store para usarla yo solo.",
+      "La primera salida sirvió para compartir. Los Atajos de iOS aparecen en el menú de compartir y pueden mandar un enlace o un texto a una API propia. Son nativos y gratis. Eso resolvía el «vi algo y quiero guardarlo».",
+      "Pero faltaba escribir y conversar con la IA desde el iPhone. Claude propuso meter el vault completo al teléfono con una app de git de pago y hacer el chat como plugin de Obsidian, para tener una sola interfaz en todos lados.",
+      "Lo pensé por otro lado. Sin conexión nunca voy a hablar con una IA. Y cuando puedo hablar con una IA es porque tengo internet, y si tengo internet puedo abrir una web. Entonces el chat y el editor podían vivir en una app web, y una PWA se instala como app sin pasar por ninguna tienda.",
+      "La IA llevó la idea un paso más allá, y tenía razón: si la PWA funciona en el iPhone, funciona en todos lados. Una sola app en lugar de tres clientes distintos. La app de Flutter quedó de sobra.",
+      "Lo offline no desapareció, se acotó. Para chatear siempre hay red, así que el chat no lo necesita. Lo que no puede fallar es capturar. Los Atajos guardan local si no hay red y mandan al volver. Y en la PWA pedí algo muy concreto: no un modo offline completo, solo crear notas, nuevas o enlazadas a la que tengo abierta, y que se sincronicen cuando vuelva la conexión. Se resolvió con una cola local. El nombre de cada nota se genera en el dispositivo, así que los enlaces sobreviven aunque la nota llegue horas después.",
+      "Hubo un tropiezo práctico. El navegador no me ofrecía instalar la PWA desde la red local, solo desde localhost. Terminé publicándola detrás de un túnel de Cloudflare con inicio de sesión, igual que GraphT, y los clientes que no son el navegador entran con tokens de servicio.",
+      "¿Una app nativa sería más cómoda en algunas cosas? Seguramente. Pero ninguna tienda decide si puedo usar mis propias notas."
+    ]
+  },
+  "en": {
+    "title": "Why a PWA: offline, I don't talk to an AI",
+    "topic": "The iPhone was the wall: without the App Store there's no app of my own. The AI proposed an Obsidian plugin and a paid git app to put the vault on the iPhone. My reasoning was different: offline I never talk to an AI, and online I can open a website. A single PWA covered every device, and offline stayed only where it matters, in capturing.",
+    "body": [
+      "The iPhone was the wall. I don't have my notes there, and I wasn't going to publish an app on the App Store just for myself.",
+      "The first way out worked for sharing. iOS Shortcuts show up in the share menu and can send a link or a piece of text to an API of my own. They're native and free. That solved the \"I saw something and I want to keep it\" case.",
+      "But writing and talking to the AI from the iPhone were still missing. Claude proposed putting the whole vault on the phone with a paid git app and building the chat as an Obsidian plugin, to have a single interface everywhere.",
+      "I looked at it from another angle. When I'm offline I'm never going to talk to an AI. And when I can talk to an AI it's because I have internet, and if I have internet I can open a website. So the chat and the editor could live in a web app, and a PWA installs like an app without going through any store.",
+      "The AI took the idea one step further, and it was right: if the PWA works on the iPhone, it works everywhere. One app instead of three different clients. The Flutter app was no longer needed.",
+      "Offline didn't disappear, it got narrower. Chatting always has a network, so the chat doesn't need it. What can't fail is capturing. Shortcuts save locally when there's no network and send when it comes back. And in the PWA I asked for something very specific: not a full offline mode, just creating notes, new ones or linked to the one I have open, and having them sync when the connection comes back. It was solved with a local queue. Each note's name is generated on the device, so links survive even if the note arrives hours later.",
+      "There was a practical stumble. The browser wouldn't offer to install the PWA from the local network, only from localhost. I ended up publishing it behind a Cloudflare tunnel with a login, the same as GraphT, and the clients that aren't the browser get in with service tokens.",
+      "Would a native app be more comfortable for some things? Probably. But no store gets to decide whether I can use my own notes."
+    ]
+  }
+}
