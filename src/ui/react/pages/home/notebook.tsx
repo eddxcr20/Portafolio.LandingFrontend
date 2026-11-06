@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useTappedPage } from "~/pages/home/use-tapped-page";
 import { joinClassNames } from "~/shared/lib/join-class-names";
 
 const NOTEBOOK_PAGES = [
@@ -15,6 +16,7 @@ const NOTEBOOK_PAGES = [
 
 export function Notebook() {
   const { t } = useTranslation("home");
+  const { tappedPage, tapPage } = useTappedPage();
 
   return (
     <section className="px-gutter pb-24">
@@ -22,11 +24,16 @@ export function Notebook() {
         {NOTEBOOK_PAGES.map((page) => (
           <div
             key={page.image}
+            data-notebook-page
+            data-tapped={tappedPage === page.image || undefined}
+            onPointerUp={(event) => tapPage(event, page.image)}
             className={joinClassNames(
               "relative aspect-[3/4] w-[120px] flex-none bg-print p-2 pb-6",
               "shadow-print transition-[translate,box-shadow]",
               "duration-[250ms] ease-[ease] not-first:-ml-20",
               "hover:z-10 hover:-translate-y-4 hover:shadow-print-raised",
+              "data-tapped:z-10 data-tapped:-translate-y-4",
+              "data-tapped:shadow-print-raised",
               "motion-reduce:transition-none md:w-print md:pb-10",
               "md:not-first:-ml-print-overlap",
               page.layer,
