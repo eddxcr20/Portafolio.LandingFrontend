@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-03",
+  "tags": [
+    "cauce",
+    "performance",
+    "backend",
+    "systemdesign"
+  ],
+  "es": {
+    "title": "Copiar la idea del índice, no el índice",
+    "topic": "Abrir el historial de notas tardaba casi tres segundos. Pregunté cómo lo resuelve Obsidian y si podíamos colgarnos de su índice. No se podía, pero la idea sí se podía copiar: un índice propio en SQLite que solo relee las notas que cambiaron, y que es un caché desechable porque la verdad sigue en los archivos.",
+    "body": [
+      "Cuando la PWA ya podía abrir notas viejas, el historial tardaba más de un segundo en cargar. Medido, casi tres. Primero pedí paginar de 20 en 20 y que recordara en qué página me quedé, pero la búsqueda seguía lenta.",
+      "La causa no era el tamaño de las notas, que son chicas. Era abrir cerca de mil archivos, uno por uno, en un disco duro de red, solo para leer su título.",
+      "Le pregunté a la IA qué usa Obsidian, porque cada vez que lo abro aparece un aviso de que está indexando. La respuesta: guarda en caché lo que lee de cada archivo junto con su fecha de modificación, y al abrir solo vuelve a leer los que cambiaron.",
+      "Mi siguiente pregunta fue si podíamos colgarnos directamente de ese índice y matar dos pájaros de un tiro. No se podía. Vive dentro de la base interna de la app, en un formato sin documentar, y solo existe en el dispositivo donde Obsidian está abierto. Cauce corre en el servidor, donde no hay Obsidian.",
+      "Pero la idea sí se podía copiar. Un índice en SQLite con el nombre, el título y la fecha de modificación de cada nota. Antes de cada búsqueda, una sola lectura del directorio compara fechas y solo relee lo que cambió, aunque lo haya cambiado yo desde Obsidian. Y cada vez que Cauce guarda o borra, el índice se actualiza en el momento.",
+      "Lo importante para mí fue el lugar que ocupa. El índice es un caché, no una fuente de verdad. Si un día cambia su forma, se borra y se reconstruye desde los archivos sin perder nada. Y pasó: cuando el historial de chats necesitó más columnas, la migración fue tirar la tabla y volver a indexar.",
+      "La búsqueda se volvió inmediata, y se nota.",
+      "Lo que me llevo es que la pregunta «¿cómo lo hace la herramienta que ya uso?» me dio el diseño, aunque no pudiera usar su código."
+    ]
+  },
+  "en": {
+    "title": "Copy the index's idea, not the index",
+    "topic": "Opening the note history took almost three seconds. I asked how Obsidian solves it and whether we could hook into its index. We couldn't, but the idea could be copied: an index of my own in SQLite that only rereads the notes that changed, and that is a disposable cache because the truth stays in the files.",
+    "body": [
+      "Once the PWA could open old notes, the history took more than a second to load. Measured, almost three. First I asked for pages of 20 and for it to remember which page I was on, but search was still slow.",
+      "The cause wasn't the size of the notes, which are small. It was opening close to a thousand files, one by one, on a network hard drive, just to read their titles.",
+      "I asked the AI what Obsidian uses, because every time I open it a notice says it's indexing. The answer: it caches what it reads from each file along with its modification date, and when it opens it only rereads the ones that changed.",
+      "My next question was whether we could hook straight into that index and kill two birds with one stone. We couldn't. It lives inside the app's internal database, in an undocumented format, and it only exists on the device where Obsidian is open. Cauce runs on the server, where there's no Obsidian.",
+      "But the idea could be copied. An index in SQLite with each note's name, title and modification date. Before every search, a single directory read compares dates and only rereads what changed, even if I changed it from Obsidian. And every time Cauce saves or deletes, the index is updated on the spot.",
+      "What mattered most to me was the place it holds. The index is a cache, not a source of truth. If its shape changes one day, it gets dropped and rebuilt from the files without losing anything. And that happened: when the chat history needed more columns, the migration was to drop the table and reindex.",
+      "Search became instant, and you can tell.",
+      "What I take away is that the question \"how does the tool I already use do it?\" gave me the design, even if I couldn't use its code."
+    ]
+  }
+}

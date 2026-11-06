@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-26",
+  "tags": [
+    "cauce",
+    "zettelkasten",
+    "softwarearchitecture",
+    "secondbrain"
+  ],
+  "es": {
+    "title": "De Dendron a una app propia, sin soltar el markdown",
+    "topic": "Mis notas pasaron por Dendron y por Obsidian antes de Cauce. Cada paso resolvió algo y dejó un hueco: el iPhone sin acceso, las ideas que llegan desde cualquier app y las conversaciones con IA perdidas en historiales lineales. La app propia no reemplaza el vault: es una capa encima del mismo markdown en git.",
+    "body": [
+      "Mis notas empezaron en 2023 en Dendron, una extensión de VS Code. De ahí me quedaron dos cosas que todavía uso: los nombres con fecha y hora, y la idea de que cada nota es un archivo markdown dentro de un repositorio de git. Dendron no me terminó de convencer, y al año siguiente pasé a Obsidian, que fue lo más rápido por su interfaz. Lo abría en la PC sobre el disco de mi servidor y en Android con el repo sincronizado por Termux.",
+      "Funcionaba. Pero quedaban tres huecos.",
+      "El primero, el iPhone. Ahí no tenía acceso a mis notas, y no iba a publicar una app en la App Store para usarla yo solo.",
+      "El segundo, las fuentes. Una idea puede venir de un video, de un artículo o de una conversación con una IA, y cada una vive en su propia app. Para guardarla tenía que copiar, abrir Obsidian, crear la nota y pegar. Para cuando terminaba, ya se me había ido la mitad.",
+      "El tercero era el que más me pesaba: las conversaciones con IA. Las uso mucho para investigar, y son líneas continuas. No puedo hacer referencias cruzadas a un mensaje mío de hace tres semanas ni a una respuesta en particular. Y cuando el contexto se compacta, lo que dije antes desaparece.",
+      "En octubre tenía a la mano una app de notas rápidas que había hecho en Flutter, y la primera idea fue extenderla. Pero no llegaba al iPhone y casi todo estaba por construir. Tampoco quería una app con su propia base de datos: eso partía el estado en dos y me amarraba a la app.",
+      "La decisión fue otra. Cauce es una capa encima del vault que ya existe. El markdown en git sigue siendo la única fuente de verdad. Obsidian sigue siendo donde leo y organizo, y Cauce es por donde entra todo: notas, enlaces y conversaciones, desde cualquier dispositivo.",
+      "Si mañana Cauce deja de existir, mis notas siguen ahí, legibles y en el mismo formato. Esa era la condición para construirlo."
+    ]
+  },
+  "en": {
+    "title": "From Dendron to an app of my own, without letting go of markdown",
+    "topic": "My notes went through Dendron and Obsidian before Cauce. Each step solved something and left a gap: no access on the iPhone, ideas arriving from any app and AI conversations lost in linear histories. The app of my own doesn't replace the vault: it's a layer on top of the same markdown in git.",
+    "body": [
+      "My notes started in 2023 in Dendron, a VS Code extension. Two things from that time are still with me: names made of date and time, and the idea that every note is a markdown file inside a git repository. Dendron never fully convinced me, and the next year I moved to Obsidian, which was the fastest option thanks to its interface. I opened it on my PC over my server's disk, and on Android with the repo synced through Termux.",
+      "It worked. But there were three gaps left.",
+      "The first one was the iPhone. I had no access to my notes there, and I wasn't going to publish an app on the App Store just for myself.",
+      "The second one was sources. An idea can come from a video, an article or a conversation with an AI, and each of them lives in its own app. To keep it I had to copy, open Obsidian, create the note and paste. By the time I was done, half of it was gone.",
+      "The third one weighed on me the most: conversations with AI. I use them a lot for research, and they are continuous threads. I can't cross-reference a message of mine from three weeks ago or one specific answer. And when the context gets compacted, what I said before simply disappears.",
+      "In October I had a quick-notes app I had built in Flutter, and the first idea was to extend it. But it didn't reach the iPhone and almost everything was still to be built. I didn't want an app with its own database either: that would split the state in two and tie me to the app.",
+      "The decision was a different one. Cauce is a layer on top of the vault that already exists. Markdown in git is still the only source of truth. Obsidian is still where I read and organize, and Cauce is the way everything gets in: notes, links and conversations, from any device.",
+      "If Cauce stops existing tomorrow, my notes are still there, readable and in the same format. That was the condition for building it."
+    ]
+  }
+}

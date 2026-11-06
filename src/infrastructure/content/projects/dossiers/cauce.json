@@ -1,0 +1,140 @@
+{
+  "slug": "cauce",
+  "name": "Cauce",
+  "order": 3,
+  "status": "in-progress",
+  "link": null,
+  "leadImage": "/images/cauce-notes.webp",
+  "closingImage": "/images/cauce-chats.webp",
+  "tag": "cauce",
+  "es": {
+    "label": "En uso · en desarrollo",
+    "meta": "Proyecto personal · desde 2026",
+    "summary": [
+      "Cauce es por donde mis ideas llegan a mis notas. Un pensamiento, un enlace o una conversación con una IA entran desde cualquier dispositivo y quedan en mi segundo cerebro, un vault de notas en markdown versionado en git, antes de que se pierdan.",
+      "Lo uso todos los días y sigue en desarrollo. Es una herramienta para mí, no un producto. Como guarda mis notas y mis conversaciones, aquí cuento cómo está hecho y por qué, nunca lo que tiene adentro.",
+      "Backend en Python con FastAPI, una PWA en React y un puente de terminal por máquina, todo en contenedores en mi propio servidor. Yo puse el problema, el modelo de notas y las reglas de arquitectura; Claude Code implementó bajo esas reglas, y el blog cuenta cada decisión."
+    ],
+    "problem": [
+      "Con el TDAH las ideas me llegan rápido y se van igual de rápido. Ya tenía dónde guardarlas, un Zettelkasten que abro en Obsidian, pero llegar ahí costaba más de lo que dura una idea: copiar, abrir la app, crear la nota y pegar. Y en el iPhone ni siquiera tenía acceso a mis notas.",
+      "Las fuentes estaban repartidas: un video, un artículo, un chat en ChatGPT, otro en Claude y sesiones de Claude Code en dos máquinas. Las conversaciones con IA eran líneas continuas, sin referencias cruzadas, y cuando el contexto se compactaba lo anterior se perdía."
+    ],
+    "understanding": [
+      "Que el problema era la captura, no la organización. La primera propuesta de la IA traía base de datos, lista de tareas y clasificación automática. Nada de eso era lo que me dolía, y parte chocaba con mi regla: la IA no resume ni conecta mis ideas por mí.",
+      "Que las tareas y las ideas son dos sistemas. Lo que tengo que hacer vive en GraphT y lo que pienso vive en Cauce. Se conectan, pero ninguno se vuelve el cajón del otro.",
+      "Que una conversación ya es una lista enlazada: cada turno puede ser una nota fechada que enlaza a la anterior, y así cabe en un Zettelkasten sin forzarlo."
+    ],
+    "decisions": [
+      "Una capa encima del vault, no una app con su propia base de datos. El markdown en git sigue siendo la única fuente de verdad, como con Dendron y con Obsidian. Sin etiquetas: notas ancla y un frontmatter mínimo.",
+      "Una sola PWA para todos los dispositivos. Sin red nunca hablo con una IA, y con red puedo abrir una web, así que no paso por ninguna tienda. Lo offline se quedó en la captura.",
+      "Claude Code tal cual, en una terminal embebida. El Agent SDK cobraba por token y no aceptaba un historial propio; la PWA abre Claude Code por SSH y tmux, y un hook guarda cada turno como nota."
+    ],
+    "state": [
+      "Lo uso a diario desde mediados de octubre de 2026, en el teléfono y en la PC, contra mi servidor. Sigue en desarrollo: el backend tiene pruebas con pytest, la PWA todavía no, y casi cada semana el uso me deja algo que ajustar."
+    ],
+    "pieces": [
+      {
+        "title": "Captura desde cualquier lado.",
+        "text": "La PWA instalable, Atajos de iOS, una extensión para Chrome y Firefox y el menú de compartir de Android. Todas las plataformas pueden lo mismo, y transcribir una fuente se pide solo cuando hace falta."
+      },
+      {
+        "title": "Notas que se quedan limpias.",
+        "text": "Frontmatter mínimo, relaciones en el cuerpo y anclas en lugar de etiquetas. Lo que necesita procesarse pasa por una bandeja que se vacía sola; lo demás va directo a las notas."
+      },
+      {
+        "title": "Conversaciones como cadenas.",
+        "text": "Cada turno es una nota fechada que enlaza a la anterior. Editar un mensaje abre una rama, y los chats de ChatGPT, de Claude web y de Claude Code se importan con la misma forma."
+      },
+      {
+        "title": "La terminal en el host.",
+        "text": "Una terminal en la PWA que abre tmux por SSH en la torre o en el servidor, con mis herramientas reales. La sesión sobrevive a los cortes de red y se comparte entre dispositivos."
+      },
+      {
+        "title": "De las notas a una sesión viva.",
+        "text": "Una cadena de notas se reconstruye como sesión de Claude Code, y lo que sigue queda enlazado a la nota de origen. El historial de chats muestra solo el final de cada hilo."
+      },
+      {
+        "title": "Un puente con GraphT.",
+        "text": "Un servidor MCP del lado de Cauce que usa la API pública de GraphT, sin modificar GraphT. Escribir pide mi confirmación, y la documentación es la única fuente: el MCP no guarda nada de la API."
+      }
+    ],
+    "verdict": "En uso.",
+    "closing": [
+      "Lo hice para mí y es lo primero que abro cuando algo se me ocurre. El backend sigue la misma Clean Architecture que GraphT aunque esté en Python, todo corre en contenedores y los despliegues van por git.",
+      "Lo que sigue sale de usarlo: pulir la terminal en el teléfono y decidir qué más automatizar después de la captura sin que la IA escriba por mí."
+    ],
+    "leadFigure": {
+      "caption": "Fig. 1 · El editor de notas, con datos simulados.",
+      "alt": "Editor de notas de Cauce en vista dividida, con una nota de ejemplo y la lista de notas recientes."
+    },
+    "closingFigure": {
+      "caption": "Fig. 2 · El historial de chats, con datos simulados.",
+      "alt": "Historial de chats de Cauce: cada hilo con su última pregunta y la pregunta con la que empezó, con datos simulados."
+    }
+  },
+  "en": {
+    "label": "In use · in development",
+    "meta": "Personal project · since 2026",
+    "summary": [
+      "Cauce is the way my ideas reach my notes. A thought, a link or a conversation with an AI comes in from any device and lands in my second brain, a vault of markdown notes versioned in git, before it gets lost.",
+      "I use it every day and it's still in development. It's a tool for me, not a product. Since it holds my notes and my conversations, here I explain how it's built and why, never what's inside it.",
+      "The backend is Python with FastAPI, there's a React PWA and a terminal bridge per machine, all in containers on my own server. I set the problem, the note model and the architecture rules; Claude Code implemented under those rules, and the blog tells every decision."
+    ],
+    "problem": [
+      "With ADHD, ideas come to me fast and leave just as fast. I already had a place for them, a Zettelkasten I open in Obsidian, but getting there cost more than an idea lasts: copy, open the app, create the note and paste. And on the iPhone I didn't even have access to my notes.",
+      "Sources were scattered: a video, an article, a chat in ChatGPT, another in Claude and Claude Code sessions on two machines. AI conversations were continuous threads with no cross-references, and when the context got compacted, what came before was lost."
+    ],
+    "understanding": [
+      "That the problem was capturing, not organizing. The AI's first proposal came with a database, a to-do list and automatic classification. None of that was what hurt, and part of it clashed with my rule: the AI doesn't summarize or connect my ideas for me.",
+      "That tasks and ideas are two systems. What I have to do lives in GraphT and what I think lives in Cauce. They connect, but neither becomes the other's junk drawer.",
+      "That a conversation is already a linked list: every turn can be a dated note that links to the previous one, and that way it fits in a Zettelkasten without forcing it."
+    ],
+    "decisions": [
+      "A layer on top of the vault, not an app with its own database. Markdown in git is still the only source of truth, as it was with Dendron and with Obsidian. No tags: anchor notes and minimal frontmatter.",
+      "A single PWA for every device. Offline I never talk to an AI, and online I can open a website, so I go through no store. Offline stayed in capturing.",
+      "Claude Code as it is, in an embedded terminal. The Agent SDK billed per token and didn't accept a history of my own; the PWA opens Claude Code over SSH and tmux, and a hook saves every turn as a note."
+    ],
+    "state": [
+      "I've used it daily since mid-October 2026, on my phone and my PC, against my own server. It's still in development: the backend has tests with pytest, the PWA doesn't yet, and almost every week using it leaves me something to adjust."
+    ],
+    "pieces": [
+      {
+        "title": "Capture from anywhere.",
+        "text": "The installable PWA, iOS Shortcuts, an extension for Chrome and Firefox and Android's share menu. Every platform can do the same things, and transcribing a source is requested only when it's needed."
+      },
+      {
+        "title": "Notes that stay clean.",
+        "text": "Minimal frontmatter, relationships in the body and anchors instead of tags. Whatever needs processing goes through an inbox that empties itself; everything else goes straight to the notes."
+      },
+      {
+        "title": "Conversations as chains.",
+        "text": "Every turn is a dated note that links to the previous one. Editing a message opens a branch, and chats from ChatGPT, Claude web and Claude Code are imported with the same shape."
+      },
+      {
+        "title": "The terminal on the host.",
+        "text": "A terminal in the PWA that opens tmux over SSH on my desktop machine or the server, with my real tools. The session survives network drops and is shared across devices."
+      },
+      {
+        "title": "From notes to a live session.",
+        "text": "A chain of notes is rebuilt as a Claude Code session, and what follows stays linked to the source note. The chat history shows only the end of each thread."
+      },
+      {
+        "title": "A bridge to GraphT.",
+        "text": "An MCP server on Cauce's side that uses GraphT's public API, without modifying GraphT. Writing asks for my confirmation, and the documentation is the only source: the MCP keeps nothing about the API."
+      }
+    ],
+    "verdict": "In use.",
+    "closing": [
+      "I made it for myself and it's the first thing I open when something comes to mind. The backend follows the same Clean Architecture as GraphT even though it's in Python, everything runs in containers and deploys go through git.",
+      "What comes next comes from using it: polishing the terminal on the phone and deciding what else to automate after capturing, without the AI writing for me."
+    ],
+    "leadFigure": {
+      "caption": "Fig. 1 · The note editor, with simulated data.",
+      "alt": "Cauce's note editor in split view, with a sample note and the list of recent notes."
+    },
+    "closingFigure": {
+      "caption": "Fig. 2 · The chat history, with simulated data.",
+      "alt": "Cauce's chat history: each thread with its latest question and the question it started with, with simulated data."
+    }
+  }
+}

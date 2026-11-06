@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-10",
+  "tags": [
+    "cauce",
+    "devops",
+    "ux",
+    "selfhosting"
+  ],
+  "es": {
+    "title": "La terminal en el host, no en el contenedor",
+    "topic": "Desde la terminal de la PWA, Claude no podía hacer push ni usar mis herramientas, porque corría dentro de un contenedor mínimo. La IA ofreció llenar el contenedor de herramientas o usar la terminal nativa. Mi solución fue la que ya usaba por WireGuard: SSH al host y tmux ahí. El teléfono pidió sus propias reglas.",
+    "body": [
+      "Poco después de tener la terminal en la PWA, le pedí a Claude un cambio desde ahí. Lo hizo, pero no pudo hacer push. Faltaban herramientas, y la autenticación de GitHub no existía dentro del contenedor del puente. Por mi propia regla de todo en contenedores, la terminal corría en un entorno mínimo que no era mi máquina.",
+      "La IA ofreció dos salidas: meterle al contenedor un set completo de herramientas con un token de GitHub, o usar la terminal nativa para los cambios de código y dejar la PWA para notas y captura.",
+      "La segunda no tenía sentido: toda la app se hizo para no depender de la terminal nativa. Y la primera era ir parchando algo que, de raíz, nunca iba a ser mi máquina.",
+      "Lo que propuse fue lo que ya hacía cuando no tengo la PC a la mano: me conecto por WireGuard, abro SSH y trabajo en tmux. El puente hace eso mismo. Abre SSH al host elegido, la torre o el servidor, y corre tmux ahí, en mi entorno real, con mis herramientas y mi autenticación.",
+      "La IA puso un obstáculo: por SSH, el PATH no interactivo no encontraba Claude en el servidor. Pregunté a qué se refería, si cuando yo corro Claude ahí funciona sin problemas. La respuesta era un shell de login. Con eso el puente sigue en su contenedor, pero las sesiones viven en el host, y no hubo que instalar nada.",
+      "El teléfono tuvo sus propios problemas. El autocompletado del teclado duplicaba texto en tmux, así que escribir pasó a una barra de prompt nativa. Ahí distinguí dos acciones, enviar el prompt e insertar texto en él, porque a medio mensaje a veces quiero ejecutar un comando o referenciar un archivo. Y agregamos una fila con las teclas que el teclado del teléfono no tiene, con Ctrl como modificador para que yo componga las combinaciones.",
+      "La sesión se caía sola a los diez o quince minutos. La regla fue que solo me desconecto si cierro la sesión, y que si se va el internet se reconecte sola. Eso destapó otro error: con la misma sesión abierta en dos dispositivos, entraban en un bucle de conexión y desconexión. Lo diagnostiqué al verlo: cada uno, al conectarse, sacaba al otro, y la reconexión automática lo regresaba. Se quitó la opción de tmux que expulsa a los demás clientes y ahora las dos pantallas comparten la sesión.",
+      "Hoy le pido cambios a Claude desde el teléfono, y hace commit y despliega como si estuviera en mi escritorio."
+    ]
+  },
+  "en": {
+    "title": "The terminal on the host, not in the container",
+    "topic": "From the PWA's terminal, Claude couldn't push or use my tools, because it ran inside a minimal container. The AI offered to fill the container with tools or to use the native terminal. My solution was the one I already used over WireGuard: SSH to the host and tmux there. The phone asked for its own rules.",
+    "body": [
+      "Shortly after having the terminal in the PWA, I asked Claude for a change from there. It made the change, but it couldn't push. Tools were missing, and GitHub authentication didn't exist inside the bridge's container. Because of my own everything-in-containers rule, the terminal ran in a minimal environment that wasn't my machine.",
+      "The AI offered two ways out: load the container with a full set of tools plus a GitHub token, or use the native terminal for code changes and keep the PWA for notes and capture.",
+      "The second one made no sense: the whole app was built so I wouldn't depend on the native terminal. And the first one meant patching something that, at its root, was never going to be my machine.",
+      "What I proposed was what I already did when my PC isn't at hand: I connect through WireGuard, open SSH and work in tmux. The bridge does exactly that. It opens SSH to the chosen host, the desktop machine or the server, and runs tmux there, in my real environment, with my tools and my authentication.",
+      "The AI raised an obstacle: over SSH, the non-interactive PATH didn't find Claude on the server. I asked what it meant, since whenever I run Claude there it works fine. The answer was a login shell. With that, the bridge stays in its container, but the sessions live on the host, and nothing had to be installed.",
+      "The phone had its own problems. The keyboard's autocomplete duplicated text in tmux, so typing moved to a native prompt bar. There I separated two actions, sending the prompt and inserting text into it, because halfway through a message I sometimes want to run a command or reference a file. And we added a row with the keys the phone's keyboard doesn't have, with Ctrl as a modifier so I can build the combinations myself.",
+      "The session dropped on its own after ten or fifteen minutes. The rule became that I only disconnect when I close the session, and that it reconnects by itself if the internet goes away. That uncovered another bug: with the same session open on two devices, they went into a connect-disconnect loop. I diagnosed it when I saw it: each one kicked the other out when connecting, and automatic reconnection brought it back. The tmux option that kicks out other clients was removed, and now both screens share the session.",
+      "Today I ask Claude for changes from my phone, and it commits and deploys as if I were at my desk."
+    ]
+  }
+}

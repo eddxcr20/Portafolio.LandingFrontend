@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-08",
+  "tags": [
+    "cauce",
+    "ai",
+    "secondbrain",
+    "datamigration"
+  ],
+  "es": {
+    "title": "Toda ingesta es hacia las notas",
+    "topic": "Tenía conversaciones repartidas en ChatGPT, en Claude web y en las sesiones de Claude Code de dos máquinas. Todo entra a Cauce por el mismo lado: como notas. ChatGPT solo daba un enlace y no un JSON, sus ediciones son ramas, y tras una compactación Claude Code ya no muestra el pasado. Cada caso pidió una regla.",
+    "body": [
+      "Una de las razones de Cauce era dejar de tener mis conversaciones con IA repartidas: unas en ChatGPT, otras en Claude en el navegador, otras en las sesiones de Claude Code de la torre y del servidor. Las quería en un solo lugar y rastreables.",
+      "La regla fue simple: toda ingesta es hacia las notas. La IA había hecho que importar un chat lo mandara directo a una sesión de Claude. No. Primero se vuelve notas, con la misma cadena que cualquier conversación, y de las notas lo mando a Claude si quiero.",
+      "Con ChatGPT la IA supuso que yo tenía un JSON. Lo que ChatGPT da es un enlace público, y se importó desde ese enlace. Después pregunté qué pasaba con los mensajes que edité, porque en el navegador veo cada versión y la conversación que siguió de cada una. La IA me dio opciones, entre ellas importar cada rama como conversación aparte. Las ramas son la misma conversación, así que se guardan como árbol, cada versión enlazada a su mensaje anterior.",
+      "Claude web entró igual, con la extensión de captura que ya existía en lugar de un bookmarklet nuevo. Y pegar JSON a mano en la PWA lo quitamos: era trabajo que la extensión ya hacía.",
+      "Las sesiones de Claude Code fueron la migración grande. Antes de lanzarla marqué dos cuidados. Tras una compactación, al reanudar ya no veo lo anterior; si el archivo de la sesión lo conserva se recupera, y si no, se extrae lo que sí es mi pregunta y la respuesta. Y hay sesiones vacías que aparecen en la lista para reanudar sin que yo haya escrito nada; esas se filtran en la migración y también en la PWA.",
+      "Pedí conservar el identificador real de cada sesión, para que una conversación migrada se pueda seguir reanudando y la captura en vivo se encadene a ella. Primero migramos una, la revisé en mis notas, y hasta entonces corrió el resto.",
+      "Hubo un tropiezo: una nota salió cortada porque se importó la sesión que estaba activa en ese momento, a medio turno. De ahí quedó otra regla: la sesión en curso nunca se importa.",
+      "Hoy cualquier conversación, venga de donde venga, es una cadena de notas con fecha. La busco, la enlazo y la sigo desde cualquier máquina."
+    ]
+  },
+  "en": {
+    "title": "Everything that comes in becomes notes",
+    "topic": "I had conversations scattered across ChatGPT, Claude web and the Claude Code sessions on two machines. Everything comes into Cauce the same way: as notes. ChatGPT only gave a link and not a JSON, its edits are branches, and after a compaction Claude Code no longer shows the past. Each case called for a rule.",
+    "body": [
+      "One of the reasons for Cauce was to stop having my AI conversations scattered: some in ChatGPT, others in Claude in the browser, others in the Claude Code sessions on my desktop machine and on the server. I wanted them in one place, and traceable.",
+      "The rule was simple: everything that comes in becomes notes. The AI had made importing a chat send it straight into a Claude session. No. First it becomes notes, with the same chain as any conversation, and from the notes I send it to Claude if I want to.",
+      "With ChatGPT, the AI assumed I had a JSON file. What ChatGPT gives you is a public link, and it was imported from that link. Then I asked what happened to the messages I had edited, because in the browser I can see each version and the conversation that followed from it. The AI gave me options, including importing each branch as a separate conversation. Branches are the same conversation, so they're stored as a tree, with each version linked to its previous message.",
+      "Claude web came in the same way, through the capture extension that already existed instead of a new bookmarklet. And pasting JSON by hand into the PWA was removed: it was work the extension already did.",
+      "Claude Code sessions were the big migration. Before running it I flagged two things. After a compaction, when I resume I no longer see what came before; if the session file keeps it, it's recovered, and if not, what's extracted is what really is my question and the answer. And there are empty sessions that show up in the resume list without me ever having typed anything; those are filtered out in the migration and in the PWA too.",
+      "I asked to keep each session's real identifier, so a migrated conversation can still be resumed and live capture chains onto it. First we migrated one, I checked it in my notes, and only then did the rest run.",
+      "There was a stumble: one note came out cut off because the session that was active at that moment got imported, mid-turn. That left another rule: the session in progress is never imported.",
+      "Today any conversation, wherever it comes from, is a dated chain of notes. I search it, link it and continue it from any machine."
+    ]
+  }
+}

@@ -13,6 +13,7 @@ describe("FindProjectDossiersAdapter", () => {
     ).handleAsync();
 
     expect(dossiers.map((dossier) => dossier.tag.id).sort()).toEqual([
+      "cauce",
       "grapht",
       "industrialcomplements",
     ]);

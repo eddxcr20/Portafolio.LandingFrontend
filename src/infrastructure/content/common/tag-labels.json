@@ -162,5 +162,25 @@
   "datavisualization": {
     "es": "VisualizaciónDeDatos",
     "en": "DataVisualization"
+  },
+  "cauce": {
+    "es": "Cauce",
+    "en": "Cauce"
+  },
+  "secondbrain": {
+    "es": "SegundoCerebro",
+    "en": "SecondBrain"
+  },
+  "zettelkasten": {
+    "es": "Zettelkasten",
+    "en": "Zettelkasten"
+  },
+  "pwa": {
+    "es": "PWA",
+    "en": "PWA"
+  },
+  "python": {
+    "es": "Python",
+    "en": "Python"
   }
 }
