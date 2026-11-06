@@ -2,6 +2,7 @@
   "slug": "grapht",
   "name": "GraphT",
   "order": 1,
+  "status": "working",
   "link": "https://grapht.com.mx",
   "leadImage": "/images/grapht-workbench.webp",
   "closingImage": "/images/grapht-life-areas.webp",

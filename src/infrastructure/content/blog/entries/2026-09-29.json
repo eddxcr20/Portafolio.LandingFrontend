@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-29",
+  "tags": [
+    "industrialcomplements",
+    "legacymodernization",
+    "softwarearchitecture",
+    "freelancing"
+  ],
+  "es": {
+    "title": "El Excel es la especificación",
+    "topic": "Antes de escribir código para migrar el sistema de Industrial Complements como ingeniero externo contratado por módulo, fijé el alcance: fases cortas que se cobran por separado, el Excel actual como especificación y un orden que manda la dependencia de los datos, no la urgencia.",
+    "body": [
+      "En septiembre de 2026 Industrial Complements me contrató como ingeniero externo para migrar su sistema interno, módulo por módulo. Lo primero que escribí no fue código: fue lo que no iba a hacer.",
+      "Casi todo en la empresa corre sobre un libro de Excel con formularios y VBA conectado a un SQL Server sin normalizar: inventario, compras, caja, cotizaciones, facturación y cuentas. Migrar algo así sin límites claros es la receta para un proyecto que nunca termina.",
+      "Y yo ya sabía dónde se me caen estos proyectos: en el alcance abierto. A principios de año trabajé un mes para alguien sin anticipo y sin nada por escrito, y el pago nunca llegó.",
+      "Así que antes de abrir el IDE escribí con Claude el documento de alcance. Lo central cabe en una frase: el sistema nuevo hace lo mismo que hoy hace cada pantalla del Excel, ni más ni menos. Equivalencia funcional, no visual. La app es web y responsiva y el dominio se modela limpio por dentro, pero la referencia de qué se entrega es el propio sistema del cliente.",
+      "Antes de cada módulo se escribe una lista corta de lo que esa pantalla hace hoy, y esa lista es lo que se entrega. Lo nuevo o distinto es una mejora y se cotiza aparte. Se entrega por fases cortas, cada una se cobra por separado y la siguiente arranca cuando llega su pago, sin fechas fijas.",
+      "El orden lo manda la dependencia de los datos, no la urgencia de cada semana: primero lo aislado y al final lo que alimenta a todo lo demás. Cuentas fue el primero porque no depende de nada y además era lo más urgente. Y dejé fuera, por escrito, los módulos que nadie usa, el timbrado de CFDI (se sigue haciendo en el portal del SAT) y la administración del servidor.",
+      "Del otro lado, la expectativa natural era que migrar es rápido, porque el sistema ya existe. Por eso el documento no depende de una firma. La protección real es que sin pago no hay siguiente fase, y que el Excel funciona como referencia objetiva ante cualquier \"eso no te lo pedí\".",
+      "Con ese marco arrancó Cuentas el 22 de septiembre de 2026.",
+      "¿Es el contrato ideal? Ni idea. Pero por primera vez el problema de qué entregar quedó resuelto antes de escribir la primera línea."
+    ]
+  },
+  "en": {
+    "title": "Excel is the specification",
+    "topic": "Before writing any code to migrate Industrial Complements' system as an outside engineer contracted per module, I pinned down the scope: short phases paid separately, the current Excel workbook as the specification, and an order set by data dependencies, not urgency.",
+    "body": [
+      "In September 2026, Industrial Complements hired me as an outside engineer to migrate its internal system, module by module. The first thing I wrote wasn't code: it was what I wasn't going to do.",
+      "Almost everything at the company runs on an Excel workbook with forms and VBA, wired to a SQL Server database that was never normalized: inventory, purchasing, the register, quotes, invoicing and accounts. Migrating something like that without clear limits is a recipe for a project that never ends.",
+      "And I already knew where these projects fall apart for me: open scope. Earlier this year I worked a month for someone with no upfront payment and nothing in writing, and the money never came.",
+      "So before opening the IDE, I wrote the scope document with Claude. The core fits in one sentence: the new system does exactly what each Excel screen does today, no more, no less. Functional equivalence, not visual. The app is web-based and responsive and the domain gets modeled cleanly underneath, but the reference for what gets delivered is the client's own system.",
+      "Before each module we write a short list of what that screen does today, and that list is the deliverable. Anything new or different is an improvement and gets quoted separately. Delivery happens in short phases, each one paid on its own, and the next one starts when its payment arrives, with no fixed dates.",
+      "The order comes from data dependencies, not from whatever feels urgent that week: isolated modules first, and last whatever feeds everything else. Accounts went first because it depends on nothing, and it also happened to be the most urgent. And I left out, in writing, the modules nobody uses, CFDI e-invoice stamping (that keeps happening on the tax authority's portal) and running the server.",
+      "On the other side, the natural expectation was that a migration is quick, since the system already exists. That's why the document doesn't depend on a signature. The real protection is that no payment means no next phase, and that the Excel workbook works as an objective reference against any \"I never asked for that\".",
+      "Accounts kicked off under that framework on September 22, 2026.",
+      "Is it the ideal contract? No idea. But for the first time, the question of what to deliver was settled before I wrote a single line."
+    ]
+  }
+}

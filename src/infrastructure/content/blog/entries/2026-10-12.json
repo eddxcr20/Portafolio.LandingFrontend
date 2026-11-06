@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-12",
+  "tags": [
+    "industrialcomplements",
+    "devops",
+    "docker",
+    "git"
+  ],
+  "es": {
+    "title": "Una demo que no se detiene mientras sigo construyendo",
+    "topic": "El cliente necesitaba seguir probando Cuentas mientras yo empezaba Inventario. La solución fue un stack aparte que corre desde imágenes, un script con comandos en palabras y un túnel que yo prendo y apago. El primer túnel falló justo cuando más lo necesitaba.",
+    "body": [
+      "A principios de octubre, Industrial Complements iba a validar Cuentas con lo que ya había, y yo necesitaba seguir migrando lo demás. El problema era práctico: si cambio de rama para trabajar en Inventario, ¿qué ve el cliente? Lo único que se me ocurría era copiar toda la carpeta del proyecto, una por rama, y no me convencía.",
+      "Claude encontró la respuesta en mi propia infraestructura: nada en el compose monta el código como volumen. Backend y frontend se construyen como imágenes, así que un stack corriendo no sigue la carpeta, sigue la imagen con la que se levantó. Con un proyecto de compose aparte para la demo, con sus propios puertos, contenedores y base de datos, podía construirla una vez y cambiar de rama todo lo que quisiera.",
+      "Funcionaba, pero eran demasiados comandos para algo que iba a hacer a diario. Le describí mi flujo real: levantar el entorno local, mostrarle avances al cliente, seguir con otro módulo, regresar a corregir lo que el cliente pidiera, generar y validar migraciones, migrar datos del legacy y cerrar el módulo. Le pedí un solo script para todo eso, y que me dejara elegir qué rama ve el cliente, como piezas que se intercambian.",
+      "La primera versión del menú tenía números y dos columnas, y no le entendí nada. La segunda usó palabras agrupadas por cuándo las necesitas: «mostrar inventory» para enseñarle esa rama al cliente, «exponer» y «ocultar» para abrirla o cerrarla a internet, «migracion» y «aplicar» para la base.",
+      "Ese mismo día falló la exposición. Para mostrarle avances desde mi casa usaba un funnel de Tailscale, y de pronto el dominio público dejó de resolver. La IA sugirió que quizá nunca había funcionado bien, cuando el cliente llevaba días dándome retroalimentación desde fuera. Y al reiniciar el servicio lo rompió más.",
+      "Decidí el reemplazo con dos condiciones. Ya usaba Cloudflare Tunnel como contenedor en GraphT, así que nada de instalar cosas en mi máquina. Y nada permanente: lo tengo que poder prender y apagar yo, y que desaparezca cuando no se usa. Quedó un contenedor de túnel dentro del stack de la demo, con un subdominio fijo en mi dominio, que «exponer» levanta y «ocultar» baja. Todo lo de Tailscale para la demo salió del proyecto.",
+      "Después vinieron los ajustes de uso. La demo quedó anclada a develop y lo demás vive en local. Los contenedores de mi máquina no arrancan solos al encender, solo los de producción. Y cada vez que la demo se actualiza, develop se sincroniza con las ramas que siguen abiertas.",
+      "No es infraestructura sofisticada. Pero el cliente prueba lo que ya está mientras yo construyo lo que sigue, y yo controlo cuándo se ve qué."
+    ]
+  },
+  "en": {
+    "title": "A demo that doesn't stop while I keep building",
+    "topic": "The client needed to keep testing Accounts while I started on Inventory. The answer was a separate stack running from images, a script with commands in plain words and a tunnel I turn on and off. The first tunnel failed right when I needed it most.",
+    "body": [
+      "In early October, Industrial Complements was going to validate Accounts with what was already there, and I needed to keep migrating everything else. The problem was practical: if I switch branches to work on Inventory, what does the client see? The only thing I could think of was copying the whole project folder, one per branch, and I didn't like it.",
+      "Claude found the answer in my own setup: nothing in the compose file mounts the code as a volume. The backend and frontend are built into images, so a running stack doesn't follow the folder, it follows the image it was started from. With a separate compose project for the demo, with its own ports, containers and database, I could build it once and switch branches as much as I wanted.",
+      "It worked, but it was too many commands for something I'd be doing every day. I described my real workflow: bring up the local environment, show progress to the client, move on to another module, go back and fix whatever the client asked for, generate and validate migrations, migrate legacy data and close out the module. I asked for a single script for all of it, and for it to let me pick which branch the client sees, like swappable pieces.",
+      "The first version of the menu had numbers and two columns, and I couldn't make sense of it. The second one used words, grouped by when you need them: \"mostrar inventory\" to show that branch to the client, \"exponer\" and \"ocultar\" to open it to the internet or close it, \"migracion\" and \"aplicar\" for the database.",
+      "That same day, exposure broke. To show progress from home I was using a Tailscale funnel, and suddenly the public domain stopped resolving. The AI suggested it might never have worked properly, when the client had been giving me feedback from outside for days. And restarting the service broke it even more.",
+      "I picked the replacement with two conditions. I was already running Cloudflare Tunnel as a container for GraphT, so nothing gets installed on my machine. And nothing permanent: I have to be able to turn it on and off myself, and it has to disappear when it's not in use. It ended up as a tunnel container inside the demo stack, with a fixed subdomain on my own domain, brought up by \"exponer\" and taken down by \"ocultar\". Everything Tailscale-related for the demo left the project.",
+      "Then came the usage tweaks. The demo stays pinned to develop and everything else lives locally. Containers on my machine don't start on boot, only production ones do. And every time the demo gets updated, develop is synced into the branches that are still open.",
+      "It's not fancy infrastructure. But the client tests what's done while I build what's next, and I control when anything is visible."
+    ]
+  }
+}

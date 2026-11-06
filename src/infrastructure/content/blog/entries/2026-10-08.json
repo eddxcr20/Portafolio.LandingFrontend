@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-08",
+  "tags": [
+    "industrialcomplements",
+    "domaindrivendesign",
+    "testing",
+    "claudecode"
+  ],
+  "es": {
+    "title": "\"Explícame la consecuencia\"",
+    "topic": "Moví la propiedad de las cuentas a la empresa dueña. La IA advirtió una consecuencia que no entendí; en vez de discutirla, la demostró con dos pruebas temporales. Con la evidencia enfrente, regresé el diseño.",
+    "body": [
+      "A finales de septiembre revisé el modelo de Cuentas de la migración de Industrial Complements y no me gustó cómo estaba armado el agregado. Pensé que lo correcto era que la empresa dueña contuviera sus cuentas: que la cuenta dejara de saber a qué empresa pertenece, y que todo movimiento entrara rastreando empresa y cuenta. Así, si el emisor o el receptor no era la empresa o su contraparte, el movimiento no podía pertenecer a esa cuenta.",
+      "Claude lo implementó, con pruebas de que registrar en una cuenta ajena o poner como emisor a otra empresa fallaba. Pero me dejó dos consecuencias para revisar antes de validar.",
+      "Una me pareció irrelevante: que traer una empresa con todas sus cuentas iba a ser pesado. Para eso existe la paginación, y el saldo de cada cuenta ya viene como la foto de su última transacción. La otra no la entendí. Le pedí que me la explicara.",
+      "En vez de argumentar, escribió dos pruebas temporales contra el modelo y las corrió. Las dos pasaron, o sea, los dos agujeros existían.",
+      "El primero: con una referencia a la cuenta, sin pasar por la empresa, cualquier código podía registrar un movimiento diciéndole a la cuenta que su empresa era otra. La validación sí corría, pero comparaba contra la empresa que le pasaban, no contra la dueña. Resultado medido: un movimiento de otra empresa del grupo viviendo dentro de una cuenta de la nuestra. Justo lo que le había pedido impedir. La regla no estaba en el modelo, estaba en la costumbre de entrar siempre por la empresa.",
+      "El segundo: el saldo guardado en cada movimiento no tenía un significado fijo, porque su signo dependía de qué empresa se le pasara al recalcular.",
+      "Con eso enfrente la decisión fue fácil: la cuenta vuelve a guardar la referencia de su empresa, como un dato fijo que recibe al crearse. La invariante regresó a donde podía hacerse cumplir. Y las pruebas temporales se borraron, porque su trabajo era convencerme, no quedarse.",
+      "Me quedé con dos cosas. La primera es que un \"explícamelo\" a tiempo vale más que aceptar o rechazar una advertencia que no entiendes. La segunda es que una consecuencia que se puede probar no se discute, se ejecuta.",
+      "Desde entonces le pido lo mismo a la IA cuando dice que algo puede fallar: no que me convenza, que me lo demuestre."
+    ]
+  },
+  "en": {
+    "title": "\"Explain the consequence\"",
+    "topic": "I moved account ownership to the owning company. The AI warned about a consequence I didn't understand; instead of arguing it, it proved it with two throwaway tests. With the evidence in front of me, I reverted the design.",
+    "body": [
+      "At the end of September I reviewed the Accounts model for the Industrial Complements migration and didn't like how the aggregate was put together. I thought the right move was for the owning company to contain its accounts: the account would stop knowing which company it belonged to, and every transaction would come in through the company and the account. That way, if the sender or receiver wasn't the company or its counterparty, the transaction couldn't belong to that account.",
+      "Claude implemented it, with tests proving that registering on someone else's account or using another company as the sender failed. But it left me two consequences to review before signing off.",
+      "One seemed irrelevant to me: that loading a company with all its accounts would be heavy. That's what paging is for, and each account's balance already comes as a snapshot of its last transaction. The other one I didn't understand. I asked it to explain.",
+      "Instead of arguing, it wrote two throwaway tests against the model and ran them. Both passed, which meant both holes were real.",
+      "The first one: with a reference to the account, without going through the company, any code could register a transaction while telling the account its company was a different one. The validation did run, but it compared against whatever company it was handed, not against the owner. Measured result: a transaction from another company in the group living inside one of our accounts. Exactly what I had asked to prevent. The rule wasn't in the model, it was in the habit of always going through the company.",
+      "The second one: the balance stored on each transaction had no fixed meaning, because its sign depended on which company was passed in when recalculating.",
+      "With that in front of me the decision was easy: the account goes back to storing a reference to its company, as a fixed fact it receives when it's created. The invariant went back to where it could actually be enforced. And the throwaway tests were deleted, because their job was to convince me, not to stick around.",
+      "I took two things from it. One: a timely \"explain it to me\" is worth more than accepting or rejecting a warning you don't understand. Two: a consequence you can test isn't up for debate, you just run it.",
+      "Since then I ask the AI for the same thing whenever it says something might break: don't convince me, show me."
+    ]
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-01",
+  "tags": [
+    "industrialcomplements",
+    "domaindrivendesign",
+    "legacymodernization",
+    "claudecode"
+  ],
+  "es": {
+    "title": "Modelar primero, contrastar después",
+    "topic": "El dominio sale de cómo trabaja el negocio, no de lo que hay en las tablas legacy. Si las dos fuentes son independientes, cada dato que no encaja se puede clasificar: basura, modelo incompleto o regla que ya no rige.",
+    "body": [
+      "En el mismo chat sobre migraciones legacy, Claude me explicó cómo usar la copia de producción de Industrial Complements como base para desarrollar. Lo corregí: yo nunca dije que desarrollaba contra esa copia.",
+      "Mi enfoque es al revés. El modelo de dominio se construye a partir de lo que pasa en el día a día del cliente, y la copia legacy solo sirve para detectar dónde los datos dejan de ser relevantes.",
+      "Su respuesta me dio el argumento formal que me faltaba. Si el modelo sale del negocio y los datos salen del sistema viejo, compararlos es una prueba que puede fallar, y cada falla dice algo. O el dato es basura, o el modelo está incompleto porque el negocio hace algo que nadie me contó, o la regla cambió y el dato fue válido en su momento. Si el modelo hubiera salido de las tablas, se habría ajustado a la basura y ninguna de esas tres se podría distinguir.",
+      "El enfoque tiene nombre y año: Ganti y Brayman lo publicaron en 1995, primero el negocio y después el legacy, para ver qué tiene valor. Y tiene un efecto que me encantó: lo que no logra mapearse a nada del dominio no era dominio. Las tablas de presentación y las columnas de andamiaje caen solas, por residuo.",
+      "Ese mismo día lo convertí en regla del proyecto. Si un dato rompe la migración, se revisa si es un problema de normalización, una regla de negocio caducada o basura.",
+      "Escribir la regla fue fácil. Sostenerla con la IA, no tanto. Al migrar los usuarios, el enum de roles salió con los valores en español tal cual estaban en la base vieja. Antes de escribir el modelo de Cuentas, Claude me anunció que lo iba a contrastar contra los datos reales del legacy. Y en octubre dejó el RFC, el código postal y el teléfono de las entidades sin validar, porque los datos viejos venían sucios y una validación estricta los iba a rechazar.",
+      "Las tres veces la respuesta fue la misma. La fuente de verdad del dominio es lo que yo defino con el cliente, y la base legacy es un desecho de datos del que solo se extraen tres cosas: datos buenos, basura y reglas que no habíamos considerado. Las reglas son las de la vida real: el RFC tiene la forma que indica el SAT, el código postal cinco dígitos y el teléfono diez. Si al migrar alguna regla estorba, se afloja esa regla puntual cuando yo lo decida, pero el modelo no nace sin ella.",
+      "También fijé el orden de trabajo por módulo: primero el modelo de dominio, luego mi autorización, después los casos de uso, la infraestructura y al final la app.",
+      "Hoy esa regla está escrita en la memoria del proyecto y la IA la lee al empezar cada sesión. No ha dejado de hacer falta repetirla de vez en cuando, pero ya no es una discusión, es una referencia."
+    ]
+  },
+  "en": {
+    "title": "Model first, compare later",
+    "topic": "The domain comes from how the business works, not from what's in the legacy tables. If the two sources are independent, every record that doesn't fit can be classified: garbage, an incomplete model or a rule that no longer applies.",
+    "body": [
+      "In that same chat about legacy migrations, Claude walked me through using Industrial Complements' production copy as the basis for development. I corrected it: I never said I was developing against that copy.",
+      "My approach is the other way around. The domain model gets built from what actually happens in the client's day to day, and the legacy copy only helps me spot where the data stops being relevant.",
+      "Its answer gave me the formal argument I was missing. If the model comes from the business and the data comes from the old system, comparing them is a test that can fail, and every failure tells you something. Either the data is garbage, or the model is incomplete because the business does something nobody told me about, or the rule changed and the data was valid back then. If the model had come from the tables, it would have fit itself to the garbage and none of those three could be told apart.",
+      "The approach has a name and a year: Ganti and Brayman published it in 1995, business first and then the legacy system, to see what's worth keeping. And it has a side effect I loved: whatever can't be mapped to anything in the domain wasn't domain to begin with. Presentation tables and scaffolding columns just fall away, by elimination.",
+      "That same day I turned it into a project rule. If a record breaks the migration, we check whether it's a normalization problem, an expired business rule or garbage.",
+      "Writing the rule was easy. Holding the AI to it, not so much. When migrating users, the roles enum came out with the Spanish values exactly as they were in the old database. Before writing the Accounts model, Claude told me it was going to check it against the real legacy data. And in October it left the tax ID, postal code and phone number on business entities unvalidated, because the old data was dirty and strict validation would reject it.",
+      "All three times the answer was the same. The source of truth for the domain is what I define with the client, and the legacy database is a data dump that only gives us three things: good data, garbage and rules we hadn't considered. The rules are real-world rules: the tax ID has the shape the tax authority defines, the postal code has five digits and the phone number has ten. If a rule gets in the way during migration, that specific rule gets loosened when I decide so, but the model isn't born without it.",
+      "I also locked the order of work for every module: domain model first, then my sign-off, then use cases, infrastructure and finally the app.",
+      "Today that rule lives in the project's memory and the AI reads it at the start of every session. I still have to repeat it now and then, but it's no longer an argument, it's a reference."
+    ]
+  }
+}

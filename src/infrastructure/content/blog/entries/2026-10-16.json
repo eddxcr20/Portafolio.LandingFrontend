@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-16",
+  "tags": [
+    "industrialcomplements",
+    "legacymodernization",
+    "domaindrivendesign",
+    "businessrules"
+  ],
+  "es": {
+    "title": "Arqueología de 3,945 líneas de VBA",
+    "topic": "Extraer las reglas de negocio del formulario de tareas de inventario sin escribir código: separar la regla del accidente, preguntar qué significa cada columna en vez de suponerlo, y distinguir el código vivo del rezago con capturas y un grafo de llamadas.",
+    "body": [
+      "Con Cuentas en manos del cliente me tocó el módulo que más le importa a Industrial Complements: el inventario. Su corazón es un formulario de VBA que registra entradas, salidas, ajustes y pedidos, y recalcula costos y precios. Lo extraje a un archivo de texto: 3,945 líneas.",
+      "Le pedí a Claude que lo leyera completo y me dijera tres cosas: qué entendía, qué necesitaba saber para reconstruir las reglas (funciones fuera del archivo, qué es cada campo) y qué le parecía raro. Sin código. Primero había que definir las reglas.",
+      "Su análisis venía en dos bloques: lo que el código hace y lo que parecía anómalo. El segundo bloque fue el más útil, porque cada anomalía había que clasificarla, y esa clasificación solo la podía hacer yo, que conozco el negocio y conozco el Excel.",
+      "Algunas eran errores de lógica. Si el costo de compra bajaba, el legacy recalculaba el precio de venta, cuando lo correcto es conservarlo y que el margen se ensanche. Y aceptaba cantidades que no debían existir: solo números positivos de uno en adelante.",
+      "Otras eran limitaciones técnicas que se volvieron comportamiento. Cambiar un precio borraba o alteraba el historial anterior. Una entrada podía registrarse sin proveedor, y en la realidad siempre hay uno. Todos los movimientos compartían una sola tabla de logs, cuando en el dominio son conceptos distintos con sus propios campos.",
+      "Y otras eran puro rezago: una rama de código que no hacía nada, una columna que se iba a usar para estadísticas y nunca se usó, campos que alguien olvidó asignar, el texto \"null\" guardado como si fuera un valor.",
+      "Ahí le di la instrucción que guió todo lo demás. Abstrae la lógica del dominio de la lógica del código. No pienses que se usará la misma base ni las mismas columnas. Mucho de lo que hoy el legacy guarda en una columna, en el sistema nuevo lo van a calcular los casos de uso. Y si una columna puede significar una cosa u otra, pregúntame.",
+      "Las respuestas fueron de dominio puro. El IVA siempre es 16 %, no hay sucursales en frontera. La bandera de margen manual no es una regla, es un truco de la UI para forzar el 35 % por defecto. \"PG\" significa público en general. Los proveedores son un catálogo global. Cada pedido pertenece a una sola sucursal.",
+      "Para saber qué código seguía vivo hice capturas del formulario y les puse flechas con el nombre de cada botón. Con eso la IA armó un grafo de llamadas en Python desde los botones hacia abajo. Lo que ningún botón ni ningún flujo alcanza es rezago, incluida una segunda página completa del formulario que ya nadie usa.",
+      "Lo que pertenecía a módulos fuera de esta fase (compras, cotizaciones, la tienda en línea, el boletín) se declaró y se apartó. No se desarrolla ahora.",
+      "Esa semana el inventario dejó de ser un formulario y empezó a ser una lista de reglas. El código viejo no se tradujo, se interrogó."
+    ]
+  },
+  "en": {
+    "title": "Archaeology of 3,945 lines of VBA",
+    "topic": "Extracting business rules from the inventory tasks form without writing code: separating rules from accidents, asking what each column means instead of assuming, and telling live code from leftovers with screenshots and a call graph.",
+    "body": [
+      "With Accounts in the client's hands, I moved on to the module Industrial Complements cares about most: inventory. Its core is a VBA form that records stock entries, exits, adjustments and purchase orders, and recalculates costs and prices. I dumped it into a text file: 3,945 lines.",
+      "I asked Claude to read all of it and tell me three things: what it understood, what it needed to know to rebuild the rules (functions outside the file, what each field is) and what looked odd to it. No code. The rules had to be defined first.",
+      "Its analysis came in two blocks: what the code does and what looked anomalous. The second block was the most useful, because every anomaly had to be classified, and only I could do that, since I know the business and I know the Excel workbook.",
+      "Some were logic errors. When the purchase cost went down, the legacy recalculated the sale price, when the right thing is to keep it and let the margin widen. And it accepted quantities that shouldn't exist: only positive numbers from one up.",
+      "Others were technical limitations that had turned into behavior. Changing a price deleted or altered the previous history. An entry could be recorded without a supplier, and in real life there's always one. Every movement shared a single log table, when in the domain they're different concepts with their own fields.",
+      "And others were plain leftovers: a code branch that did nothing, a column meant for statistics that was never used, fields someone forgot to fill in, the text \"null\" stored as if it were a value.",
+      "That's when I gave the instruction that drove everything after. Abstract the domain logic away from the code logic. Don't assume we'll use the same database or the same columns. Much of what the legacy stores in a column today will be calculated by use cases in the new system. And if a column could mean one thing or another, ask me.",
+      "The answers were pure domain. VAT is always 16%, there are no border branches. The manual margin flag isn't a rule, it's a UI trick to force the default 35%. \"PG\" means general public. Suppliers are a global catalog. Every purchase order belongs to a single branch.",
+      "To find out which code was still alive, I took screenshots of the form and drew arrows with the name of each button. With that, the AI built a call graph in Python from the buttons down. Whatever no button and no flow can reach is a leftover, including a whole second page of the form nobody uses anymore.",
+      "Whatever belonged to modules outside this phase (purchasing, quotes, the online store, the bulletin) was declared and set aside. It doesn't get built now.",
+      "That week, inventory stopped being a form and started being a list of rules. The old code wasn't translated, it was interrogated."
+    ]
+  }
+}

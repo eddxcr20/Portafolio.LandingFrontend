@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-30",
+  "tags": [
+    "industrialcomplements",
+    "legacymodernization",
+    "datamigration",
+    "softwarearchitecture"
+  ],
+  "es": {
+    "title": "Autores antes que sugerencias",
+    "topic": "En vez de pedirle a la IA una estrategia de migración, le pedí autores. La literatura coincidía en algo que contradecía su primera idea (borrar los datos legacy al migrar un módulo), y mi propio plan resultó ser una metodología publicada en 1997.",
+    "body": [
+      "En septiembre, con los dos proyectos de base de datos de la migración de Industrial Complements recién creados (uno para la base legacy y otro para la nueva), me trabé con una pregunta: ¿cómo mantengo consistentes los datos mientras conviven los dos sistemas?",
+      "Una de las primeras ideas que me dio Claude fue borrar los datos de la base legacy conforme cada módulo pasara al sistema nuevo. Suena ordenado, pero es peligroso cuando no tienes la certeza de que esos datos pertenecen solo a ese módulo. Y en un Excel donde todas las pantallas se cruzan, esa certeza no existe.",
+      "Así que abrí un chat aparte y le dije que no confiaba en sus sugerencias. Le pedí que primero nombrara bien los problemas, para no buscar a ciegas, y que después buscara autores, ingenieros e investigadores que hubieran escrito sobre cada uno.",
+      "Me devolvió 19 problemas con su término en inglés: datos que mienten en sus columnas, reglas que solo viven en el VBA, pantallas que no son fronteras de dominio, quién es dueño de cada dato mientras conviven los dos sistemas, cómo verificar sin pruebas existentes. Le confirmé lo que pesaba en mi caso: el legacy sigue operando mientras migro, la migración va módulo a módulo y la base nueva solo la consume el sistema nuevo.",
+      "Luego vinieron los autores. Brodie y Stonebraker, con su método Chicken Little de 1995, mantienen los dos sistemas interoperando con gateways. Wu, Bisbal y su equipo responden en 1997 con la metodología Butterfly, que elimina los gateways. Newman, Kleppmann, Ambler y Sadalage aportan los patrones modernos y el porqué de no escribir a mano en dos bases. Difieren en el mecanismo, pero coinciden en dos cosas. Hay una sola fuente de verdad por dato en cada momento. Y el legacy se congela, nunca se borra.",
+      "Entonces le planteé mi idea: congelar el código, no la base. Nada de desarrollo nuevo en el Excel, los datos siguen fluyendo a la base legacy, avanzo por dependencias verificando que el sistema nuevo cumpla las reglas, y la migración de datos va al final. Resultó ser Butterfly casi fase por fase. Y no necesito la parte más pesada de la metodología, la que migra datos sin detener la operación: basta con ensayar la migración completa contra una copia y hacer el corte en una ventana corta.",
+      "Lo que mi plan no tenía era el transformador temprano. El código que pasa los datos del esquema viejo al nuevo no es desechable: es el mismo que hará la migración real, y cada registro que no logra transformar es una regla de negocio que todavía no conozco.",
+      "Ese mismo día corregimos el documento de alcance: la base legacy no se destruye ni se vacía en ningún momento, y la carga de cada módulo ocurre una sola vez, después de verificarlo. También nació DataMigration, el proyecto que con el tiempo se volvió mi detector de reglas.",
+      "Creo que a la IA le pido mejor fuentes que opiniones. Las opiniones las pongo yo, y está chido descubrir que alguien ya las había publicado."
+    ]
+  },
+  "en": {
+    "title": "Authors before suggestions",
+    "topic": "Instead of asking the AI for a migration strategy, I asked it for authors. The literature agreed on something that contradicted its first idea (deleting legacy data as each module migrates), and my own plan turned out to be a methodology published in 1997.",
+    "body": [
+      "In September, with both database projects for the Industrial Complements migration freshly created (one for the legacy database and one for the new one), I got stuck on a question: how do I keep the data consistent while both systems are alive?",
+      "One of the first ideas Claude gave me was to delete legacy data as each module moved to the new system. It sounds tidy, but it's dangerous when you can't be sure that data belongs only to that module. And in an Excel system where every screen crosses into the others, that certainty doesn't exist.",
+      "So I opened a separate chat and told it I didn't trust its suggestions. I asked it to name the problems properly first, so we wouldn't be searching blind, and then to find authors, engineers and researchers who had written about each one.",
+      "It came back with 19 problems, each with its English term: columns that lie about their data, rules that only live in the VBA, screens that aren't domain boundaries, who owns each piece of data while both systems coexist, how to verify behavior without existing tests. I confirmed what mattered in my case: the legacy system keeps running while I migrate, migration goes module by module, and the new database is only used by the new system.",
+      "Then came the authors. Brodie and Stonebraker, with their 1995 Chicken Little method, keep both systems interoperating through gateways. Wu, Bisbal and their team answer in 1997 with the Butterfly methodology, which removes the gateways entirely. Newman, Kleppmann, Ambler and Sadalage add the modern patterns and the reasons not to hand-write to two databases. They disagree on the mechanism, but agree on two things. There's a single source of truth for each piece of data at any moment. And the legacy system gets frozen, never deleted.",
+      "Then I pitched my own idea: freeze the code, not the database. No new development in Excel, data keeps flowing into the legacy database, I move forward by dependency while verifying that the new system follows the rules, and the data migration happens at the end. It turned out to be Butterfly, almost phase by phase. And I don't need the heaviest part of the methodology, the one that migrates data without stopping operations: rehearsing the full migration against a copy and cutting over in a short window is enough.",
+      "What my plan was missing was the early transformer. The code that moves data from the old schema to the new one isn't throwaway: it's the same code that will run the real migration, and every record it fails to transform is a business rule I don't know yet.",
+      "That same day we fixed the scope document: the legacy database is never destroyed or emptied, and each module's data gets loaded exactly once, after it's verified. That's also when DataMigration was born, the project that over time became my rule detector.",
+      "I think I'd rather ask AI for sources than for opinions. The opinions are my job, and it's pretty cool to find out someone already published them."
+    ]
+  }
+}

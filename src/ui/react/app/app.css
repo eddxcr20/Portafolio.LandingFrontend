@@ -64,6 +64,9 @@
   --text-project: clamp(40px, 6cqi, 96px);
   --text-project--line-height: 1;
   --text-project--letter-spacing: -0.03em;
+  --text-project-compact: clamp(36px, 4.6cqi, 80px);
+  --text-project-compact--line-height: 1;
+  --text-project-compact--letter-spacing: -0.03em;
   --text-stairs: clamp(40px, 8cqi, 128px);
   --text-stairs--line-height: 0.98;
   --text-stairs--letter-spacing: -0.035em;
@@ -112,6 +115,8 @@
   --color-rule: var(--neutral-400);
   --color-print: var(--print);
   --color-tag-ground: var(--neutral-100);
+  --color-accent-2-ground: var(--accent-2-100);
+  --color-accent-2-ink: var(--accent-2-800);
   --color-divider: var(--divider);
   --color-scrim: var(--scrim);
   --color-accent: var(--accent);

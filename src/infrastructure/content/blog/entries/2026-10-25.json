@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-25",
+  "tags": [
+    "industrialcomplements",
+    "sqlserver",
+    "efcore",
+    "softwarearchitecture"
+  ],
+  "es": {
+    "title": "Esta vez el grafo no iba en Neo4j",
+    "topic": "Propuse una base de grafos para las categorías de productos, por lo que viví con GraphT. La IA me rebatió con mi propia especificación y con lo que de verdad había fallado en GraphT. Acepté probar su propuesta: un árbol en SQL Server, sin navegaciones y con consultas recursivas.",
+    "body": [
+      "En octubre, medio en broma, le pregunté a Claude si no sería mejor convertir toda la base de la migración de Industrial Complements a un grafo en Neo4j, para dejarnos de pleitos con las migraciones. Su respuesta fue sobre la precisión del dinero en los cálculos y le di la razón. Estaba jugando.",
+      "Semanas después lo propuse en serio, pero solo para una parte: las categorías de los productos. En el inventario las categorías se anidan, y yo las veía como un grafo dirigido acíclico. En GraphT ya había sufrido con EF Core: al pedir un solo nodo de una estructura de grafo guardada en tablas, me devolvía el árbol completo, con padres y descendientes. Lo resolví a medias en el dominio usando referencias por Guid, pero si nos quedábamos en SQL no sabía cómo evitar el mismo problema aquí.",
+      "La IA no estuvo de acuerdo, y lo primero que hizo fue citarme. La especificación que yo había aprobado dice que cada categoría tiene cero o un padre y que a cada una se llega por un solo camino. Eso no es cualquier grafo, es un árbol. Si de verdad quería varios padres, era un cambio de dominio, no de base de datos.",
+      "Luego explicó lo de GraphT. El problema no fue SQL, fue mapear el árbol como objetos: EF trae todo cuando la entidad tiene propiedades de navegación hacia su padre y sus hijos. Si la relación es un dato y no una referencia a objeto, cargar un nodo es leer una fila. Los recorridos (ancestros para detectar ciclos, descendientes para \"productos de esta categoría y sus subcategorías\") se resuelven con una consulta recursiva que devuelve solo ids.",
+      "Y lo que costaría Neo4j aquí. Productos, existencias y pedidos viven en SQL y apuntan a su categoría. Con dos bases se pierde la llave foránea, se pierde la transacción única al crear una categoría y asignarle productos, los reportes tendrían que cruzar dos bases en código y el servidor del cliente tendría que respaldar dos bases sincronizadas. Su frase me convenció: en GraphT el grafo es el producto, aquí es una clasificación.",
+      "Descartó también las tablas de grafo propias de SQL Server, porque EF no las modela y nos obligarían a escribir SQL a mano en una migración que siempre regeneramos desde el modelo.",
+      "Le contesté con un \"órale pues, vamos a ver si tu solución sirve\", y que si no resultaba la más óptima en tiempo, me iba a oír. Las categorías quedaron como un árbol en SQL Server: una columna de padre con su llave foránea y sin navegaciones, lecturas sin rastreo y recorridos con consultas recursivas.",
+      "No siempre gano yo las discusiones de arquitectura, y está bien. Lo que importa es que el argumento venga de mi dominio y de lo que realmente falló, no de una preferencia."
+    ]
+  },
+  "en": {
+    "title": "This time the graph didn't belong in Neo4j",
+    "topic": "I proposed a graph database for product categories, based on what I went through with GraphT. The AI pushed back with my own spec and with what actually failed in GraphT. I agreed to try its proposal: a tree in SQL Server, with no navigation properties and recursive queries.",
+    "body": [
+      "In October, half joking, I asked Claude whether we'd be better off turning the whole Industrial Complements database into a Neo4j graph, so we could stop fighting with migrations. Its answer was about money precision in the calculations, and I had to agree. I was just messing around.",
+      "Weeks later I proposed it for real, but only for one part: product categories. In inventory, categories nest inside each other, and I saw them as a directed acyclic graph. In GraphT I had already suffered with EF Core: asking for a single node of a graph stored in tables returned the whole tree, parents and descendants included. I half-solved it in the domain using Guid references, but if we stayed on SQL I didn't know how to avoid the same problem here.",
+      "The AI disagreed, and the first thing it did was quote me. The spec I had approved says each category has zero or one parent and that each one is reached through a single path. That isn't just any graph, it's a tree. If I really wanted multiple parents, that was a domain change, not a database one.",
+      "Then it explained what happened in GraphT. The problem wasn't SQL, it was mapping the tree as objects: EF loads everything when the entity has navigation properties to its parent and children. If the relationship is data rather than an object reference, loading a node means reading one row. Traversals (ancestors to detect cycles, descendants for \"products in this category and its subcategories\") are handled with a recursive query that returns only ids.",
+      "And what Neo4j would cost here. Products, stock and orders live in SQL and point to their category. With two databases you lose the foreign key, you lose the single transaction when creating a category and assigning products to it, reports would have to join two databases in code, and the client's server would have to back up two databases kept in sync. Its line convinced me: in GraphT the graph is the product, here it's a classification.",
+      "It also ruled out SQL Server's own graph tables, because EF doesn't model them and they'd force us to hand-write SQL into a migration we always regenerate from the model.",
+      "My reply was a \"fine, let's see if your solution works\", and that if it didn't turn out to be the fastest option, it would hear about it. Categories ended up as a tree in SQL Server: a parent column with its foreign key and no navigation properties, no-tracking reads and traversals with recursive queries.",
+      "I don't always win architecture arguments, and that's fine. What matters is that the argument comes from my domain and from what actually failed, not from a preference."
+    ]
+  }
+}

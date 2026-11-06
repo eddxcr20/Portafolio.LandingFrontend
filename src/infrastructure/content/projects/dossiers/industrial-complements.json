@@ -1,0 +1,136 @@
+{
+  "slug": "industrial-complements",
+  "name": "Industrial Complements",
+  "order": 2,
+  "status": "in-progress",
+  "link": null,
+  "leadImage": "/images/ic-login.webp",
+  "closingImage": "/images/ic-accounts.webp",
+  "tag": "industrialcomplements",
+  "es": {
+    "label": "En curso",
+    "meta": "Ingeniero contratado por módulo · desde 2026",
+    "summary": [
+      "La migración del sistema interno de Industrial Complements: inventario, compras, caja, cotizaciones, facturación y cuentas, que hoy viven en un libro de Excel con formularios y VBA sobre un SQL Server sin normalizar. La hago como ingeniero externo, contratado por módulo: fases cortas, cada una entregada y cobrada por separado, mientras el sistema viejo sigue operando sin interrupciones.",
+      "El dominio sale de cómo trabaja el negocio y no de las tablas viejas, y la base legacy solo sirve para contrastar: lo que no encaja es basura, una regla que ya no rige o algo que el modelo todavía no contempla.",
+      "Backend en .NET 8 con Clean Architecture y EF Core sobre SQL Server, frontend en React con shadcn. Yo pongo el dominio, la arquitectura y el criterio; los agentes de IA implementan bajo reglas escritas, y el blog cuenta cada decisión."
+    ],
+    "problem": [
+      "Las reglas del negocio no viven en los datos, viven en una mezcla de formularios, fórmulas y VBA donde la presentación y el negocio están enredados. La base tiene columnas cuyo nombre no dice lo que guardan, filas con datos mezclados, tablas que solo existen para pintar una pantalla y muchos duplicados.",
+      "Y todo se cruza: casi cada pantalla bebe de las demás, y el formato de cotización alimenta a facturación y a pagos. Migrar pantalla por pantalla copiando lo que hay solo trasladaría el desorden a una tecnología nueva."
+    ],
+    "understanding": [
+      "Que el Excel es la especificación, no su código: el sistema nuevo hace lo mismo que hoy hace cada pantalla, aunque por dentro se modele limpio. Eso fija el alcance de cada fase y deja una referencia objetiva para lo que se entrega.",
+      "Que el legacy no se borra, se congela. La literatura sobre migraciones, de Brodie y Stonebraker a la metodología Butterfly, coincide en una sola fuente de verdad por dato y en no destruir lo viejo. Se congela el desarrollo del Excel y los datos de cada módulo se migran al final, después de verificarlo."
+    ],
+    "decisions": [
+      "Dos bases: la legacy intacta y una nueva bien modelada. Un migrador pasa los datos por los mismos casos de uso que la captura manual, para que cada fila que no cumple el dominio salga en un reporte en vez de entrar en silencio.",
+      "El orden lo manda la dependencia de los datos, no la urgencia: primero lo aislado. Cada módulo va de dominio a casos de uso, infraestructura y app, y el cliente lo valida en una demo que corre aparte mientras sigo construyendo."
+    ],
+    "state": [
+      "Cuentas está terminado y en uso en la demo del cliente. Inventario tiene su especificación, su dominio y sus casos de uso; ahora se construyen su persistencia, su interfaz y la migración de los productos."
+    ],
+    "pieces": [
+      {
+        "title": "Alcance por fases.",
+        "text": "Cada fase replica lo que hoy hace su pantalla del Excel y se entrega y se cobra por separado. Lo nuevo o distinto se cotiza aparte."
+      },
+      {
+        "title": "El modelo antes que los datos.",
+        "text": "El dominio sale de cómo trabaja el cliente. Las reglas son las de la vida real, como el RFC o el IVA, y no se aflojan por los datos sucios del legacy."
+      },
+      {
+        "title": "Cuentas.",
+        "text": "Préstamos, inversiones y ahorros con sus contrapartes, saldos recalculados, liquidaciones que se derivan del saldo y un candado que congela la historia liquidada."
+      },
+      {
+        "title": "Reglas extraídas del VBA.",
+        "text": "Casi 4,000 líneas de un formulario de inventario y una plantilla de precios convertidas en una especificación sin una sola referencia al Excel."
+      },
+      {
+        "title": "Migración con reporte.",
+        "text": "Cada registro del legacy pasa por los casos de uso: entra, o regresa el error de dominio que explica por qué no."
+      },
+      {
+        "title": "Demo en paralelo.",
+        "text": "El cliente prueba lo terminado en un entorno aparte mientras el desarrollo sigue en otras ramas, con un túnel que solo existe cuando lo enciendo."
+      }
+    ],
+    "verdict": "En curso.",
+    "closing": [
+      "La primera fase ya la usa el cliente, y cada cambio que pide pasa por el mismo flujo: dominio, casos de uso, infraestructura y app, con pruebas en backend (xUnit) y frontend (Vitest).",
+      "Lo que sigue es el inventario completo y, después, compras, ventas, caja y el formato de cotización, en el orden que marquen las dependencias de los datos."
+    ],
+    "leadFigure": {
+      "caption": "Fig. 1 · El acceso al sistema nuevo.",
+      "alt": "Pantalla de inicio de sesión del sistema nuevo de Industrial Complements."
+    },
+    "closingFigure": {
+      "caption": "Fig. 2 · Las cuentas, con datos simulados.",
+      "alt": "Pantalla de Cuentas del sistema nuevo de Industrial Complements, con datos simulados."
+    }
+  },
+  "en": {
+    "label": "In progress",
+    "meta": "Engineer contracted per module · since 2026",
+    "summary": [
+      "The migration of Industrial Complements' internal system: inventory, purchasing, the register, quotes, invoicing and accounts, all of which live today in an Excel workbook with forms and VBA on top of a SQL Server database that was never normalized. I'm doing it as an outside engineer, contracted per module: short phases, each one delivered and paid for separately, while the old system keeps running without interruption.",
+      "The domain comes from how the business works rather than from the old tables, and the legacy database is only there for comparison: whatever doesn't fit is garbage, a rule that no longer applies or something the model doesn't cover yet.",
+      "The backend is .NET 8 with Clean Architecture and EF Core on SQL Server, the frontend is React with shadcn. I set the domain, the architecture and the judgment calls; AI agents implement under written rules, and the blog tells every decision."
+    ],
+    "problem": [
+      "The business rules don't live in the data, they live in a mix of forms, formulas and VBA where presentation and business logic are tangled together. The database has columns whose names don't say what they hold, rows with mixed data, tables that only exist to draw a screen and plenty of duplicates.",
+      "And everything crosses over: almost every screen pulls from the others, and the quote format feeds invoicing and payments. Migrating screen by screen and copying what's there would just move the mess to newer technology."
+    ],
+    "understanding": [
+      "That the Excel workbook is the specification, not its code: the new system does what each screen does today, even if it's modeled cleanly underneath. That sets the scope of every phase and leaves an objective reference for what gets delivered.",
+      "That the legacy system gets frozen, not deleted. The literature on migrations, from Brodie and Stonebraker to the Butterfly methodology, agrees on a single source of truth for each piece of data and on never destroying the old system. Development on the Excel side is frozen and each module's data gets migrated at the end, once it's verified."
+    ],
+    "decisions": [
+      "Two databases: the legacy one untouched and a new, well-modeled one. A migrator runs the data through the same use cases as manual entry, so every row that breaks the domain shows up in a report instead of slipping in silently.",
+      "Data dependencies set the order, not urgency: isolated modules first. Each module goes from domain to use cases, infrastructure and app, and the client validates it on a demo that runs separately while I keep building."
+    ],
+    "state": [
+      "Accounts is done and in use on the client's demo. Inventory has its specification, its domain and its use cases; its persistence, its interface and the product migration are being built now."
+    ],
+    "pieces": [
+      {
+        "title": "Phased scope.",
+        "text": "Each phase replicates what its Excel screen does today and is delivered and paid for separately. Anything new or different is quoted on its own."
+      },
+      {
+        "title": "Model before data.",
+        "text": "The domain comes from how the client works. The rules are real-world rules, like the tax ID or VAT, and they don't get loosened because the legacy data is dirty."
+      },
+      {
+        "title": "Accounts.",
+        "text": "Loans, investments and savings with their counterparties, recalculated balances, settlements derived from the balance and a lock that freezes settled history."
+      },
+      {
+        "title": "Rules extracted from VBA.",
+        "text": "Almost 4,000 lines of an inventory form and a pricing template turned into a specification without a single reference to Excel."
+      },
+      {
+        "title": "Migration with a report.",
+        "text": "Every legacy record goes through the use cases: either it gets in, or it comes back with the domain error that explains why not."
+      },
+      {
+        "title": "A parallel demo.",
+        "text": "The client tests what's done in a separate environment while development continues on other branches, through a tunnel that only exists when I turn it on."
+      }
+    ],
+    "verdict": "In progress.",
+    "closing": [
+      "The client already uses the first phase, and every change he asks for goes through the same flow: domain, use cases, infrastructure and app, with tests on the backend (xUnit) and the frontend (Vitest).",
+      "Next comes the full inventory and, after that, purchasing, sales, the register and the quote format, in whatever order the data dependencies dictate."
+    ],
+    "leadFigure": {
+      "caption": "Fig. 1 · Signing in to the new system.",
+      "alt": "Sign-in screen of Industrial Complements' new system."
+    },
+    "closingFigure": {
+      "caption": "Fig. 2 · Accounts, with simulated data.",
+      "alt": "Accounts screen of Industrial Complements' new system, with simulated data."
+    }
+  }
+}

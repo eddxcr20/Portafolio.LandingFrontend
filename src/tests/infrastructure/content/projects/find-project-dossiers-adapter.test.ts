@@ -12,7 +12,10 @@ describe("FindProjectDossiersAdapter", () => {
       tagLabels,
     ).handleAsync();
 
-    expect(dossiers.map((dossier) => dossier.tag.id)).toEqual(["grapht"]);
+    expect(dossiers.map((dossier) => dossier.tag.id).sort()).toEqual([
+      "grapht",
+      "industrialcomplements",
+    ]);
   });
 
   it("should write every dossier in both languages", async () => {

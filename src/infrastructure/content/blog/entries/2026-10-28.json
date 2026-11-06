@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-28",
+  "tags": [
+    "industrialcomplements",
+    "domaindrivendesign",
+    "testing",
+    "backend"
+  ],
+  "es": {
+    "title": "El candado que tenía una puerta trasera",
+    "topic": "El cliente descubrió que podía duplicar y registrar movimientos con fecha anterior a una liquidación. La excepción que yo mismo había dejado en septiembre era el agujero. La regla pasó al dominio sin excepciones, con una salida controlada para deshacer la última liquidación y un detalle de segundos que lo estaba empeorando.",
+    "body": [
+      "En septiembre, al modelar las liquidaciones de Cuentas para Industrial Complements, dejé un candado: nada de lo anterior a una liquidación se edita ni se borra. Y dejé una sola excepción, dar de alta un movimiento con fecha anterior y recalcular. Hasta tenía una prueba que la fijaba.",
+      "A finales de octubre, ya con el cliente usando la demo, encontramos que se podían duplicar y registrar movimientos con fecha anterior a una liquidación. El efecto era feo. El movimiento nuevo se metía antes de la liquidación, el recálculo deshacía el cero y la cuenta dejaba de estar liquidada. O al revés: un movimiento duplicado aparecía como cubierto por una liquidación que nunca lo incluyó.",
+      "La excepción que yo había dejado era justo la puerta trasera. Con el sistema en uso, la regla real resultó más simple y más dura: nada puede quedar antes de la última liquidación. Ni editado, ni borrado, ni registrado, ni duplicado. Y eso lo valida el dominio, no la pantalla. La prueba de septiembre que permitía lo contrario no se parchó: se reemplazó, porque describía una regla equivocada.",
+      "La misma fecha de la liquidación sí se permite, porque el orden lo desempata la hora de captura. En la UI, duplicar un movimiento que ya está cubierto propone la fecha de hoy, pero eso es solo ayuda; la regla vive en el agregado de la cuenta.",
+      "El cliente pidió entonces una salida: poder borrar la última liquidación de una cuenta. Se permite si y solo si nada la sigue, es decir, si es el último movimiento. Si después de ella ya hay movimientos, se queda. Al borrarla, la liquidación anterior vuelve a ser la última. La regla vive en un solo servicio del dominio, que usan tanto la cuenta como el listado para decidir en qué movimientos se ofrece \"Eliminar\".",
+      "Y apareció un detalle que empeoraba todo: los segundos. El frontend no los mostraba ni los mandaba. El orden del libro depende del instante exacto, así que un duplicado podía caer antes que su original. Ahora el selector muestra y envía segundos, y duplicar propone el instante del original más un segundo.",
+      "Me quedé pensando en por qué esa excepción sobrevivió un mes. En el papel tenía sentido. Lo que no tenía era a alguien usándola todos los días.",
+      "Las reglas de dominio no se terminan de escribir cuando se aprueban. Se terminan cuando alguien intenta romperlas sin querer."
+    ]
+  },
+  "en": {
+    "title": "The lock that had a back door",
+    "topic": "The client found he could duplicate and register transactions dated before a settlement. The exception I had left myself in September was the hole. The rule moved into the domain with no exceptions, with a controlled way out to undo the last settlement and a seconds detail that was making it worse.",
+    "body": [
+      "Back in September, while modeling settlements in Accounts for Industrial Complements, I put a lock in place: nothing before a settlement can be edited or deleted. And I left a single exception, adding a backdated transaction and recalculating. There was even a test pinning it down.",
+      "At the end of October, with the client already using the demo, we found that transactions could be duplicated and registered with a date before a settlement. The effect was ugly. The new transaction slipped in before the settlement, the recalculation undid the zero and the account stopped being settled. Or the other way around: a duplicated transaction showed up as covered by a settlement that never included it.",
+      "The exception I had left was exactly the back door. With the system in use, the real rule turned out simpler and stricter: nothing can land before the last settlement. Not edited, not deleted, not registered, not duplicated. And the domain enforces it, not the screen. The September test that allowed the opposite wasn't patched; it was replaced, because it described a wrong rule.",
+      "The settlement's own date is still allowed, because capture time breaks the tie. In the UI, duplicating a transaction that's already covered suggests today's date, but that's just a convenience; the rule lives in the account aggregate.",
+      "The client then asked for a way out: being able to delete an account's last settlement. It's allowed if and only if nothing follows it, meaning it's the last transaction. If there are transactions after it, it stays. Once deleted, the previous settlement becomes the last one again. The rule lives in a single domain service that both the account and the listing use to decide which transactions offer \"Delete\".",
+      "And a detail turned up that was making everything worse: seconds. The frontend neither showed nor sent them. Ledger order depends on the exact instant, so a duplicate could land before its original. Now the picker shows and sends seconds, and duplicating suggests the original's instant plus one second.",
+      "I kept thinking about why that exception survived for a month. On paper it made sense. What it didn't have was someone using it every day.",
+      "Domain rules aren't done being written when they're approved. They're done when someone tries to break them without meaning to."
+    ]
+  }
+}

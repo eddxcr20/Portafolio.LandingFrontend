@@ -1,0 +1,37 @@
+{
+  "date": "2026-10-24",
+  "tags": [
+    "industrialcomplements",
+    "backend",
+    "react",
+    "legacymodernization"
+  ],
+  "es": {
+    "title": "Del pagaré en Excel a la firma por liga",
+    "topic": "Estados de cuenta y pagarés en PDF reutilizando lo que ya existía, un formato legal copiado del libro de Excel sin copiar sus errores, y la firma digital por liga para dejar de imprimir papeles que se pierden.",
+    "body": [
+      "Con los adjuntos listos, Industrial Complements pidió dos documentos: estados de cuenta y pagarés. Para el pagaré quería el mismo formato que ya usaba en una hoja del libro de Excel. Para el estado de cuenta me dejó decidir, con la condición de que se pareciera a uno bancario.",
+      "Para el estado de cuenta no hizo falta inventar nada. La exportación a CSV ya juntaba entidades, cuentas y movimientos, así que propuse reutilizar esos datos y solo darles formato de PDF. Le agregué elegir el periodo: desde y hasta, con atajos para \"inicio de los tiempos\", \"hoy\" y \"desde la última liquidación\", y que solo se pidieran al backend los movimientos de ese periodo con su saldo anterior.",
+      "El atajo de la liquidación tuvo un bug que encontró el cliente: traía también movimientos anteriores. Cuando varios movimientos comparten fecha con la liquidación, empezar \"desde esa fecha\" no basta. El estado de cuenta ahora arranca en el movimiento exacto de la liquidación y respeta el orden del libro entre los del mismo día.",
+      "El pagaré tenía más detalle. El texto legal salió de la hoja original, menos la cláusula de \"serie numerada\", porque el sistema nuevo no usa folios: basta la referencia al movimiento. Las firmas centradas, un recuadro para el concepto del deudor que siempre aparece aunque vaya vacío, por si lo llenan a mano, y dos tantos por hoja, cada uno en su mitad exacta con la línea de corte en medio. El logo a la derecha, porque a la izquierda arruinaba la fecha. Un error del formato viejo, que en el tanto de abajo mostraba un id como si fuera un monto, no se replicó.",
+      "Después vino lo que el Excel no podía hacer. El cliente quería firmar los pagarés digitalmente, para no imprimir papeles que se pierden u olvidan, y poder filtrar los movimientos según su vencimiento. Cada movimiento ganó una fecha de vencimiento propia, y el backend calcula su estado: pagado si una liquidación lo cubre, vencido, a crédito o sin fecha.",
+      "La firma va por una liga que el deudor abre sin sesión y firma con el dedo. La liga caduca y solo se guarda su huella, no el token. Al firmar, el backend congela una copia del pagaré con sus propios datos, sin confiar en lo que mande el navegador. Un movimiento firmado queda bloqueado. Y cuando el cliente pidió ver las firmas, la regla quedó más simple: no hay historial, cada movimiento tiene a lo más un pagaré, y generar una liga nueva borra por completo la firma anterior, previa confirmación.",
+      "También quedó dicho algo que no es técnico: una firma trazada en pantalla es una firma electrónica simple, y para cobrar por la vía legal no equivale al papel. Eso lo tiene que confirmar el abogado del cliente.",
+      "El papel de la hoja de Excel sigue disponible para quien lo quiera imprimir. Pero ahora también existe la versión que no se pierde en un cajón."
+    ]
+  },
+  "en": {
+    "title": "From the Excel promissory note to signing by link",
+    "topic": "Account statements and promissory notes as PDFs reusing what already existed, a legal format copied from the Excel workbook without copying its bugs, and digital signatures by link to stop printing papers that get lost.",
+    "body": [
+      "With attachments done, Industrial Complements asked for two documents: account statements and promissory notes. For the promissory note they wanted the same format they already used on a sheet of the Excel workbook. For the statement they let me decide, as long as it looked like a bank statement.",
+      "The statement didn't require inventing anything. The CSV export already brought together entities, accounts and transactions, so I proposed reusing that data and just formatting it as a PDF. I added choosing the period: from and to, with shortcuts for \"beginning of time\", \"today\" and \"since the last settlement\", and only requesting that period's transactions from the backend, along with the opening balance.",
+      "The settlement shortcut had a bug the client found: it also pulled in earlier transactions. When several transactions share a date with the settlement, starting \"from that date\" isn't enough. The statement now starts at the exact settlement transaction and keeps ledger order among those from the same day.",
+      "The promissory note had more detail. The legal wording came from the original sheet, minus the \"numbered series\" clause, since the new system doesn't use sequential numbers: a reference to the transaction is enough. Centered signatures, a box for the debtor's concept that always shows up even when empty, in case it gets filled in by hand, and two copies per sheet, each in its exact half with the cut line in the middle. The logo on the right, because on the left it ruined the date. A bug in the old format, where the lower copy showed an id as if it were an amount, didn't get replicated.",
+      "Then came what the Excel workbook couldn't do. The client wanted to sign promissory notes digitally, so papers wouldn't get printed and then lost or forgotten, and to filter transactions by due date. Every transaction got its own due date, and the backend works out its status: paid if a settlement covers it, overdue, on credit or undated.",
+      "Signing happens through a link the debtor opens without logging in and signs with a finger. The link expires and only its hash is stored, never the token. On signing, the backend freezes a copy of the note with its own data, without trusting whatever the browser sends. A signed transaction gets locked. And when the client asked to see the signatures, the rule got simpler: there's no history, each transaction has at most one promissory note, and generating a new link fully deletes the previous signature, after a confirmation.",
+      "Something non-technical was also put on the record: a signature drawn on a screen is a simple electronic signature, and for legal collection it isn't equivalent to paper. The client's lawyer has to confirm that.",
+      "The paper version from the Excel sheet is still there for anyone who wants to print it. But now there's also a version that doesn't get lost in a drawer."
+    ]
+  }
+}

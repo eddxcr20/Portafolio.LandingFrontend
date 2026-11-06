@@ -31,6 +31,7 @@ describe("FindProjectDossierUseCase", () => {
     expect(result.value?.dossier.name).toBe("GraphT");
     expect(result.value?.dossier.verdict).toBe("verdict en");
     expect(result.value?.dossier.tagSlug).toBe("grapht");
+    expect(result.value?.dossier.status).toBe("working");
   });
 
   it("should feature the four newest entries of the project", async () => {

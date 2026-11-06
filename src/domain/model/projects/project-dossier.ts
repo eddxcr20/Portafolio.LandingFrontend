@@ -1,6 +1,8 @@
 import type { Tag } from "@domain/model/blog/tag";
 import type { Localized } from "@domain/model/common/localized";
 
+export type ProjectStatus = "working" | "in-progress";
+
 export type ProjectPiece = {
   readonly title: string;
   readonly text: string;
@@ -30,7 +32,8 @@ export type ProjectDossier = {
   readonly slug: string;
   readonly name: string;
   readonly order: number;
-  readonly link: string;
+  readonly status: ProjectStatus;
+  readonly link: string | null;
   readonly leadImage: string;
   readonly closingImage: string;
   readonly tag: Tag;
@@ -41,7 +44,8 @@ export type ProjectDossierView = ProjectDossierText & {
   readonly slug: string;
   readonly name: string;
   readonly order: number;
-  readonly link: string;
+  readonly status: ProjectStatus;
+  readonly link: string | null;
   readonly leadImage: string;
   readonly closingImage: string;
   readonly tagSlug: string;

@@ -13,6 +13,7 @@ export const viewDossier = (
   slug: dossier.slug,
   name: dossier.name,
   order: dossier.order,
+  status: dossier.status,
   link: dossier.link,
   leadImage: dossier.leadImage,
   closingImage: dossier.closingImage,

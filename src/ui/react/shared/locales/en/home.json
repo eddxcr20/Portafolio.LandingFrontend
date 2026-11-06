@@ -22,16 +22,28 @@
       "ideas": "Notebook page with a table and notes for screens to build."
     }
   },
+  "showcase": {
+    "problemLabel": "Problem",
+    "decisionLabel": "What I decided"
+  },
   "grapht": {
     "label": "Works · public beta",
     "meta": "Founder · grapht.com.mx",
     "caption": "Fig. 2 · GraphT, public beta.",
-    "problemLabel": "Problem",
-    "decisionLabel": "What I decided",
     "problem": "Task apps fix how many levels you can break a project into and never show how tasks connect to each other. With ADHD, not seeing the whole path is what paralyzes you. Notion wasn't enough.",
     "decision": "Tasks as a graph in Neo4j, endlessly divisible and tied to life areas that give every step its context. Clean Architecture on the backend and the frontend.",
     "readDossier": "Read the case file",
     "imageAlt": "GraphT Workbench: a graph of connected tasks next to the inspector of the selected task."
+  },
+  "industrialComplements": {
+    "title": "Internal system migration",
+    "label": "In progress",
+    "meta": "Industrial Complements · Engineer contracted per module",
+    "caption": "Fig. 3 · Industrial Complements, in progress.",
+    "problem": "Quotes, invoicing, the warehouse, inventory across branches and the company's internal accounts, spread across Excel and VBA, with business rules tangled up with presentation.",
+    "decision": "Domain first: Excel as the specification, the legacy system frozen instead of deleted, and a phased migration on .NET and EF Core where every piece of data goes through the business rules before it gets in.",
+    "readProgress": "See the progress",
+    "imageAlt": "Sign-in screen of Industrial Complements' new system."
   },
   "experience": {
     "label": "Experience",

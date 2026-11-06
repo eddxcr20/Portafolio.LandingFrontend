@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-03",
+  "tags": [
+    "industrialcomplements",
+    "sqlserver",
+    "efcore",
+    "dotnet"
+  ],
+  "es": {
+    "title": "Acentos, la eñe y la colación",
+    "topic": "Comparar nombres sin importar los acentos empezó como un servicio de dominio y terminó como la colación de toda la base. Tres preguntas mías lo movieron: ¿y la eñe?, ¿para qué ese SingleOrDefault?, ¿para qué ese índice único?",
+    "body": [
+      "El primer caso de uso de la migración de Industrial Complements fue el más chico: iniciar sesión. Los usuarios entran con su nombre completo y su contraseña, y aunque se dan de alta internamente, al escribir su nombre pueden ponerle acento o no.",
+      "Le pasé a Claude la documentación de Microsoft sobre comparar cadenas y armó un servicio de dominio que comparaba nombres ignorando acentos y mayúsculas, con la cultura invariante.",
+      "Mi primera pregunta fue por la eñe. En español es una letra propia, no una ene con adorno. Con la cultura invariante \"Nuñez\" y \"Nunez\" salían iguales. La solución fue usar la cultura es-MX: ahí la eñe pesa como letra y los acentos de las vocales son diferencias menores que sí se pueden ignorar. De paso verificó que SQL Server con la colación Modern_Spanish_CI_AI se comporta igual.",
+      "La segunda pregunta fue por una línea del adaptador: ¿qué sentido tiene ese SingleOrDefaultAsync? Resulta que se traduce a un TOP(2), una fila extra solo para detectar un duplicado que el índice único ya hacía imposible. Y al revisar esa línea salieron dos cosas más. Si el usuario tecleaba doble espacio, la consulta no encontraba nada antes de que el servicio de dominio pudiera hacer algo. Y había dos fuentes de verdad para decidir si dos nombres eran el mismo: la colación de la columna y el servicio de dominio. La misma IA lo reconoció: era duplicación vendida como prudencia.",
+      "Ahí decidí. Esto es un problema de infraestructura, no de dominio. Al dominio no le importa si la base es SQL o NoSQL. Y estaba pensando en lo que venía: en el inventario hay descripciones de productos donde unas palabras llevan acento y otras no, y quería que lo que hiciéramos en el login sirviera de cimiento para la búsqueda.",
+      "Lo medimos sobre los productos reales. Buscando \"conexion\" sin acento con la colación actual salían 19 resultados, con acento 51, y con una colación insensible a acentos 70. Quien escribiera sin acento se perdía casi tres cuartas partes.",
+      "La colación quedó a nivel de base, una sola vez en el contexto, y toda columna de texto la hereda. El servicio de dominio se borró con sus pruebas, el adaptador colapsa los espacios antes de consultar y SingleOrDefault pasó a FirstOrDefault. Revisamos el riesgo en los 1,937 números de parte: ignorar acentos no provoca ninguna colisión, y la única que había por mayúsculas resultó ser un registro basura.",
+      "Mi tercera pregunta fue por el índice único sobre el nombre. Estaba ahí para que el login fuera determinista, pero eso es restringir datos reales para tapar una debilidad del esquema de autenticación: la empresa podría contratar a dos personas con el mismo nombre. Lo quitamos. Cuando haga falta, el login tendrá su propio identificador.",
+      "Semanas después, la misma colación decidió si dos entidades, dos etiquetas o dos métodos de pago se llamaban igual, sin escribir una sola comparación en código."
+    ]
+  },
+  "en": {
+    "title": "Accents, the ñ and the collation",
+    "topic": "Comparing names regardless of accents started as a domain service and ended as the collation of the whole database. Three questions of mine moved it: what about the ñ?, why that SingleOrDefault?, why that unique index?",
+    "body": [
+      "The first use case in the Industrial Complements migration was the smallest one: logging in. Users sign in with their full name and a password, and even though accounts are created internally, people may or may not type the accents in their own names.",
+      "I handed Claude Microsoft's docs on comparing strings and it built a domain service that compared names ignoring accents and casing, using the invariant culture.",
+      "My first question was about the ñ. In Spanish it's a letter of its own, not an n with a decoration. With the invariant culture, \"Nuñez\" and \"Nunez\" came out equal. The fix was to use the es-MX culture: there the ñ carries the weight of a letter, while vowel accents are minor differences you can safely ignore. Along the way it checked that SQL Server with the Modern_Spanish_CI_AI collation behaves the same way.",
+      "My second question was about one line in the adapter: what's the point of that SingleOrDefaultAsync? It turns out it translates to a TOP(2), an extra row fetched only to detect a duplicate the unique index already made impossible. And looking at that line surfaced two more things. If the user typed a double space, the query found nothing before the domain service could do anything about it. And there were two sources of truth deciding whether two names were the same: the column's collation and the domain service. The AI itself admitted it: it was duplication dressed up as caution.",
+      "That's where I made the call. This is an infrastructure problem, not a domain one. The domain doesn't care whether the database is SQL or NoSQL. And I was thinking about what came next: in the inventory there are product descriptions where some words carry accents and others don't, and I wanted what we built for login to be the foundation for search.",
+      "We measured it on the real products. Searching \"conexion\" without the accent under the current collation returned 19 results, with the accent 51, and with an accent-insensitive collation 70. Anyone typing without the accent was missing almost three quarters.",
+      "The collation went in at the database level, declared once in the context, and every text column inherits it. The domain service was deleted along with its tests, the adapter collapses whitespace before querying, and SingleOrDefault became FirstOrDefault. We checked the risk across the 1,937 part numbers: ignoring accents causes zero collisions, and the only one caused by casing turned out to be a garbage record.",
+      "My third question was about the unique index on the name. It was there to make login deterministic, but that means restricting real data to cover a weakness in the authentication scheme: the company could hire two people with the same name. We dropped it. When it's needed, login will get its own identifier.",
+      "Weeks later, that same collation decided whether two business entities, two labels or two payment methods had the same name, without a single comparison written in code."
+    ]
+  }
+}

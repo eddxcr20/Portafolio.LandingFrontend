@@ -26,6 +26,7 @@ export const graphtDossier: ProjectDossier = {
   slug: "grapht",
   name: "GraphT",
   order: 1,
+  status: "working",
   link: "https://grapht.com.mx",
   leadImage: "/images/lead.webp",
   closingImage: "/images/closing.webp",
