@@ -1,0 +1,41 @@
+{
+  "date": "2026-11-01",
+  "tags": [
+    "cauce",
+    "claudecode",
+    "ai",
+    "secondbrain"
+  ],
+  "es": {
+    "title": "Capturar todo, sin decidir antes qué vale",
+    "topic": "Para no llenar el vault de basura, la IA propuso capturar solo las sesiones que yo marcara. Pero nunca sé de antemano cuál va a valer la pena, y por eso perdía ideas. Ahora se captura cada turno de cada sesión con un hook de Claude Code. Después tocó corregir qué se capturaba: la respuesta a medias, los mensajes de subagentes y la hora.",
+    "body": [
+      "Casi todo mi trabajo con IA pasa por Claude Code, en la terminal. Ahí he perdido buenas ideas, problemas y soluciones: sigo trabajando, la conversación se compacta y lo que importaba se va con el resumen.",
+      "Claude Code tiene hooks, comandos que corren en momentos específicos. Uno se dispara cuando termina cada respuesta, y ese era el punto para guardar el turno como nota.",
+      "Yo había dicho que no quería basura en mis notas, y la IA lo entendió como que no quería todas las sesiones. Propuso una compuerta: un alias para marcar las sesiones que sí valía la pena guardar, o un comando para rescatar una a medias.",
+      "Lo aclaré. Basura era un frontmatter inflado o datos duplicados, no conversaciones. Y el problema era justo ese: nunca sé de antemano si una sesión va a ser interesante. Cuando trabajo con código casi cada mensaje mío es una corrección o una decisión, y eso es lo que quiero conservar. Así que se captura todo, siempre: mi pregunta y la prosa de la respuesta, sin llamadas a herramientas ni diffs.",
+      "Con el uso aparecieron los detalles.",
+      "Algunas notas solo tenían el texto de antes del primer comando. La causa estaba en la documentación: cuando el hook se dispara, el transcript todavía no tiene escrita la respuesta final. El evento trae un campo con la respuesta completa, y de ahí se lee ahora.",
+      "Otras notas guardaban lo que devolvía un subagente como si fuera mi pregunta. Ahora solo cuenta lo que yo escribo.",
+      "Y las notas del servidor salían con seis horas de adelanto, porque el servidor vive en UTC y el hook tomaba la hora de la máquina. De las opciones elegí que el hook mande un instante absoluto y que el backend lo convierta a la hora de México. La zona horaria la decide el backend, no cada máquina que captura.",
+      "Al final agregué un interruptor para pausar la captura en vivo. La pausa no afecta lo que importo a mano; eso siempre entra.",
+      "¿Se guarda más de lo que voy a releer? Seguro. Pero perder una buena idea me cuesta más que una nota que nunca abro."
+    ]
+  },
+  "en": {
+    "title": "Capture everything, without deciding first what's worth it",
+    "topic": "To avoid filling the vault with junk, the AI proposed capturing only the sessions I marked. But I never know in advance which one will be worth it, and that's how I lost ideas. Now every turn of every session is captured with a Claude Code hook. Then I had to fix what was being captured: half-finished answers, subagent messages and the time.",
+    "body": [
+      "Almost all my work with AI goes through Claude Code, in the terminal. That's where I've lost good ideas, problems and solutions: I keep working, the conversation gets compacted and whatever mattered goes away with the summary.",
+      "Claude Code has hooks, commands that run at specific moments. One of them fires when each answer finishes, and that was the place to save the turn as a note.",
+      "I had said I didn't want junk in my notes, and the AI took it to mean I didn't want every session. It proposed a gate: an alias to mark the sessions worth keeping, or a command to rescue one halfway through.",
+      "I clarified it. Junk meant bloated frontmatter or duplicated data, not conversations. And that was exactly the problem: I never know in advance whether a session will turn out interesting. When I work on code, almost every message of mine is a correction or a decision, and that's what I want to keep. So everything is captured, always: my question and the prose of the answer, without tool calls or diffs.",
+      "With use, the details showed up.",
+      "Some notes only had the text from before the first command. The cause was in the documentation: when the hook fires, the transcript hasn't written the final answer yet. The event carries a field with the complete answer, and that's where it's read from now.",
+      "Other notes stored what a subagent returned as if it were my question. Now only what I type counts.",
+      "And the server's notes came out six hours ahead, because the server lives in UTC and the hook took the machine's time. Of the options, I chose to have the hook send an absolute instant and let the backend convert it to Mexico's time. The backend decides the time zone, not each machine that captures.",
+      "Finally I added a switch to pause live capture. The pause doesn't affect what I import by hand; that always gets in.",
+      "Does it store more than I'll ever reread? Sure. But losing a good idea costs me more than a note I never open."
+    ]
+  }
+}

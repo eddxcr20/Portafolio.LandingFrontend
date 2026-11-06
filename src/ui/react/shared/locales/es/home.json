@@ -45,6 +45,15 @@
     "readProgress": "Ver el avance",
     "imageAlt": "Pantalla de inicio de sesión del sistema nuevo de Industrial Complements."
   },
+  "cauce": {
+    "label": "En uso · en desarrollo",
+    "meta": "Proyecto personal · uso diario",
+    "caption": "Fig. 4 · Cauce, con datos simulados.",
+    "problem": "Las ideas me duran segundos y llegar a mis notas costaba más: copiar, abrir Obsidian, pegar. Y las conversaciones con IA quedaban repartidas entre apps y sesiones que se compactan.",
+    "decision": "Una capa encima de mi Zettelkasten en git, no una app con su propia base: una PWA para todos los dispositivos, conversaciones guardadas como cadenas de notas y Claude Code tal cual, en una terminal.",
+    "readDossier": "Leer el expediente",
+    "imageAlt": "Editor de notas de Cauce en vista dividida, con una nota de ejemplo."
+  },
   "experience": {
     "label": "Experiencia",
     "order": "De la más reciente a la primera",

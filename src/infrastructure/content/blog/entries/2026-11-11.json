@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-11",
+  "tags": [
+    "cauce",
+    "mcp",
+    "secondbrain",
+    "softwarearchitecture"
+  ],
+  "es": {
+    "title": "Tareas e ideas: dos sistemas y un puente",
+    "topic": "GraphT es para lo que tengo que hacer y Cauce para lo que pienso. No los junté en una app: los conecté. El MCP vive del lado de Cauce y llama a la API pública de GraphT sin tocar GraphT. Y la regla más reciente: el MCP no recuerda nada de la API, consulta la documentación cada vez.",
+    "body": [
+      "Desde el principio separé dos cosas. GraphT nació para descargar de mi cabeza lo que tengo que hacer. Cauce, para descargar y guardar lo que pienso. Son dos frentes con propósitos distintos, y no quería que uno se volviera el cajón del otro.",
+      "Pero en mi día viven juntos. A veces estoy platicando con Claude de una idea y recuerdo que tengo que hacer algo, o que no actualicé una tarea. Y al revés: trabajando en una tarea, me sirve saber si ya tenía notas sobre eso.",
+      "Lo primero que exploré fue meter un chat con IA en cada app y conectarlas entre sí. La propuesta salió grande: cada app como servidor y cliente de la otra, con el motor de IA en medio. Así que lo simplifiqué. ¿Y si solo dejo que la app de ideas tenga acceso a mis tareas? GraphT no se modifica. Del lado de Cauce vive un servidor MCP, el protocolo con el que un asistente usa herramientas externas, y ese servidor llama a la API de GraphT.",
+      "Lo construí al final, cuando Cauce ya funcionaba y GraphT ya tenía tokens personales y documentación pública. Una sola herramienta genérica en lugar de una por endpoint, porque las tipadas se quedan viejas en cuanto cambia uno. Las lecturas son libres y cualquier escritura necesita mi confirmación explícita. Está registrado en la torre y en el servidor, así que aparece en cualquier sesión que abra desde Cauce.",
+      "Después me hice una pregunta: si de todas formas consulta la documentación antes de llamar, ¿no bastaba con una skill? La diferencia es que con el MCP el token nunca entra al contexto del modelo. Y eso pesa más aquí que en cualquier otro lado, porque Cauce guarda cada turno como nota. Con una skill, el token habría terminado escrito en mi vault.",
+      "La regla más reciente salió de un error. Un valor de una enumeración que el MCP tenía en sus instrucciones dejó de ser válido cuando cambió en GraphT. Desde entonces el MCP no guarda nada de la API: ni rutas, ni cuerpos, ni enumeraciones. La documentación es la única fuente de verdad y se consulta antes de cada llamada.",
+      "Dos sistemas, cada uno con su propósito, y un puente que no obliga a cambiar ninguno."
+    ]
+  },
+  "en": {
+    "title": "Tasks and ideas: two systems and a bridge",
+    "topic": "GraphT is for what I have to do and Cauce is for what I think. I didn't merge them into one app: I connected them. The MCP lives on Cauce's side and calls GraphT's public API without touching GraphT. And the most recent rule: the MCP remembers nothing about the API, it reads the documentation every time.",
+    "body": [
+      "From the start I kept two things apart. GraphT was born to unload from my head what I have to do. Cauce, to unload and keep what I think. They're two fronts with different purposes, and I didn't want one to become the junk drawer of the other.",
+      "But in my day they live together. Sometimes I'm talking to Claude about an idea and remember I have to do something, or that I didn't update a task. And the other way around: while working on a task, it helps to know whether I already had notes about it.",
+      "The first thing I explored was putting an AI chat into each app and connecting them to each other. The proposal came out big: each app acting as server and client of the other, with the AI engine in the middle. So I simplified it. What if I just let the ideas app access my tasks? GraphT doesn't change. On Cauce's side lives an MCP server, the protocol an assistant uses to call external tools, and that server calls GraphT's API.",
+      "I built it last, when Cauce was already working and GraphT already had personal tokens and public documentation. A single generic tool instead of one per endpoint, because typed ones go stale as soon as an endpoint changes. Reads are free and any write needs my explicit confirmation. It's registered on the desktop machine and on the server, so it shows up in any session I open from Cauce.",
+      "Later I asked myself a question: if it checks the documentation before calling anyway, wasn't a skill enough? The difference is that with the MCP the token never enters the model's context. And that weighs more here than anywhere else, because Cauce saves every turn as a note. With a skill, the token would have ended up written in my vault.",
+      "The most recent rule came from a mistake. An enum value the MCP had in its instructions stopped being valid when it changed in GraphT. Since then the MCP keeps nothing about the API: no paths, no bodies, no enums. The documentation is the only source of truth and it's read before every call.",
+      "Two systems, each with its purpose, and a bridge that doesn't force either of them to change."
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-07",
+  "tags": [
+    "cauce",
+    "claudecode",
+    "softwarearchitecture",
+    "selfhosting"
+  ],
+  "es": {
+    "title": "Un terminal, no un SDK",
+    "topic": "Quería que Cauce fuera la entrada de todo mi trabajo con IA. La IA propuso construirlo sobre el Agent SDK y, al verificarlo, salió que exigía pagar por token y no dejaba usar mi suscripción. Decidí no reimplementar nada: Claude Code tal cual, en una terminal embebida en la PWA, con los hooks como memoria.",
+    "body": [
+      "Con la captura funcionando me di cuenta de algo. Claude Code guarda las conversaciones por carpeta de proyecto. Si en un proyecto descubro algo que sirve para otro, tengo que cambiar de carpeta y reanudar, y aun así la sesión no sabe nada de lo demás. Y para retomar algo de la torre, la torre tiene que estar prendida, con lo que cuesta la luz.",
+      "Mi propuesta fue que Cauce fuera la entrada de todo. Arriba, la PWA, desde donde platico como siempre, desde cualquier lugar. Debajo, Claude cargando el historial desde mis notas en lugar de su propia memoria.",
+      "La IA lo aterrizó en el Agent SDK, el motor detrás de Claude Code, y antes de construir verificó cómo funciona. Salieron tres cosas. El SDK necesita una API key que se paga por token, y los términos no permiten usar el inicio de sesión de una suscripción en productos de terceros. No se le puede inyectar un historial propio, porque reanuda desde sus archivos de sesión. Y las herramientas solo corren en la máquina donde vive el proceso.",
+      "Leyendo esas limitaciones no le vi sentido. No iba a pagar por token mientras tengo la suscripción. Así que cambié el planteamiento: Claude Code se queda tal cual y todo lo de Cauce corre encima. La pantalla de chat de la PWA es una terminal embebida donde ejecuto lo mismo que ya ejecuto. La memoria sigue siendo el hook que guarda cada turno como nota.",
+      "La pieza nueva fue un puente por máquina, el servidor y la torre. La PWA abre la terminal por un WebSocket y el puente engancha una sesión de tmux. Si se corta la red del teléfono o recargo la PWA, la sesión sigue viva y solo me reconecto.",
+      "Alrededor salieron piezas chicas que antes hacía a mano. Encender la torre desde la PWA con Wake-on-LAN, en vez de entrar por SSH a correr un script. Mandar archivos desde el teléfono con LocalSend a una carpeta del servidor y pedirle a Claude que los lea por nombre. Y abrir una sesión eligiendo la máquina y la carpeta, con las rutas recientes a la mano.",
+      "El chat ligero que ya teníamos sobraba, así que lo borramos.",
+      "Se pierde algo, lo sé: al mover una conversación a otra máquina, los razonamientos internos no viajan. Pero prefiero eso a quedarme encerrado en una sola sesión, una sola máquina o una factura por token."
+    ]
+  },
+  "en": {
+    "title": "A terminal, not an SDK",
+    "topic": "I wanted Cauce to be the entry point for all my work with AI. The AI proposed building it on the Agent SDK and, once verified, it turned out to require paying per token and not allow using my subscription. I decided not to reimplement anything: Claude Code as it is, in a terminal embedded in the PWA, with hooks as memory.",
+    "body": [
+      "With capture working, I noticed something. Claude Code stores conversations per project folder. If I find something in one project that's useful for another, I have to switch folders and resume, and even then the session knows nothing about the rest. And to pick something up from my desktop machine, the machine has to be on, with what that costs in electricity.",
+      "My proposal was for Cauce to be the entry point for everything. On top, the PWA, where I chat as usual, from anywhere. Underneath, Claude loading the history from my notes instead of from its own memory.",
+      "The AI grounded it in the Agent SDK, the engine behind Claude Code, and before building anything it checked how it works. Three things came up. The SDK needs an API key that's billed per token, and the terms don't allow using a subscription login in third-party products. You can't inject your own history into it, because it resumes from its own session files. And tools only run on the machine where the process lives.",
+      "Reading those limitations, I didn't see the point. I wasn't going to pay per token while I have the subscription. So I changed the approach: Claude Code stays as it is and everything in Cauce runs on top of it. The PWA's chat screen is an embedded terminal where I run the same things I already run. Memory is still the hook that saves every turn as a note.",
+      "The new piece was a bridge per machine, the server and the desktop. The PWA opens the terminal over a WebSocket and the bridge attaches a tmux session. If the phone's network drops or I reload the PWA, the session stays alive and I just reconnect.",
+      "Around it came small pieces I used to do by hand. Turning on the desktop machine from the PWA with Wake-on-LAN, instead of logging in over SSH to run a script. Sending files from the phone with LocalSend to a folder on the server and asking Claude to read them by name. And opening a session by choosing the machine and the folder, with recent paths at hand.",
+      "The lightweight chat we already had was no longer needed, so we deleted it.",
+      "Something is lost, I know: when a conversation moves to another machine, the internal reasoning doesn't travel. But I'd rather have that than be locked into a single session, a single machine or a per-token bill."
+    ]
+  }
+}

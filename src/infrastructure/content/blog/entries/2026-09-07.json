@@ -1,0 +1,37 @@
+{
+  "date": "2026-09-07",
+  "tags": [
+    "cauce",
+    "adhd",
+    "secondbrain",
+    "ai"
+  ],
+  "es": {
+    "title": "Lo único que pedí fue descargar",
+    "topic": "La primera respuesta de la IA diseñó un sistema completo, con base de datos, lista de tareas, una IA bibliotecaria y un mecanismo para revivir ideas viejas. Lo recorté a lo único que dolía, que capturar cueste menos de lo que una idea tarda en morir, y fijé la regla que no se movió en todo el proyecto: la IA no escribe mis ideas.",
+    "body": [
+      "El 7 de septiembre le conté a Claude un problema que traigo desde hace años. Con el TDAH me pasan muchas ideas por la cabeza en un día: cosas que aprendo, flujos de trabajo, conexiones entre temas que no parecían tener relación. La mayoría muere a los pocos segundos, porque sigo con lo que estaba haciendo y no hay dónde dejarlas.",
+      "Ya tenía un sistema de notas: un Zettelkasten en markdown, versionado en git, que abro con Obsidian. El problema no era dónde guardar. Era llegar ahí a tiempo, desde cualquier dispositivo, con ideas que vienen de cualquier lado: mi cabeza, un video en un minuto exacto, un libro, una conversación con una IA.",
+      "La primera respuesta fue un sistema completo. Un pipeline asíncrono, embeddings, agrupación por similitud, una IA que clasifica cada captura en idea, tarea o referencia, y un mecanismo para traerme ideas viejas en el momento justo.",
+      "Varias de esas ideas no estaban mal. El punto es que ninguna era el problema. Yo no pedí una base de datos ni una lista de pendientes. Mis tareas ya tienen dónde vivir: para eso construí GraphT. Lo que necesitaba era descargar el peso y meterlo al sistema de notas que ya tenía. Lo demás, si acaso, después.",
+      "Así que lo recorté. Prioridad única: que capturar cueste menos de lo que la idea tarda en morir. Una sola bandeja, sin elegir categoría en el momento.",
+      "Y una regla que puse desde el primer mensaje: la IA no destila mi contenido. No resume, no reescribe, no conecta por mí. Las ideas más interesantes nacen de juntar dos cosas que parecían no tener nada que ver, y ese trabajo quiero que sea mío. Lo único que la IA puede escribir es la transcripción al pie de la letra de lo que viene de fuera.",
+      "Ese día no se escribió código. Pasó un mes antes de volver al tema, y cuando volví ya sabía qué no iba a construir.",
+      "Supongo que la pregunta útil no era qué podía hacer el sistema, sino qué me estaba costando no tenerlo."
+    ]
+  },
+  "en": {
+    "title": "All I asked for was a way to unload",
+    "topic": "The AI's first answer designed a complete system, with a database, a to-do list, a librarian AI and a way to bring old ideas back. I cut it down to the one thing that hurt, that capturing should cost less than the time an idea takes to die, and set the rule that never moved during the whole project: the AI doesn't write my ideas.",
+    "body": [
+      "On September 7 I told Claude about a problem I've had for years. With ADHD, a lot of ideas go through my head in a day: things I learn, workflows, connections between topics that didn't seem related. Most of them die within seconds, because I keep going with whatever I was doing and there's nowhere to put them.",
+      "I already had a note system: a Zettelkasten in markdown, versioned in git, that I open with Obsidian. The problem wasn't where to store things. It was getting there in time, from any device, with ideas that come from anywhere: my head, a video at an exact minute, a book, a conversation with an AI.",
+      "The first answer was a complete system. An async pipeline, embeddings, similarity clustering, an AI that sorts every capture into idea, task or reference, and a mechanism to bring old ideas back at the right moment.",
+      "Several of those ideas weren't bad. The point is that none of them was the problem. I didn't ask for a database or a to-do list. My tasks already have a home: that's what I built GraphT for. What I needed was to unload the weight and put it into the note system I already had. Everything else, maybe later.",
+      "So I cut it down. One priority: capturing has to cost less than the time an idea takes to die. A single inbox, no choosing a category in the moment.",
+      "And one rule I set from the first message: the AI doesn't distill my content. It doesn't summarize, rewrite or connect things for me. The most interesting ideas come from putting together two things that seemed unrelated, and I want that work to be mine. The only thing the AI may write is a word-for-word transcription of what comes from outside.",
+      "No code was written that day. A month went by before I came back to it, and when I did, I already knew what I wasn't going to build.",
+      "I guess the useful question wasn't what the system could do, but what not having it was costing me."
+    ]
+  }
+}

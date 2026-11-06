@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-02",
+  "tags": [
+    "cauce",
+    "cleanarchitecture",
+    "python",
+    "docker"
+  ],
+  "es": {
+    "title": "El estándar manda sobre el lenguaje",
+    "topic": "Cauce está en Python, no en .NET, pero sigue la misma arquitectura que GraphT: casos de uso, puertos y adaptadores, resultados de dominio. Y las mismas reglas de trabajo: todo en contenedores, un repositorio por app, despliegue con git y commits sin firma de la IA. Algunas las tuve que repetir.",
+    "body": [
+      "El backend de Cauce quedó en Python con FastAPI, no en .NET. Es un servicio chico que mueve archivos y llama herramientas de línea de comandos. Pero antes de que la IA escribiera una línea le mandé una regla: la arquitectura es la misma que en GraphT. Todos mis proyectos llevan el mismo estándar, aunque la tecnología cambie.",
+      "Eso significa Clean Architecture con casos de uso. El dominio no sabe que las notas son archivos markdown. Hay un puerto por operación, y los adaptadores de infraestructura traducen al disco, a SQLite o a la web. Los errores son resultados de dominio en lugar de excepciones, hay un tipo por archivo y pruebas por caso de uso. La IA tradujo el esqueleto de GraphT a Python y me lo mostró antes de escribirlo. La PWA sigue la misma separación del lado del cliente.",
+      "Las otras reglas fueron de operación, y algunas las tuve que repetir.",
+      "Nada se instala en mis máquinas. Cuando la IA quiso instalar dependencias de Python en el sistema, la respuesta fue Docker, siempre. Después de una compactación de contexto volvió a proponer un servicio directo en el host para la terminal, y otra vez lo mismo: contenedor, definido en el compose del proyecto. La única excepción que autoricé fue LocalSend en el servidor.",
+      "Un repositorio por app. La IA había creado uno solo en la raíz; quedaron uno para el backend, otro para la PWA y otro para los clientes, con el compose en la raíz y un Dockerfile por proyecto, como en GraphT.",
+      "Los cambios llegan al servidor por git: push al remoto y, del otro lado, traer esa versión. Copiar archivos a mano ensuciaba el árbol de trabajo y dejaba vivos archivos que ya se habían borrado. Los contenedores se levantan con un reload.sh que solo reconstruye el servicio que cambió, sin tocar los túneles ni los contenedores de otros proyectos. Esa regla salió de un deploy de Cauce que tiró GraphT.",
+      "Los commits van a mi nombre, en inglés, con gitflow y sin coautoría de la IA.",
+      "Ah, y el nombre. Empezó como volcado, que es lo que hace, pero como nombre era horrible. Le pedí opciones a la IA y escogí Cauce: el canal por donde corren las ideas hacia mis notas.",
+      "Repetir reglas cansa. Pero tenerlas escritas es lo que me deja delegar la ejecución sin perder el diseño."
+    ]
+  },
+  "en": {
+    "title": "The standard outranks the language",
+    "topic": "Cauce is in Python, not .NET, but it follows the same architecture as GraphT: use cases, ports and adapters, domain results. And the same working rules: everything in containers, one repository per app, deploys through git and commits without the AI's signature. I had to repeat some of them.",
+    "body": [
+      "Cauce's backend ended up in Python with FastAPI, not .NET. It's a small service that moves files around and calls command-line tools. But before the AI wrote a single line, I sent it a rule: the architecture is the same as in GraphT. All my projects follow the same standard, even when the technology changes.",
+      "That means Clean Architecture with use cases. The domain doesn't know notes are markdown files. There's one port per operation, and the infrastructure adapters translate to the disk, to SQLite or to the web. Errors are domain results instead of exceptions, there's one type per file and tests per use case. The AI translated GraphT's skeleton into Python and showed it to me before writing it. The PWA follows the same separation on the client side.",
+      "The other rules were about operations, and I had to repeat some of them.",
+      "Nothing gets installed on my machines. When the AI wanted to install Python dependencies on the system, the answer was Docker, always. After a context compaction it proposed a service running straight on the host for the terminal again, and again the same answer: a container, defined in the project's compose file. The only exception I authorized was LocalSend on the server.",
+      "One repository per app. The AI had created a single one at the root; we ended up with one for the backend, another for the PWA and another for the clients, with the compose file at the root and one Dockerfile per project, as in GraphT.",
+      "Changes reach the server through git: push to the remote and, on the other side, pull that version. Copying files by hand dirtied the working tree and kept alive files that had already been deleted. Containers come up with a reload.sh that only rebuilds the service that changed, without touching the tunnels or other projects' containers. That rule came from a Cauce deploy that took GraphT down.",
+      "Commits go under my name, in English, with gitflow and without AI co-authorship.",
+      "Oh, and the name. It started as \"volcado\", Spanish for dumping, which is what it does, but as a name it was awful. I asked the AI for options and picked Cauce, Spanish for a riverbed: the channel ideas flow through on their way to my notes.",
+      "Repeating rules is tiring. But having them written down is what lets me delegate the execution without losing the design."
+    ]
+  }
+}

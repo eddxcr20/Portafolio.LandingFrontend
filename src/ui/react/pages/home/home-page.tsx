@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import type { Language } from "@domain/model/common/language";
 import type { Localized } from "@domain/model/common/localized";
 import { About } from "~/pages/home/about";
+import { CauceShowcase } from "~/pages/home/cauce-showcase";
 import { Doors } from "~/pages/home/doors";
 import { Experience } from "~/pages/home/experience";
 import { GraphtShowcase } from "~/pages/home/grapht-showcase";
@@ -44,6 +45,7 @@ export function HomePage({ language, alternates, blogUrl }: HomePageProps) {
         <Notebook />
         <GraphtShowcase language={language} />
         <IndustrialComplementsShowcase language={language} />
+        <CauceShowcase language={language} />
         <Experience />
         <HowIWork />
         <Doors language={language} />

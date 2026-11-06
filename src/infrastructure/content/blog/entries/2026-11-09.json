@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-09",
+  "tags": [
+    "cauce",
+    "claudecode",
+    "secondbrain",
+    "graphs"
+  ],
+  "es": {
+    "title": "De las notas, de vuelta a la conversación",
+    "topic": "Mandar una conversación guardada pegándola en el prompt no cabía. Propuse reconstruir un archivo de sesión desde la cadena de notas para que Claude la abra como historial propio, y exigí que las notas nuevas sigan enlazadas a la nota de origen. El historial de chats salió del mismo grafo.",
+    "body": [
+      "Si las notas son la memoria, tenía que poder volver de ellas a una conversación viva: abrir una nota de chat, mandarla a Claude y seguir donde me quedé.",
+      "La primera versión pegaba la nota en el prompt de una sesión nueva. Para una nota suelta está bien. Pero una nota de chat arrastra toda su cadena, desde la raíz hasta ese turno, y eso no cabe en un prompt.",
+      "Pregunté si no había otra forma de darle el contexto antes de arrancar. Las sesiones de Claude Code son archivos JSONL. ¿Y si generábamos uno con el contenido de las notas, para que al abrirla ya lo tuviera todo?",
+      "La IA lo validó antes de construir. Armó a mano un archivo de sesión con dos turnos y una palabra clave, lo reanudó y le preguntó por la palabra. La respondió. Con eso el flujo quedó así: el backend recorre la cadena de notas hasta la raíz, el puente reconstruye un archivo de sesión válido y la PWA abre Claude reanudando esa sesión. Todo el historial entra como contexto nativo, sin límite de prompt.",
+      "Faltaba lo más importante. La sesión sembrada era nueva, así que sus notas iban a empezar una cadena aparte. Eso rompía el hilo entre notas, y para mí eso es imperdonable: las notas tienen que conservar su relación aunque cambie la sesión. Ahora, al sembrar, Cauce registra que esa sesión continúa desde la nota que mandé, y la primera nota nueva enlaza a ella.",
+      "Lo mismo con las ramas. Si dos sesiones cargan el mismo historial y se van por caminos distintos, cada una genera sus propias notas, enlazadas a la nota de origen. Las notas son la fuente de verdad; las sesiones son de paso.",
+      "El historial de chats salió del mismo grafo. En ChatGPT o en Claude web una conversación conserva el título de su primer mensaje aunque cambie el tema. Yo quería que cada hilo apareciera una sola vez, con mi última pregunta. Una nota de chat que ninguna otra nota tiene como anterior es el final de un hilo, así que la lista muestra solo esas. Si un hilo es A, B, C y D, solo aparece D. Semanas después agregué la pregunta con la que empezó cada hilo, porque veía muchos chats y no sabía cuál era su raíz.",
+      "La primera vez que lo probé con una conversación real, la sesión sabía de qué habíamos hablado desde el primer turno. Y lo que siguió quedó enlazado donde tenía que estar."
+    ]
+  },
+  "en": {
+    "title": "From the notes, back to the conversation",
+    "topic": "Sending a saved conversation by pasting it into the prompt didn't fit. I proposed rebuilding a session file from the chain of notes so Claude opens it as its own history, and I required new notes to stay linked to the source note. The chat history came out of the same graph.",
+    "body": [
+      "If notes are the memory, I had to be able to go from them back to a live conversation: open a chat note, send it to Claude and pick up where I left off.",
+      "The first version pasted the note into the prompt of a new session. For a standalone note that's fine. But a chat note drags its whole chain, from the root to that turn, and that doesn't fit in a prompt.",
+      "I asked whether there was another way to give it the context before starting. Claude Code sessions are JSONL files. What if we generated one with the content of the notes, so that when it opened it already had everything?",
+      "The AI validated it before building. It handcrafted a session file with two turns and a keyword, resumed it and asked about the keyword. It answered. With that, the flow became: the backend walks the chain of notes back to the root, the bridge rebuilds a valid session file and the PWA opens Claude by resuming that session. The whole history goes in as native context, with no prompt limit.",
+      "The most important part was still missing. The seeded session was new, so its notes would start a separate chain. That broke the thread between notes, and for me that's unforgivable: notes have to keep their relationship even when the session changes. Now, when seeding, Cauce records that the session continues from the note I sent, and the first new note links to it.",
+      "Same with branches. If two sessions load the same history and go different ways, each one creates its own notes, linked to the source note. Notes are the source of truth; sessions are just passing through.",
+      "The chat history came out of the same graph. In ChatGPT or Claude web, a conversation keeps the title of its first message even if the topic changes. I wanted each thread to show up only once, with my latest question. A chat note that no other note has as its previous one is the end of a thread, so the list shows only those. If a thread is A, B, C and D, only D shows up. Weeks later I added the question each thread started with, because I saw lots of chats and couldn't tell what their root was.",
+      "The first time I tried it with a real conversation, the session knew what we had talked about from the very first turn. And what came next was linked where it belonged."
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "date": "2026-11-06",
+  "tags": [
+    "cauce",
+    "softwarearchitecture",
+    "selfhosting",
+    "ux"
+  ],
+  "es": {
+    "title": "La bandeja es una cola, no un pendiente",
+    "topic": "La IA mandaba todo lo capturado a la bandeja, en espera de que yo lo promoviera a mano. Eso convertía cada captura en otra tarea. La bandeja quedó solo para lo que necesita procesarse, transcribir pasó a ser opcional, y la transcripción salió del servidor cuando el modelo local empezó a comerse la memoria. El dominio ni se enteró.",
+    "body": [
+      "Probando la extensión del navegador mandé un enlace con la opción de solo guardarlo. Diez minutos después no aparecía en mis notas. Estaba en la bandeja, esperando a que yo lo revisara y lo promoviera.",
+      "Así lo había entendido la IA: todo entra a la bandeja y yo decido qué pasa a mis notas. Pero eso convertía cada captura en un pendiente, justo lo que Cauce existía para evitar. Si quisiera revisar cada cosa a mano, la mandaría directo a mis notas y la depuraría después.",
+      "La regla quedó así. La bandeja es la cola del worker, no un buzón de revisión. Solo entra lo que necesita procesarse, como transcribir un video. Lo demás va directo a mis notas. Y lo que entra a la bandeja sale solo cuando el worker termina, con el texto de la fuente pegado tal cual.",
+      "La segunda corrección fue qué se procesa. La primera versión procesaba todo lo que llegaba con un enlace. ¿Para qué transcribir cualquier página que guarde? La mayoría de las veces es un video de YouTube. Así que transcribir es opcional y se pide al enviar: en la extensión, en los Atajos del iPhone o al compartir desde Android. Y ninguna plataforma tiene menos opciones que otra. Android se había quedado con una versión recortada y se corrigió.",
+      "La tercera vino del servidor. La transcripción corría con Whisper en un contenedor, y en reposo, sin hacer nada, ocupaba más de un gigabyte y medio de memoria. En un servidor casero donde también vive GraphT, eso terminó en procesos matados por falta de memoria. Yo ya había preguntado si no era más fácil usar un servicio que transcribiera cualquier audio, y ahí lo decidí: Whisper fuera del servidor.",
+      "Como la transcripción vivía detrás de un puerto, el cambio se quedó en infraestructura. Un adaptador nuevo llama a un servicio compatible con la API de OpenAI, y ni el dominio ni los casos de uso cambiaron una línea. El worker pasó a ocupar unos 33 MB en reposo.",
+      "Y la captura no depende del procesamiento. Si el servicio falla, la nota ya existe con su enlace y se reintenta después."
+    ]
+  },
+  "en": {
+    "title": "The inbox is a queue, not a to-do",
+    "topic": "The AI sent everything captured to the inbox, waiting for me to promote it by hand. That turned every capture into another task. The inbox was left only for what needs processing, transcribing became optional, and transcription left the server when the local model started eating the memory. The domain didn't even notice.",
+    "body": [
+      "While testing the browser extension I sent a link with the option to just save it. Ten minutes later it still wasn't in my notes. It was in the inbox, waiting for me to review it and promote it.",
+      "That's how the AI had understood it: everything goes into the inbox and I decide what moves to my notes. But that turned every capture into a to-do, which is exactly what Cauce existed to avoid. If I wanted to review everything by hand, I'd send it straight to my notes and clean it up later.",
+      "The rule ended up like this. The inbox is the worker's queue, not a review box. Only what needs processing goes in, like transcribing a video. Everything else goes straight to my notes. And whatever enters the inbox leaves on its own when the worker is done, with the source text pasted as is.",
+      "The second correction was about what gets processed. The first version processed everything that came in with a link. Why transcribe every page I save? Most of the time it's a YouTube video. So transcribing is optional and requested when sending: in the extension, in the iPhone Shortcuts or when sharing from Android. And no platform gets fewer options than another. Android had been left with a trimmed-down version, and that was fixed.",
+      "The third one came from the server. Transcription ran with Whisper in a container, and at rest, doing nothing, it used more than a gigabyte and a half of memory. On a home server where GraphT also lives, that ended in processes killed for lack of memory. I had already asked whether it wasn't easier to use a service that could transcribe any audio, and that's when I decided: Whisper off the server.",
+      "Since transcription lived behind a port, the change stayed in infrastructure. A new adapter calls an OpenAI-compatible service, and neither the domain nor the use cases changed a single line. The worker went down to about 33 MB at rest.",
+      "And capturing doesn't depend on processing. If the service fails, the note already exists with its link and it's retried later."
+    ]
+  }
+}

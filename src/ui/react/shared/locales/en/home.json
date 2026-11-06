@@ -45,6 +45,15 @@
     "readProgress": "See the progress",
     "imageAlt": "Sign-in screen of Industrial Complements' new system."
   },
+  "cauce": {
+    "label": "In use · in development",
+    "meta": "Personal project · daily use",
+    "caption": "Fig. 4 · Cauce, with simulated data.",
+    "problem": "Ideas last me seconds, and getting them into my notes cost more: copy, open Obsidian, paste. And conversations with AI were scattered across apps and sessions that get compacted.",
+    "decision": "A layer on top of my Zettelkasten in git, not an app with its own database: one PWA for every device, conversations stored as chains of notes and Claude Code as it is, in a terminal.",
+    "readDossier": "Read the case file",
+    "imageAlt": "Cauce's note editor in split view, with a sample note."
+  },
   "experience": {
     "label": "Experience",
     "order": "Most recent first",
